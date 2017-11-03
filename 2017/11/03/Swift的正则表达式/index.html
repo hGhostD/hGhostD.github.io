@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="待续," />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="在这就记录一些琐事吧，还有很多未完的事情这个分类和日记有些像吧 这里是记录接下来想做的事情">
-<meta name="keywords" content="待续">
+<meta name="description" content="Swift正则表达式遇到了需要自定义正则来判断登录信息">
+<meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="这是一篇待续">
-<meta property="og:url" content="http://yoursite.com/2017/11/02/这是一篇待续/index.html">
+<meta property="og:title" content="SwiftSwift的正则表达式">
+<meta property="og:url" content="http://yoursite.com/2017/11/03/Swift的正则表达式/index.html">
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
-<meta property="og:description" content="在这就记录一些琐事吧，还有很多未完的事情这个分类和日记有些像吧 这里是记录接下来想做的事情">
+<meta property="og:description" content="Swift正则表达式遇到了需要自定义正则来判断登录信息">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-03T08:05:58.000Z">
+<meta property="og:updated_time" content="2017-11-03T08:42:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="这是一篇待续">
-<meta name="twitter:description" content="在这就记录一些琐事吧，还有很多未完的事情这个分类和日记有些像吧 这里是记录接下来想做的事情">
+<meta name="twitter:title" content="SwiftSwift的正则表达式">
+<meta name="twitter:description" content="Swift正则表达式遇到了需要自定义正则来判断登录信息">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/02/这是一篇待续/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/03/Swift的正则表达式/"/>
 
 
 
 
 
-  <title>这是一篇待续 | 咱俩谁跟谁啊~</title>
+  <title>SwiftSwift的正则表达式 | 咱俩谁跟谁啊~</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/这是一篇待续/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/Swift的正则表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="你谁啊~">
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">这是一篇待续</h1>
+          <h1 class="post-title" itemprop="name headline">SwiftSwift的正则表达式</h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T08:48:40+08:00">
-                2017-11-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T15:36:21+08:00">
+                2017-11-03
               </time>
             
 
@@ -323,8 +323,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/待续/" itemprop="url" rel="index">
-                    <span itemprop="name">待续</span>
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
                   </a>
                 </span>
 
@@ -360,9 +360,12 @@
       
 
       
-        <h3 id="在这就记录一些琐事吧，还有很多未完的事情"><a href="#在这就记录一些琐事吧，还有很多未完的事情" class="headerlink" title="在这就记录一些琐事吧，还有很多未完的事情"></a>在这就记录一些琐事吧，还有很多未完的事情</h3><p>这个分类和日记有些像吧 这里是记录接下来想做的事情<br><a id="more"></a></p>
-<p>规划了很久的内容，但是有很多时候实现起来太难了，总是抵挡不住自己的懒惰吧。</p>
-<p>总有很多想做未做的事情，看看以后能不能做完吧。</p>
+        <h4 id="Swift正则表达式"><a href="#Swift正则表达式" class="headerlink" title="Swift正则表达式"></a>Swift正则表达式</h4><p>遇到了需要自定义正则来判断登录信息<br><a id="more"></a></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">extension <span class="built_in">String</span> &#123;</div><div class="line">    func regularExpressions() -&gt; Bool &#123;</div><div class="line">        <span class="keyword">if</span> <span class="built_in">self</span>.isEmpty &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">        <span class="comment">//简单判断邮箱或者是手机号</span></div><div class="line">        <span class="keyword">let</span> photoReges = <span class="string">"^([A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&#123;2,4&#125;)</span></div><div class="line"><span class="string">        ||1[0-9]&#123;10&#125;$"</span></div><div class="line">        </div><div class="line">        <span class="keyword">let</span> test = NSPredicate(format: <span class="string">"SELF MATCHES %@"</span>, photoReges)</div><div class="line">        <span class="keyword">return</span> test.evaluate(<span class="keyword">with</span>: <span class="built_in">self</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里为了省事，直接给 String 添加了拓展方法。以后可以根据需求添加正则规则。<br><br></p>
+<blockquote>
+<p>参考资料<br><a href="http://www.jianshu.com/p/d569dc998073" target="_blank" rel="external">Swift 正则表达式规则</a></p>
+</blockquote>
 
       
     </div>
@@ -380,7 +383,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/待续/" rel="tag"># 待续</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
       
@@ -393,14 +396,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/11/03/关于WKWevView和JS交互开发/" rel="next" title="关于WKWebView和JS交互开发">
+                <i class="fa fa-chevron-left"></i> 关于WKWebView和JS交互开发
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/02/第一篇读书/" rel="prev" title="第一篇读书">
-                第一篇读书 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/03/《批判性思维工具》笔记/" rel="prev" title="《批判性思维工具》笔记">
+                《批判性思维工具》笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在这就记录一些琐事吧，还有很多未完的事情"><span class="nav-number">1.</span> <span class="nav-text">在这就记录一些琐事吧，还有很多未完的事情</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift正则表达式"><span class="nav-number">1.</span> <span class="nav-text">Swift正则表达式</span></a></li></ol></div>
             
 
           </div>
