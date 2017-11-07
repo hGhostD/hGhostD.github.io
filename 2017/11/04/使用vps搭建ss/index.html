@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/hGhostD/MarkDownPhotos/master/VPS/ServerType.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hGhostD/MarkDownPhotos/master/VPS/Account.jpeg">
-<meta property="og:updated_time" content="2017-11-06T06:04:16.000Z">
+<meta property="og:updated_time" content="2017-11-06T06:10:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用vps搭建ss">
 <meta name="twitter:description" content="使用 VPS 搭建 SS由于之前的 VPN 到期了，刚好想自己搞一个 VPS，初步搭建记录一下过程。">
@@ -368,8 +368,8 @@
 <h4 id="配置服务器"><a href="#配置服务器" class="headerlink" title="配置服务器"></a>配置服务器</h4><p>服务搭建完成后需要连接服务器，mac 用户可以直接在终端 使用 <code>ssh root@XX.XX.XX.XXX</code> 指令进行连接。windows 可以下载 <a href="https://nofile.io/f/eb5dUzYMQK4/Xshell_setup_wm.exe" target="_blank" rel="external">XShell</a> 提取密码: 666。<br>连接之后输入密码，遍进入服务器终端。</p>
 <p>使用 root 用户登录，运行一下命令:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget --<span class="keyword">no</span>-check-certificate -O shadowsocks.<span class="keyword">sh</span> http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/teddysun/shadowsocks_install/master/shadowsocks.<span class="keyword">sh</span></div><div class="line">chmod +<span class="keyword">x</span> shadowsocks.<span class="keyword">sh</span></div><div class="line">./shadowsocks.<span class="keyword">sh</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee shadowsocks.<span class="built_in">log</span></div></pre></td></tr></table></figure></p>
 <p>按照提示命令，输入密码、端口号、加密方式(aes-256-cfb)等信息<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Congratulations, Shadowsocks-python server install completed!</div><div class="line">Your Server IP        : <span class="comment">// 服务器 IP</span></div><div class="line">Your Server Port      : <span class="comment">// 刚才设置的端口号</span></div><div class="line">Your Password         : <span class="comment">// 刚才设置的密码</span></div><div class="line">Your Encryption <span class="function"><span class="keyword">Method</span>:</span>your_encryption_method</div><div class="line"></div><div class="line">Welcome <span class="keyword">to</span> visit:https:<span class="comment">//teddysun.com/342.html</span></div><div class="line">Enjoy it!</div></pre></td></tr></table></figure></p>
-<p>到此初步配置已经结束，最后需要重启一下服务器。</p>
-<p>以后可能还需要用 VPS 做一些更有难度的工作，不过第一步通过 VPS 翻墙总算是大功告成了！！！<br><br></p>
+<p>到此初步配置已经结束，最后需要重启一下服务器。<br>以后可能还需要用 VPS 做一些更有难度的工作，不过第一步通过 VPS 翻墙总算是大功告成了！！！</p>
+<p><br></p>
 <blockquote>
 <p>参考资料<br><a href="https://my.vultr.com/" target="_blank" rel="external">vultr</a><br><a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="external">自建ss服务器教程</a><br><a href="https://teddysun.com/342.html" target="_blank" rel="external">Shadowsocks Python版一键安装脚本</a></p>
 </blockquote>
@@ -412,6 +412,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/07/回顾Swift设计模式/" rel="prev" title="回顾Swift设计模式">
+                回顾Swift设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -492,7 +496,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -514,7 +518,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
