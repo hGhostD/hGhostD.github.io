@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="回顾 Swift 设计模式《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
+<meta name="description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 <meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回顾Swift设计模式">
 <meta property="og:url" content="http://yoursite.com/2017/11/07/回顾Swift设计模式/index.html">
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
-<meta property="og:description" content="回顾 Swift 设计模式《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
+<meta property="og:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-07T05:41:53.000Z">
+<meta property="og:updated_time" content="2017-11-08T02:37:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回顾Swift设计模式">
-<meta name="twitter:description" content="回顾 Swift 设计模式《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
+<meta name="twitter:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 
 
 
@@ -360,8 +360,8 @@
       
 
       
-        <h4 id="回顾-Swift-设计模式"><a href="#回顾-Swift-设计模式" class="headerlink" title="回顾 Swift 设计模式"></a>回顾 Swift 设计模式</h4><p>《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。<br><a id="more"></a></p>
-<h5 id="对象模板模式"><a href="#对象模板模式" class="headerlink" title="对象模板模式"></a>对象模板模式</h5><blockquote>
+        <p>《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。<br><a id="more"></a></p>
+<h4 id="对象模板模式"><a href="#对象模板模式" class="headerlink" title="对象模板模式"></a>对象模板模式</h4><blockquote>
 <p>其实这个设计模式就是我们通常概念的 <font color="#d13f28"><strong>面向对象</strong></font> 编程。使用 <strong>类</strong> 或者 <strong>结构体</strong> 作为数据类型及其逻辑的规范。创建对象时使用 <strong>模板</strong>，并在初始化是完成数据赋值。赋值时，要么使用模板中的 <strong>默认值</strong>，要么使用类或者结构体的 <strong>构造器</strong> 提供数值。</p>
 </blockquote>
 <p>技巧：有时候可以通过添加计算属性来保护不希望被随意修改的属性<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">var</span> inValue = <span class="number">0</span></div><div class="line">  <span class="keyword">var</span> outValue: <span class="type">Int </span>&#123;</div><div class="line">      <span class="keyword">get</span> &#123;</div><div class="line">          <span class="keyword">return</span> inValue</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">set</span> &#123;</div><div class="line">          inValue = max(<span class="number">0</span>, <span class="keyword">new</span><span class="type">Value</span>)</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">proClass.outValue = <span class="number">10</span>  <span class="comment">// 10</span></div><div class="line">proClass.outValue = <span class="number">-10</span> <span class="comment">// 0</span></div></pre></td></tr></table></figure></p>
@@ -545,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#回顾-Swift-设计模式"><span class="nav-number">1.</span> <span class="nav-text">回顾 Swift 设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.1.</span> <span class="nav-text">对象模板模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li></ol></div>
             
 
           </div>

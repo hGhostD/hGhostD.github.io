@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="关于WKWebView和JS交互开发在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
+<meta name="description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
 <meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于WKWebView和JS交互开发">
 <meta property="og:url" content="http://yoursite.com/2017/11/03/关于WKWevView和JS交互开发/index.html">
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
-<meta property="og:description" content="关于WKWebView和JS交互开发在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
+<meta property="og:description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-03T06:29:41.000Z">
+<meta property="og:updated_time" content="2017-11-08T02:39:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于WKWebView和JS交互开发">
-<meta name="twitter:description" content="关于WKWebView和JS交互开发在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
+<meta name="twitter:description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
 
 
 
@@ -360,7 +360,7 @@
       
 
       
-        <h4 id="关于WKWebView和JS交互开发"><a href="#关于WKWebView和JS交互开发" class="headerlink" title="关于WKWebView和JS交互开发"></a>关于WKWebView和JS交互开发</h4><p>在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。<br><a id="more"></a></p>
+        <p>在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。<br><a id="more"></a></p>
 <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>关于 WKwebview 的优点就不多说了，苹果公司也推荐使用 WKWebView 来代替 UIWebView 作为网页浏览器开发。正好遇到的项目有这一部分需求，就直接使用了，也顺便学习一下，将遇到的问题记录下来。</p>
 <h4 id="设置WKWebView"><a href="#设置WKWebView" class="headerlink" title="设置WKWebView"></a>设置WKWebView</h4><p>最简单的第一步还是需要引入头文件 <code>import WebKit</code></p>
 <p>为了能与 JS 进行交互，需要对 WKWebView 进行设置</p>
@@ -558,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于WKWebView和JS交互开发"><span class="nav-number">1.</span> <span class="nav-text">关于WKWebView和JS交互开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引言"><span class="nav-number">2.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置WKWebView"><span class="nav-number">3.</span> <span class="nav-text">设置WKWebView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代理方法"><span class="nav-number">4.</span> <span class="nav-text">实现代理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WKNavigationDelegate"><span class="nav-number">4.1.</span> <span class="nav-text">WKNavigationDelegate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WKScriptMessageHandler"><span class="nav-number">4.2.</span> <span class="nav-text">WKScriptMessageHandler</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WKWebview-调用-JS-方法"><span class="nav-number">5.</span> <span class="nav-text">WKWebview 调用 JS 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后还有一点"><span class="nav-number">6.</span> <span class="nav-text">最后还有一点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置WKWebView"><span class="nav-number">2.</span> <span class="nav-text">设置WKWebView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代理方法"><span class="nav-number">3.</span> <span class="nav-text">实现代理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WKNavigationDelegate"><span class="nav-number">3.1.</span> <span class="nav-text">WKNavigationDelegate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WKScriptMessageHandler"><span class="nav-number">3.2.</span> <span class="nav-text">WKScriptMessageHandler</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WKWebview-调用-JS-方法"><span class="nav-number">4.</span> <span class="nav-text">WKWebview 调用 JS 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后还有一点"><span class="nav-number">5.</span> <span class="nav-text">最后还有一点</span></a></li></ol></div>
             
 
           </div>
