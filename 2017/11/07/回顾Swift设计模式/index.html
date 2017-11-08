@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-08T02:37:55.000Z">
+<meta property="og:updated_time" content="2017-11-08T09:07:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回顾Swift设计模式">
 <meta name="twitter:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
@@ -365,6 +365,20 @@
 <p>其实这个设计模式就是我们通常概念的 <font color="#d13f28"><strong>面向对象</strong></font> 编程。使用 <strong>类</strong> 或者 <strong>结构体</strong> 作为数据类型及其逻辑的规范。创建对象时使用 <strong>模板</strong>，并在初始化是完成数据赋值。赋值时，要么使用模板中的 <strong>默认值</strong>，要么使用类或者结构体的 <strong>构造器</strong> 提供数值。</p>
 </blockquote>
 <p>技巧：有时候可以通过添加计算属性来保护不希望被随意修改的属性<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">var</span> inValue = <span class="number">0</span></div><div class="line">  <span class="keyword">var</span> outValue: <span class="type">Int </span>&#123;</div><div class="line">      <span class="keyword">get</span> &#123;</div><div class="line">          <span class="keyword">return</span> inValue</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">set</span> &#123;</div><div class="line">          inValue = max(<span class="number">0</span>, <span class="keyword">new</span><span class="type">Value</span>)</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">proClass.outValue = <span class="number">10</span>  <span class="comment">// 10</span></div><div class="line">proClass.outValue = <span class="number">-10</span> <span class="comment">// 0</span></div></pre></td></tr></table></figure></p>
+<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><blockquote>
+<p>原型模式通过克隆已有的对象来创建新的对象，已有的对象即为原型</p>
+</blockquote>
+<p>组件若想通过模板创建新的对象，必须掌握以下三个信息。</p>
+<ul>
+<li>与所需创建的对象相关的模板</li>
+<li>必须调用的初始化器</li>
+<li>初始化器的参数名称和类型</li>
+</ul>
+<blockquote>
+<p>将一个值赋给变量时，Swift会自动使用原型模式。值类型是使用结构体定义，而且所有Swift内置类型的底层都是用结构图实现。</p>
+</blockquote>
+<p>换句话说: Swift 只会为 <font color="#d13f28"><strong>值类型(结构体)</strong></font> 创建默认的<font color="#d13f28"><strong>初始化器</strong></font>。而<strong>不会</strong>为 <font color="#d13f28"><strong>引用类型(类)</strong></font> 创建<font color="#d13f28"><strong>初始化器</strong></font>。这就会导致创建完原型对象后，之后再创建任意多个同类对象，使用 <strong>结构体</strong> 模板创建的对象不会带来内存开销问题，而使用 <strong>类</strong> 模板创建的对象会有内存指向的问题。(2个变量会指向同一个对象。)<br>为了解决这个问题可以实现 NSCopying 协议，来支持克隆对象，实现深复制。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Appointment</span>: <span class="title">NSObject</span>, <span class="title">NSCopying</span> </span>&#123;</div><div class="line">	<span class="keyword">var</span> name: <span class="type">String</span></div><div class="line">	<span class="keyword">var</span> day: <span class="type">String</span></div><div class="line">	<span class="keyword">init</span>(name: <span class="type">String</span>, day: <span class="type">String</span>) &#123;</div><div class="line">		<span class="keyword">self</span>.name = name</div><div class="line">		<span class="keyword">self</span>.day  = day</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 在实现</span></div><div class="line">	<span class="function"><span class="keyword">func</span> <span class="title">copy</span><span class="params">(with zone: NSZone? = <span class="literal">nil</span>)</span></span> -&gt; <span class="type">Any</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">AppointmentClass</span>(name: <span class="keyword">self</span>.name, day: <span class="keyword">self</span>.day)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> b1 = <span class="type">Appointment</span>(name: <span class="string">"Bob"</span>,day: <span class="string">"1"</span>)</div><div class="line"><span class="keyword">var</span> w1 = b1.copy() <span class="keyword">as</span>! <span class="type">Appointment</span></div><div class="line">w1.name = <span class="string">"Ali"</span></div><div class="line">w1.day  = <span class="string">"2"</span></div><div class="line"><span class="comment">// 此时使用 copy() 创建的 w1 此时就不会对 b1 产生印象</span></div></pre></td></tr></table></figure></p>
+<p>Tips: 只有类才可以实现 NSCopying 协议，结构体不可以。因为结构体本身实现了深复制。</p>
 
       
     </div>
@@ -545,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li></ol></div>
             
 
           </div>
