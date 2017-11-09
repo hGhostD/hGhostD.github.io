@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-08T07:12:24.000Z">
+<meta property="og:updated_time" content="2017-11-08T09:35:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于WKWebView和JS交互开发">
 <meta name="twitter:description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
@@ -371,7 +371,7 @@
 <h5 id="WKNavigationDelegate"><a href="#WKNavigationDelegate" class="headerlink" title="WKNavigationDelegate"></a>WKNavigationDelegate</h5><p>之前一直使用旧的 webView 加载完成的代理方法，还奇怪怎么一直不生效。后来才发现 WKWebView 需要使用 <code>webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)</code> 方法才行。加载失败的代理方法同理。</p>
 <h5 id="WKScriptMessageHandler"><a href="#WKScriptMessageHandler" class="headerlink" title="WKScriptMessageHandler"></a>WKScriptMessageHandler</h5><p>当 JS 调用 WKWebView 时需要 JS 实现 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">window</span><span class="selector-class">.webkit</span><span class="selector-class">.messageHandlers</span><span class="selector-class">.webViewApp</span><span class="selector-class">.postMessage</span>(<span class="selector-tag">value</span>);</div></pre></td></tr></table></figure></p>
 <p>其中 <code>webViewApp</code> 是我们在开始注册的关键字。</p>
-<p>为了接受 JS 调用必须实现这个协议和其中的代理方法 <code>userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)</code><br>并且可以从 <code>message</code> 中获取由 JS 传递过来的 JSON 信息。<br><code>let dict = message.body as? Dictionary&lt;String,String&gt;</code><br>例：从dict中取值 <code>if let pageId = dict?[&quot;pageId&quot;] { K_CONFIGJSON.pageId = pageId }</code><br>后来发现用 SwiftyJson 框架处理 JSON 信息更容易些，我就换成了 下面的处理方法:<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="attr">dict</span> = JSON(message.body)</div><div class="line">K_CONFIGJSON.<span class="attr">pageId</span> = dict[<span class="string">"pageId"</span>].stringValue</div></pre></td></tr></table></figure></p>
+<p>为了接受 JS 调用必须实现这个协议和其中的代理方法 <code>userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)</code><br>并且可以从 <code>message</code> 中获取由 JS 传递过来的 JSON 信息。<br><code>let dict = message.body as? Dictionary&lt;String,String&gt;</code><br>例：从dict中取值 <code>if let pageId = dict?[&quot;pageId&quot;] { K_CONFIGJSON.pageId = pageId }</code><br>后来发现用 SwiftyJson 框架处理 JSON 信息更容易些，我就换成了下面的处理方法:<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="attr">dict</span> = JSON(message.body)</div><div class="line">K_CONFIGJSON.<span class="attr">pageId</span> = dict[<span class="string">"pageId"</span>].stringValue</div></pre></td></tr></table></figure></p>
 <p>在此方法中就可根据需求实现自定义方法。</p>
 <h4 id="WKWebview-调用-JS-方法"><a href="#WKWebview-调用-JS-方法" class="headerlink" title="WKWebview 调用 JS 方法"></a>WKWebview 调用 JS 方法</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">DispatchQueue</span>.main.async &#123;</div><div class="line">	<span class="keyword">let</span> email = <span class="type">K_USERMODEL</span>.email</div><div class="line">	<span class="keyword">let</span> password = <span class="type">K_USERMODEL</span>.password</div><div class="line"> 	<span class="keyword">self</span>.webView.evaluateJavaScript(<span class="string">"nativeCallBack('<span class="subst">\(email)</span>,<span class="subst">\(password)</span>')"</span>) &#123; (item, error) <span class="keyword">in</span></div><div class="line">		<span class="built_in">print</span>(item ?? <span class="string">"没有返回"</span>,error ?? <span class="string">"没有错误"</span>)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>注意：这里调用 JS 方法一定要在主线程调用，不然有时会造成崩溃！！！<br>最初我发现调用 JS 的方法如果添加了参数会导致方法失效，参数不能传递过去。通过查阅资料发现了可以通过前端更改代码来解决问题，参考资料在最后。</p>
@@ -502,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
