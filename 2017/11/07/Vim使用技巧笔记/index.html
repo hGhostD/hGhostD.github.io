@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-08T07:01:08.000Z">
+<meta property="og:updated_time" content="2017-11-10T08:59:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim使用技巧笔记">
 <meta name="twitter:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
@@ -416,8 +416,18 @@
 <hr>
 <ul>
 <li><code>:%s/\.o/\.c/g</code> 将 .o 替换为 .c。 <code>%</code> 表示所有行，<code>g</code> 表示全部替换<br><code>:s/aaa/bbb</code> 只替换第一行的第一个。<code>1,12s/aaa/bbb/g</code> 替换1到12行所有的。</li>
-<li><code>daw</code> <code>diw</code> 可以更快向前删除一个单词 <code>aw</code> 比 <code>iw</code> 多删除空格</li>
+<li><code>daw</code> <code>diw</code> 可以更快向前删除一个单词 <code>aw</code> 比 <code>iw</code> 多删除空格。 </li>
+<li><code>dab</code> <code>dib</code> 删除小括号内中的内容. <code>ab</code>  比 <code>ib</code> 多删除括号。等于 <code>da(</code> <code>di(</code>,类似还有 <code>daB</code> <code>diB</code> 等于 <code>da{</code> <code>di{</code> 删除大括号内容。</li>
 <li><code>&lt;C-a&gt;</code> <code>&lt;C-x&gt;</code> 把当前数字加一或减一。Tips: 如果是对 007 使用 <code>&lt;C-a&gt;</code> 将会得到结果为 010，是因为 vim 认为 007 是8进制，在 .vimrc 中设置 <code>set nrformats=</code> 会转为十进制。</li>
+</ul>
+<hr>
+<ul>
+<li><font color="#0089ff">代表插入模式下指令</font></li>
+<li><font color="#0089ff"><code>Ctrl+h</code></font>删除一个字符</li>
+<li><font color="#0089ff"><code>Ctrl+w</code></font>删除一个单词</li>
+<li><font color="#0089ff"><code>Ctrl+u</code></font>删除至行首</li>
+<li><code>yt,</code> 复制光标到 “,” 之间所有的内容。<font color="#0089ff"><code>&lt;C+r&gt;0</code></font> 在光标位置粘贴复制内容。yt 的意思是复制内容到专用寄存器中，所以 <c+r>0 表示取出第0个内容。=jjcdkj</c+r></li>
+<li><font color="#0089ff"><code>&lt;C+r&gt;=</code></font> 进行运算功能。例如 计算 6 <em> 35: `<c+r>=6</c+r></em>35`。直接获得结果210。</li>
 </ul>
 
       
