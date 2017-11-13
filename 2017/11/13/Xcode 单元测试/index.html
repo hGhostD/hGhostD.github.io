@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="有的时候很需要进行单元测试来节省开发时间。之前一直不太熟悉这一块的知识，正好整理学习一下。">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode 单元测试">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/Xcode 单元测试/index.html">
+<meta property="og:site_name" content="咱俩谁跟谁啊~">
+<meta property="og:description" content="有的时候很需要进行单元测试来节省开发时间。之前一直不太熟悉这一块的知识，正好整理学习一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-13T09:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xcode 单元测试">
+<meta name="twitter:description" content="有的时候很需要进行单元测试来节省开发时间。之前一直不太熟悉这一块的知识，正好整理学习一下。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/13/Xcode 单元测试/"/>
+
+
+
+
+
+  <title>Xcode 单元测试 | 咱俩谁跟谁啊~</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咱俩谁跟谁啊~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">跟谁俩呢啊~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-swift">
+          <a href="/categories/Swift/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Swift
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-读书">
+          <a href="/categories/读书/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-日记">
+          <a href="/categories/日记/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            日记
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-待续">
+          <a href="/categories/待续/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            待续
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/13/Xcode 单元测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="你谁啊~">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/1024.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咱俩谁跟谁啊~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Xcode 单元测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-13T14:28:01+08:00">
+                2017-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有的时候很需要进行单元测试来节省开发时间。之前一直不太熟悉这一块的知识，正好整理学习一下。<br><a id="more"></a></p>
+<h4 id="模拟网络请求"><a href="#模拟网络请求" class="headerlink" title="模拟网络请求"></a>模拟网络请求</h4><p>这里以 Sky 这个项目作为演示。模拟获取天气的网络请求方法。关键代码如下:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">DataManagerError</span>: <span class="title">Error</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> failedRequest</div><div class="line">    <span class="keyword">case</span> invalidResponse</div><div class="line">    <span class="keyword">case</span> unknown</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">WeatherData</span>: <span class="title">Codable</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> latitude: <span class="type">Double</span></div><div class="line">    <span class="keyword">let</span> longitude: <span class="type">Double</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">typealias</span> <span class="type">CompletionHandler</span> = (<span class="type">WeatherData</span>?, <span class="type">DataManagerError</span>?) -&gt; <span class="type">Void</span></div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">weatherDataAt</span><span class="params">(latitude: Double, longtitude: Double, completion: @escaping CompletionHandler)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> url = baseURL.appendingPathComponent(<span class="string">"<span class="subst">\(latitude)</span>, <span class="subst">\(longtitude)</span>"</span>)</div><div class="line">        <span class="keyword">var</span> request = <span class="type">URLRequest</span>(url: url)</div><div class="line">        </div><div class="line">        request.setValue(<span class="string">"application/json"</span>, forHTTPHeaderField: <span class="string">"Content-Type"</span>)</div><div class="line">        request.httpMethod = <span class="string">"GET"</span></div><div class="line">        </div><div class="line">        <span class="keyword">self</span>.urlSession.dataTask(with: request) &#123; (data, response, error) <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>.didFinishGettingWeatherData(data: data, response: response, error: error, completion: completion)</div><div class="line">        &#125;.resume()</div><div class="line">    &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">didFinishGettingWeatherData</span><span class="params">(data: Data?, response: URLResponse?, error: Error?, completion: CompletionHandler)</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="number">_</span> = error &#123;</div><div class="line">            completion(<span class="literal">nil</span>, .failedRequest)</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> data = data, <span class="keyword">let</span> response = response <span class="keyword">as</span>? <span class="type">HTTPURLResponse</span> &#123;</div><div class="line">            <span class="keyword">if</span> response.statusCode == <span class="number">200</span> &#123;</div><div class="line">                <span class="keyword">do</span> &#123;</div><div class="line">                    <span class="keyword">let</span> weatherData = <span class="keyword">try</span> <span class="type">JSONDecoder</span>().decode(<span class="type">WeatherData</span>.<span class="keyword">self</span>, from: data)</div><div class="line">                    completion(weatherData, <span class="literal">nil</span>)</div><div class="line">                &#125;<span class="keyword">catch</span> &#123;</div><div class="line">                    completion(<span class="literal">nil</span>, .invalidResponse)</div><div class="line">                &#125;</div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                completion(<span class="literal">nil</span>, .failedRequest)</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            completion(<span class="literal">nil</span>, .unknown)</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>其中包括 3 个关键的可变对象： self.urlSession、request 和  completion。我们就需要单独对这 3 个数据进行模拟。<br>模拟结果分为 3 种：</p>
+<ol>
+<li>是否能获取到网络数据。(success)</li>
+<li>获取网络数据失败。 (failedRequest)</li>
+<li>无效的网络响应。 (invalidResponse)</li>
+</ol>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>创建好 Tests 文件。在此需要引入头文件来确保可以调用工程中的对象方法 <code>@testable import Sky</code>。在测试文件中，测试方法总是以 test 作为方法名的开头。</p>
+<h4 id="测试能否获取网络数据"><a href="#测试能否获取网络数据" class="headerlink" title="测试能否获取网络数据"></a>测试能否获取网络数据</h4><p>想要测试能否获取数据，self.urlSession 就不需要特意模拟，request 可以任意给经纬度进行拼接。最后获取 completion 中的 WeatherData,查看是否拥有数据。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test_weatherDataAt_gets_data</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> expect = expectation(description: <span class="string">"Loading data form <span class="subst">\(API.authenticatedUrl)</span>"</span>)</div><div class="line">        <span class="keyword">var</span> data: <span class="type">WeatherData</span>? = <span class="literal">nil</span></div><div class="line">        <span class="type">WeatherDataManager</span>.shared.weatherDataAt(latitude: <span class="number">52</span>, longtitude: <span class="number">100</span>) &#123; (response, error) <span class="keyword">in</span></div><div class="line">            data = response</div><div class="line">            expect.fulfill()</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        waitForExpectations(timeout: <span class="number">5</span>, handler: <span class="literal">nil</span>)</div><div class="line">        <span class="type">XCTAssertNotNil</span>(data)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里使用 <code>expectation</code> 来进行异步测试，当网络回调结果时候调用 <code>expect.fulfill()</code> 表示异步完成。否则调用 <code>waitForExpectations(timeout: 5, handler: nil)</code> 表明最多等待5秒。最后 <code>XCTAssertNotNil(data)</code> 表明如果 data 为 nil，则测试失败，进入断言。</p>
+<h4 id="测试failedRequest"><a href="#测试failedRequest" class="headerlink" title="测试failedRequest"></a>测试failedRequest</h4><p>为了节省异步获取网络资源花费的时间，需要我们自己构造一个无效的网络响应。为了不影响项目的代码，我们需要自己定一个测试用的 URLSession。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MockURLSession</span>: <span class="title">URLSessionProtocol</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> responseData: <span class="type">Data</span>?</div><div class="line">    <span class="keyword">var</span> responseHeader: <span class="type">HTTPURLResponse</span>?</div><div class="line">    <span class="keyword">var</span> responseError: <span class="type">Error</span>?</div><div class="line">    <span class="keyword">var</span> sessionDataTask = <span class="type">MockURLSessionDataTask</span>()</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dataTask</span><span class="params">(with request: URLRequest, completionHandler: @escaping URLSessionProtocol.dataTaskHandler)</span></span> -&gt; <span class="type">URLSessionDataTaskProcol</span> &#123;</div><div class="line">        completionHandler(responseData, responseHeader, responseError)</div><div class="line">        <span class="keyword">return</span> sessionDataTask</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过构造 MockURLSession 中的请求 responseError 来进行模拟。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">func test_weatherDataAt_handle_invalid_request() &#123;</div><div class="line">        let session = MockURLSession()</div><div class="line">        session.responseError = NSError(<span class="string">domain:</span> <span class="string">"Invalid Requset"</span>, <span class="string">code:</span> <span class="number">100</span>, <span class="string">userInfo:</span> nil)</div><div class="line">        </div><div class="line">        let manager = WeatherDataManager(<span class="string">baseURL:</span> URL(<span class="string">string:</span> <span class="string">"https://darksky.net"</span>)!, <span class="string">urlSession:</span> session)</div><div class="line">        </div><div class="line">        var <span class="string">error:</span> DataManagerError? = nil</div><div class="line">        manager.weatherDataAt(latitude: <span class="number">52</span>, <span class="string">longtitude:</span> <span class="number">100</span>) &#123; (_, e) <span class="keyword">in</span></div><div class="line">            error = e</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        XCTAssertEqual(error, DataManagerError.failedRequest)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="测试invalidResponse"><a href="#测试invalidResponse" class="headerlink" title="测试invalidResponse"></a>测试invalidResponse</h4><p>和测试 failedRequest 的思路一样，只不过这次我们构造的错误信息应该是状态码 200 而 data 数据错误的情况。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">let session = MockURLSession()</div><div class="line">        session.responseHeader = HTTPURLResponse(<span class="string">url:</span> URL(<span class="string">string:</span> <span class="string">"https://darksky.net"</span>)!, <span class="string">statusCode:</span> <span class="number">200</span>, <span class="string">httpVersion:</span> nil, <span class="string">headerFields:</span> nil)</div><div class="line">        </div><div class="line">        let data = <span class="string">"&#123;"</span>.data(<span class="string">using:</span> .utf8)!</div><div class="line">        session.responseData = data</div><div class="line">        </div><div class="line">        let manager = WeatherDataManager(<span class="string">baseURL:</span> URL(<span class="string">string:</span> <span class="string">"https://darksky.net"</span>)!, <span class="string">urlSession:</span> session)</div><div class="line">        </div><div class="line">        var <span class="string">error:</span> DataManagerError? = nil</div><div class="line">        </div><div class="line">        manager.weatherDataAt(latitude: <span class="number">52</span>, <span class="string">longtitude:</span> <span class="number">100</span>) &#123; (_, e) <span class="keyword">in</span></div><div class="line">            error = e</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        XCTAssertEqual(error, DataManagerError.invalidResponse)</div></pre></td></tr></table></figure>
+<h4 id="测试UI"><a href="#测试UI" class="headerlink" title="测试UI"></a>测试UI</h4><p>测试 UI 部分需创建 UITests 文件进行测试。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/09/MVVM学习笔记/" rel="next" title="MVVM学习笔记">
+                <i class="fa fa-chevron-left"></i> MVVM学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/1024.png"
+                alt="你谁啊~" />
+            
+              <p class="site-author-name" itemprop="name">你谁啊~</p>
+              <p class="site-description motion-element" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟网络请求"><span class="nav-number">1.</span> <span class="nav-text">模拟网络请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试能否获取网络数据"><span class="nav-number">3.</span> <span class="nav-text">测试能否获取网络数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试failedRequest"><span class="nav-number">4.</span> <span class="nav-text">测试failedRequest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试invalidResponse"><span class="nav-number">5.</span> <span class="nav-text">测试invalidResponse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试UI"><span class="nav-number">6.</span> <span class="nav-text">测试UI</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">你谁啊~</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

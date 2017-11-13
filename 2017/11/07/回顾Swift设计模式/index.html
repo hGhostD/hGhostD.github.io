@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-12T14:04:53.000Z">
+<meta property="og:updated_time" content="2017-11-13T01:14:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回顾Swift设计模式">
 <meta name="twitter:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
@@ -400,7 +400,8 @@
 <blockquote>
 <p>注释: reserveCapacity 这个方法非常有趣。数组类型的元素并不一定需要是连续的（除非你使用 ContiguousArray），但是它们大部分都是连续的。正因如此，我们常常分配一段内存空间，用来存储我们的数组——特别是当我们知道数组的大致大小时。例如，<code>map()</code> 方法总是会返回和调用该方法的序列一样大小的一个数组。所以，<code>map()</code> 方法在填充数组之前，应该会使用 <code>reserveCapacity</code>。这一点可能不容易理解。<code>map()</code> 作用于 SequenceType 类型，不仅仅是 CollectionType 类型。Sequence 类型并没有 count 属性——那么如何才能得到序列的长度呢？即使它有 count 属性，CollectionType 类型的该属性，应该返回 Index.Distance，而对于 <code>reserveCapacity</code> 来说，需要一个 Int 类型。</p>
 </blockquote>
-
+<h5 id="使用信号量解决并发问题"><a href="#使用信号量解决并发问题" class="headerlink" title="使用信号量解决并发问题"></a>使用信号量解决并发问题</h5><p>创建一个信号量 <code>private let semaphore: DispatchSemaphore</code> 并且在初始化的时候初始化它。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pool</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">init</span>(items: [<span class="type">T</span>]) &#123;</div><div class="line">		<span class="comment">// 为信号源创建一个计数器</span></div><div class="line">		semaphore = <span class="type">DispatchSemaphore</span>(value: items.<span class="built_in">count</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">func</span> <span class="title">getFromPool</span><span class="params">()</span></span> -&gt; <span class="type">T</span>? &#123;</div><div class="line">		<span class="comment">// 每次调用 semaphore.wait 都会使计数器的值减一 </span></div><div class="line">		<span class="keyword">if</span> semaphore.wait(timeout: .distantFuture) == .success &#123;</div><div class="line">			<span class="comment">//确保在分线程执行操作 如果再主线程操作 整个 APP 就会冻住</span></div><div class="line">			arrayQ.sync &#123;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">func</span> <span class="title">returnToPool</span><span class="params">(item: T)</span></span> &#123;</div><div class="line">		arrayQ.sync &#123;</div><div class="line">			<span class="comment">//</span></div><div class="line">			semaphore.singal()</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -523,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -580,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发处理"><span class="nav-number">3.1.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象池模式"><span class="nav-number">4.</span> <span class="nav-text">对象池模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发处理"><span class="nav-number">3.1.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象池模式"><span class="nav-number">4.</span> <span class="nav-text">对象池模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用信号量解决并发问题"><span class="nav-number">4.1.</span> <span class="nav-text">使用信号量解决并发问题</span></a></li></ol></li></ol></div>
             
 
           </div>
