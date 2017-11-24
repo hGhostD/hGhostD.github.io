@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-21T09:38:10.000Z">
+<meta property="og:updated_time" content="2017-11-24T09:18:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回顾Swift设计模式">
 <meta name="twitter:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
@@ -415,6 +415,12 @@
 <p>使用建造者模式可以将创建对象所需的逻辑和默认配置值放入一个建造者类中，这样调用组件只需了解少量配置数据即可创建对象，并且无需了解创建对象所需的默认数据值。</p>
 </blockquote>
 <p>建造者模式实际上在开发中很常用，是指很多时候都没有意识到自己已经使用了建造者模式。说白了就是在创建对象方法和创建对象之间添加了一个中间层。只需在创建对象的时候添加修改的参数，而中间层添加默认参数，从而创建出对象。Swift 中已经很好的能够通过给方法参数添加默认值来实现初始化方法。所以可以很轻松的使用建造者模式。例如：<code>init(name: String, age: Int = 24, sex: Bool = true)</code>。</p>
+<h4 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h4><blockquote>
+<p>适配器模式通过引入适配器对两个组件进行适配的方式，可以让两个 API 不兼容的组件写作。</p>
+</blockquote>
+<p>适配器模式通过对不同类的 API 进行适配，将应用使用的 API 映射到组件提供的 API 方式，使得两个不兼容的类可以相互协作。</p>
+<p>实现适配器模式最优雅的方式是使用 Swift extension。使用 extension 可以为无法修改源码的类增加功能。</p>
+<p>其实适配模式的精髓就是让不同的类都<strong>遵循相同的协议</strong>。让不同的类实现好同一个方法</p>
 
       
     </div>
@@ -595,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发处理"><span class="nav-number">3.1.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象池模式"><span class="nav-number">4.</span> <span class="nav-text">对象池模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用信号量解决并发问题"><span class="nav-number">4.1.</span> <span class="nav-text">使用信号量解决并发问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">5.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建造者模式"><span class="nav-number">6.</span> <span class="nav-text">建造者模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发处理"><span class="nav-number">3.1.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象池模式"><span class="nav-number">4.</span> <span class="nav-text">对象池模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用信号量解决并发问题"><span class="nav-number">4.1.</span> <span class="nav-text">使用信号量解决并发问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">5.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建造者模式"><span class="nav-number">6.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适配器模式"><span class="nav-number">7.</span> <span class="nav-text">适配器模式</span></a></li></ol></div>
             
 
           </div>

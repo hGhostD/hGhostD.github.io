@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-21T07:18:09.000Z">
+<meta property="og:updated_time" content="2017-11-24T02:36:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim使用技巧笔记">
 <meta name="twitter:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
@@ -418,6 +418,7 @@
 <li><code>:%s/\.o/\.c/g</code> 将 .o 替换为 .c。 <code>%</code> 表示所有行，<code>g</code> 表示全部替换<br><code>:s/aaa/bbb</code> 只替换第一行的第一个。<code>1,12s/aaa/bbb/g</code> 替换1到12行所有的。</li>
 <li><code>daw</code> <code>diw</code> 可以更快向前删除一个单词 <code>aw</code> 比 <code>iw</code> 多删除空格。 </li>
 <li><code>dab</code> <code>dib</code> 删除小括号内中的内容. <code>ab</code>  比 <code>ib</code> 多删除括号。等于 <code>da(</code> <code>di(</code>,类似还有 <code>daB</code> <code>diB</code> 等于 <code>da{</code> <code>di{</code> 删除大括号内容。</li>
+<li><code>dit</code> <code>dat</code> 删除匹配标签栏中的内容。如 <a color="#00ff00">title</a>,输入 <code>dit</code> 会删除 title，删除掉标签中的内容。</li>
 <li><code>&lt;C-a&gt;</code> <code>&lt;C-x&gt;</code> 把当前数字加一或减一。Tips: 如果是对 007 使用 <code>&lt;C-a&gt;</code> 将会得到结果为 010，是因为 vim 认为 007 是8进制，在 .vimrc 中设置 <code>set nrformats=</code> 会转为十进制。</li>
 </ul>
 <hr>
@@ -436,8 +437,11 @@
 <li><font color="#008900"><strong>u U</strong></font> 对选中单词进行小写/大写切换。</li>
 </ul>
 <hr>
-<p><code>:[range] delete [x]</code> 删除指定范围内的行[到寄存器 x 中]。<br><code>&quot;[x]p</code> 粘贴寄存器 x 中的内容，例如粘贴寄存器 2 中的内容：<code>&quot;2p</code>。<br><code>:reg</code> 查看寄存器内容。<br><code>@:</code> 重复上一条命令。</p>
-<h2 id="执行-Shell-中的程序，例如：-ls。"><a href="#执行-Shell-中的程序，例如：-ls。" class="headerlink" title=":! 执行 Shell 中的程序，例如：:!ls。"></a><code>:!</code> 执行 Shell 中的程序，例如：<code>:!ls</code>。</h2><p><code>&lt;C+o&gt;</code> 类似网页后退，后退到上一个打开的文本。对应的还有 <code>&lt;C+i&gt;</code> 前进。<br><code>:jumps</code> 打开历史文件列表。</p>
+<p><code>:[range] delete [x]</code> 删除指定范围内的行[到寄存器 x 中]。<br><code>&quot;[x]p</code> 粘贴寄存器 x 中的内容，例如粘贴寄存器 2 中的内容：<code>&quot;2p</code>。<br><code>:reg</code> 查看寄存器内容。<br><code>@:</code> 重复上一条命令。<br><code>:!</code> 执行 Shell 中的程序，例如：<code>:!ls</code>。</p>
+<hr>
+<p><code>&lt;C+o&gt;</code> 类似网页后退，后退到上一个打开的文本。对应的还有 <code>&lt;C+i&gt;</code> 前进。<br><code>:jumps</code> 打开历史文件列表。</p>
+<hr>
+<p><code>m{a-zA-z}</code> 把位置标记 {a-zA-Z} 设在当前光标位置 (不移动光标，这不是动作命令)。<br><code>&#39;{mark}</code> 跳转到标记行首。 <code>`` 跳转到上次光标位置。</code>{mark}` 跳转到标记处。 </p>
 
       
     </div>
@@ -534,17 +538,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -610,22 +605,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行-Shell-中的程序，例如：-ls。"><span class="nav-number">1.</span> <span class="nav-text">:! 执行 Shell 中的程序，例如：:!ls。</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
