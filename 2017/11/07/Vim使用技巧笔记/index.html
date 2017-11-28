@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-24T02:36:28.000Z">
+<meta property="og:updated_time" content="2017-11-27T08:12:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim使用技巧笔记">
 <meta name="twitter:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
@@ -442,6 +442,8 @@
 <p><code>&lt;C+o&gt;</code> 类似网页后退，后退到上一个打开的文本。对应的还有 <code>&lt;C+i&gt;</code> 前进。<br><code>:jumps</code> 打开历史文件列表。</p>
 <hr>
 <p><code>m{a-zA-z}</code> 把位置标记 {a-zA-Z} 设在当前光标位置 (不移动光标，这不是动作命令)。<br><code>&#39;{mark}</code> 跳转到标记行首。 <code>`` 跳转到上次光标位置。</code>{mark}` 跳转到标记处。 </p>
+<hr>
+<p><code>qa</code> (需要记录的指令) <code>q</code> 使用 <code>q</code> + 寄存器位置来记录宏操作，最后以 <code>q</code> 指令结尾。<br><code>@a</code> 执行寄存器(a)中指令。 <code>:reg</code> 查看寄存器中所有的内容。<br><code>~</code> 大小写转换，并使光标跳转到下一个字符。</p>
 
       
     </div>
