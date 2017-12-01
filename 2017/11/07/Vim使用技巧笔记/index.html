@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-27T08:12:13.000Z">
+<meta property="og:updated_time" content="2017-11-30T09:02:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim使用技巧笔记">
 <meta name="twitter:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
@@ -444,6 +444,10 @@
 <p><code>m{a-zA-z}</code> 把位置标记 {a-zA-Z} 设在当前光标位置 (不移动光标，这不是动作命令)。<br><code>&#39;{mark}</code> 跳转到标记行首。 <code>`` 跳转到上次光标位置。</code>{mark}` 跳转到标记处。 </p>
 <hr>
 <p><code>qa</code> (需要记录的指令) <code>q</code> 使用 <code>q</code> + 寄存器位置来记录宏操作，最后以 <code>q</code> 指令结尾。<br><code>@a</code> 执行寄存器(a)中指令。 <code>:reg</code> 查看寄存器中所有的内容。<br><code>~</code> 大小写转换，并使光标跳转到下一个字符。</p>
+<hr>
+<p><code>q/</code> 查看历史指令。</p>
+<hr>
+<p><code>&lt;C+]&gt;</code> 跳转光标到关键字的定义处。<br><code>&lt;C+n&gt;</code>  和 <code>&lt;C+p&gt;</code> 可以激活自动补全功能。<br><code>&lt;C+x&gt;</code> <code>&lt;C+l&gt;</code> 组合使用可以补全本行内容。<br><code>:set spell</code> 检查拼写错误。 通过 <code>[s</code> 和 <code>]s</code> 命令在拼写错误间进行跳转。还可以通过 <code>z=</code> 命令获取建议列表。</p>
 
       
     </div>
