@@ -86,7 +86,7 @@
 <meta property="og:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/hGhostD/MarkDownPhotos/blob/master/Swift%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F.jpg?raw=true">
-<meta property="og:updated_time" content="2017-12-14T09:09:52.000Z">
+<meta property="og:updated_time" content="2017-12-18T08:14:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="回顾Swift设计模式">
 <meta name="twitter:description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。">
@@ -446,6 +446,10 @@
 <h4 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h4><blockquote>
 <p>外观模式可以简化复杂的常见任务 API的使用</p>
 </blockquote>
+<h4 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h4><blockquote>
+<p>享元模式可以在多个调用组件之间共享数据</p>
+</blockquote>
+<p>享元模式不会修改外部数据，也不允许调用组件修改外部数据。这是享元模式非常重要的特征，允许对外部数据进行修改也是人们在实现享元模式时常犯的一个错误。</p>
 
       
     </div>
@@ -626,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发处理"><span class="nav-number">3.1.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象池模式"><span class="nav-number">4.</span> <span class="nav-text">对象池模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用信号量解决并发问题"><span class="nav-number">4.1.</span> <span class="nav-text">使用信号量解决并发问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">5.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建造者模式"><span class="nav-number">6.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适配器模式"><span class="nav-number">7.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#桥接模式"><span class="nav-number">8.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装饰器模式"><span class="nav-number">9.</span> <span class="nav-text">装饰器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合模式"><span class="nav-number">10.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外观模式"><span class="nav-number">11.</span> <span class="nav-text">外观模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象模板模式"><span class="nav-number">1.</span> <span class="nav-text">对象模板模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式"><span class="nav-number">2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发处理"><span class="nav-number">3.1.</span> <span class="nav-text">并发处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象池模式"><span class="nav-number">4.</span> <span class="nav-text">对象池模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用信号量解决并发问题"><span class="nav-number">4.1.</span> <span class="nav-text">使用信号量解决并发问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">5.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建造者模式"><span class="nav-number">6.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适配器模式"><span class="nav-number">7.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#桥接模式"><span class="nav-number">8.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装饰器模式"><span class="nav-number">9.</span> <span class="nav-text">装饰器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合模式"><span class="nav-number">10.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外观模式"><span class="nav-number">11.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#享元模式"><span class="nav-number">12.</span> <span class="nav-text">享元模式</span></a></li></ol></div>
             
 
           </div>
