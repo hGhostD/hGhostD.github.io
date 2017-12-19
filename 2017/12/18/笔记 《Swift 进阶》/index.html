@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。 使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
+<meta name="description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
 <meta name="keywords" content="Swift,读书">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Swift 进阶》读书笔记">
 <meta property="og:url" content="http://yoursite.com/2017/12/18/笔记 《Swift 进阶》/index.html">
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
-<meta property="og:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。 使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
+<meta property="og:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T09:55:06.000Z">
+<meta property="og:updated_time" content="2017-12-19T09:53:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Swift 进阶》读书笔记">
-<meta name="twitter:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。 使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
+<meta name="twitter:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
 
 
 
@@ -360,8 +360,8 @@
       
 
       
-        <p><code>Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。</code></p>
-<p>使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。<br><a id="more"></a></p>
+        <pre><code>Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。 
+</code></pre><p>使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。<br><a id="more"></a></p>
 <h5 id="第一章-介绍"><a href="#第一章-介绍" class="headerlink" title="第一章 介绍"></a>第一章 介绍</h5><p>这一章倒是并没有介绍太过深奥的内容，知识介绍了一些对 Swift 语言的整体印象，以及在使用过程中经常会遇到的术语，这些和其他编程语言都是通用的，就不一一列举出来了。就列出一些平常自己不知道的内容了。</p>
 <blockquote>
 <p>在程序语言的论文里，<code>==</code> 有时候被称为结构相等，而 <code>===</code> 则被称为<strong>指针相等</strong>或者<strong>引用相等</strong>。</p>
@@ -370,6 +370,20 @@
 <blockquote>
 <p>如果一个函数接受别的函数作为参数，或者一个函数的返回值是函数，那么这样的函数就叫作<strong>高阶函数</strong>。</p>
 </blockquote>
+<h5 id="第二章-内建集合类型"><a href="#第二章-内建集合类型" class="headerlink" title="第二章 内建集合类型"></a>第二章 内建集合类型</h5><h6 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h6><p><strong>运算符也是函数</strong><br>所以:<br><code>let sum = fibs.reduce(0) { totle, num in totle + num}</code><br>完全等价于<br><code>let sum = fibs.reduce(0, +)</code><br>reduce 的具体实现是:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reduce</span>&lt;Result&gt;<span class="params">(<span class="number">_</span> initialResult: Result, <span class="number">_</span> nextPartialResult: <span class="params">(Result, Element)</span></span></span> -&gt; <span class="type">Result</span>) -&gt; <span class="type">Result</span> &#123;</div><div class="line">        <span class="keyword">var</span> result = initialResult</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            result = <span class="keyword">try</span> nextPartialResult(result, x)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h6 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h6><p>flatMap 和 map 类似，但是它们直接的区别是 faltMap 返回的是另一个数组，而不是单独的元素。<br>flatMap 的具体实现是:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;SegmentOfResult : Sequence&gt;<span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">        <span class="number">_</span> transform: <span class="params">(Element)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">SegmentOfResult</span></div><div class="line">        ) <span class="keyword">rethrows</span> -&gt; [<span class="type">SegmentOfResult</span>.<span class="type">Element</span>] &#123;</div><div class="line">        <span class="keyword">var</span> result: [<span class="type">SegmentOfResult</span>.<span class="type">Element</span>] = []</div><div class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            result.append(contentsOf: <span class="keyword">try</span> transform(element))</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h6 id="常用的函数参数"><a href="#常用的函数参数" class="headerlink" title="常用的函数参数"></a>常用的函数参数</h6><ul>
+<li>map 和 flatMap 对元素进行变换。</li>
+<li>filter 元素是否应该被包含在结果中。</li>
+<li>reduce 将元素河滨到一个总和的值中。</li>
+<li>sequence 序列中下一个元素。</li>
+<li>forEach 对每一个元素进行操作。</li>
+<li>sort 对元素进行排序。</li>
+<li>index, contains 元素符合某个条件。</li>
+<li>min max 元素中最小值和最大值。</li>
+<li>starts 元素是否相等。</li>
+<li>split 切割元素。</li>
+</ul>
 
       
     </div>
@@ -548,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章-介绍"><span class="nav-number">1.</span> <span class="nav-text">第一章 介绍</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章-介绍"><span class="nav-number">1.</span> <span class="nav-text">第一章 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二章-内建集合类型"><span class="nav-number">2.</span> <span class="nav-text">第二章 内建集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#reduce"><span class="nav-number">2.1.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#flatMap"><span class="nav-number">2.2.</span> <span class="nav-text">flatMap</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#常用的函数参数"><span class="nav-number">2.3.</span> <span class="nav-text">常用的函数参数</span></a></li></ol></li></ol></div>
             
 
           </div>
