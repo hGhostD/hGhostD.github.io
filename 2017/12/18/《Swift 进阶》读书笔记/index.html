@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-29T01:51:19.000Z">
+<meta property="og:updated_time" content="2017-12-29T08:09:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Swift 进阶》读书笔记">
 <meta name="twitter:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
@@ -406,6 +406,11 @@
 <p>如果想要改变 self，或者嵌套的(比如 self.origin.x)任何属性，就需要将方法标记为 <code>mutating</code>。只有使用了这个关键字，我们才能在方法内部进行改变。<br>Swift 的结构体一般被存储在栈上，而非堆上。如果结构体太大，它也会被存储在堆上。</p>
 <h6 id="捕获列表"><a href="#捕获列表" class="headerlink" title="捕获列表"></a>捕获列表</h6><p>为了打破循环引用，需要保证闭包不去引用视图。通过使用<strong>捕获列表</strong>并将捕获变量 view 标记为 weak 或者 unowned 来达到这个目的。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">window</span>?onRotate = &#123; [weak <span class="keyword">view</span>] <span class="keyword">in</span></div><div class="line">	<span class="keyword">print</span>(<span class="string">"We now also need to update the view: \(view)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="第六章-函数"><a href="#第六章-函数" class="headerlink" title="第六章 函数"></a>第六章 函数</h5><ol>
+<li>函数可以像 Int 或者 String 那样被赋值给变量，也可以作为另一个函数的输入参数，或者另一个函数的返回值来使用。</li>
+<li>函数能够<strong>捕获</strong>存在于其作用域之外的变量。</li>
+<li>有两种方法可以创建函数，一种是使用 func 关键字，另一种是 { }。在 Swift 中，后一种被称为闭包表达式。</li>
+</ol>
 
       
     </div>
@@ -447,6 +452,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/01/2017/" rel="prev" title="2017年末总结">
+                2017年末总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -527,7 +536,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章-介绍"><span class="nav-number">1.</span> <span class="nav-text">第一章 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二章-内建集合类型"><span class="nav-number">2.</span> <span class="nav-text">第二章 内建集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#reduce"><span class="nav-number">2.1.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#flatMap"><span class="nav-number">2.2.</span> <span class="nav-text">flatMap</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#常用的函数参数"><span class="nav-number">2.3.</span> <span class="nav-text">常用的函数参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三章-集合类型协议"><span class="nav-number">3.</span> <span class="nav-text">第三章 集合类型协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Sequence"><span class="nav-number">3.1.</span> <span class="nav-text">Sequence</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四章-可选值"><span class="nav-number">4.</span> <span class="nav-text">第四章 可选值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#if-let"><span class="nav-number">4.1.</span> <span class="nav-text">if let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#while-let"><span class="nav-number">4.2.</span> <span class="nav-text">while let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nil-合并运算"><span class="nav-number">4.3.</span> <span class="nav-text">nil 合并运算</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第五章-结构体和类"><span class="nav-number">5.</span> <span class="nav-text">第五章 结构体和类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#值类型"><span class="nav-number">5.1.</span> <span class="nav-text">值类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#捕获列表"><span class="nav-number">5.2.</span> <span class="nav-text">捕获列表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章-介绍"><span class="nav-number">1.</span> <span class="nav-text">第一章 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二章-内建集合类型"><span class="nav-number">2.</span> <span class="nav-text">第二章 内建集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#reduce"><span class="nav-number">2.1.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#flatMap"><span class="nav-number">2.2.</span> <span class="nav-text">flatMap</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#常用的函数参数"><span class="nav-number">2.3.</span> <span class="nav-text">常用的函数参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三章-集合类型协议"><span class="nav-number">3.</span> <span class="nav-text">第三章 集合类型协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Sequence"><span class="nav-number">3.1.</span> <span class="nav-text">Sequence</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四章-可选值"><span class="nav-number">4.</span> <span class="nav-text">第四章 可选值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#if-let"><span class="nav-number">4.1.</span> <span class="nav-text">if let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#while-let"><span class="nav-number">4.2.</span> <span class="nav-text">while let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nil-合并运算"><span class="nav-number">4.3.</span> <span class="nav-text">nil 合并运算</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第五章-结构体和类"><span class="nav-number">5.</span> <span class="nav-text">第五章 结构体和类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#值类型"><span class="nav-number">5.1.</span> <span class="nav-text">值类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#捕获列表"><span class="nav-number">5.2.</span> <span class="nav-text">捕获列表</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第六章-函数"><span class="nav-number">6.</span> <span class="nav-text">第六章 函数</span></a></li></ol></div>
             
 
           </div>
@@ -604,7 +613,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
