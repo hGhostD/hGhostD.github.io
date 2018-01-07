@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-06T09:08:39.000Z">
+<meta property="og:updated_time" content="2018-01-07T14:52:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Swift 进阶》读书笔记">
 <meta name="twitter:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
@@ -428,7 +428,8 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Sequence</span> </span>&#123;</div><div class="line">	<span class="comment">/// 根据序列是否包含满足给定断言的元素，返回一个布尔值。</span></div><div class="line">	<span class="function"><span class="keyword">func</span> <span class="title">contains</span><span class="params">(<span class="keyword">where</span> predicate: <span class="params">(Iterator.Element)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>)</div><div class="line">		<span class="keyword">return</span> -&gt; <span class="type">Bool</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>也就是说，它接受一个函数，这个函数从序列中取出一个元素，并对他进行一些检查。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> isEven = &#123; $<span class="number">0</span> % <span class="number">2</span> == <span class="number">0</span>&#125;</div><div class="line">(<span class="number">0</span>...<span class="number">5</span>).<span class="built_in">contains</span>(<span class="keyword">where</span>: isEven)  <span class="comment">// ture</span></div><div class="line">[<span class="number">1</span>,<span class="number">3</span>,<span class="number">99</span>].<span class="built_in">contains</span>(<span class="keyword">where</span>: isEven) <span class="comment">//false</span></div></pre></td></tr></table></figure>
-<h5 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h5>
+<h5 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h5><p>当我们通过协议类型创建一个变量时，这个变量会被包装到一个叫存在容器的盒子中。</p>
+
       
     </div>
     
