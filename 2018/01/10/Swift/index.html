@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数，也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。 函数式思想在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。假设有一个 struct 包含 x 和 y 坐标: 1234struct Position &amp;#123;    let x: Int    let y: Int&amp;#125;">
+<meta name="description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
 <meta name="keywords" content="Swift,读书">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《函数式 Swift》读书笔记">
 <meta property="og:url" content="http://yoursite.com/2018/01/10/Swift/index.html">
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
-<meta property="og:description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数，也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。 函数式思想在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。假设有一个 struct 包含 x 和 y 坐标: 1234struct Position &amp;#123;    let x: Int    let y: Int&amp;#125;">
+<meta property="og:description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-11T09:54:56.000Z">
+<meta property="og:updated_time" content="2018-01-12T09:52:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《函数式 Swift》读书笔记">
-<meta name="twitter:description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数，也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。 函数式思想在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。假设有一个 struct 包含 x 和 y 坐标: 1234struct Position &amp;#123;    let x: Int    let y: Int&amp;#125;">
+<meta name="twitter:description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
 
 
 
@@ -360,16 +360,32 @@
       
 
       
-        <pre><code>函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数，也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。
-</code></pre><h5 id="函数式思想"><a href="#函数式思想" class="headerlink" title="函数式思想"></a>函数式思想</h5><p>在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。<br>假设有一个 struct 包含 x 和 y 坐标:</p>
+        <pre><code>函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数，
+也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。
+</code></pre><a id="more"></a>
+<h4 id="函数式思想"><a href="#函数式思想" class="headerlink" title="函数式思想"></a>函数式思想</h4><p>在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。<br>假设有一个 struct 包含 x 和 y 坐标:</p>
 <figure class="highlight julia"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Position &#123;</div><div class="line">    <span class="keyword">let</span> x: <span class="built_in">Int</span></div><div class="line">    <span class="keyword">let</span> y: <span class="built_in">Int</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>此时，定义一个 typealias，表示把 Position 转化为 bool 的函数。 <code>typealias Region = (Position) -&gt; Bool</code>。<br>接下来创建函数的返回值就可以是一个函数(Region) </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">func circle(radius: Int) -&gt; Region &#123;</div><div class="line">    return &#123; loc <span class="keyword">in</span> return loc.x &lt;<span class="built_in"> radius </span>&#125;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">其中</div></pre></td></tr></table></figure>
-<p>{ (参数) -&gt; (返回值) in<br>    (函数具体的操作)<br>    return (返回值)<br>}<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> 括号内就是表示一个函数。</div><div class="line"> </div><div class="line"><span class="comment">##### 案例研究：封装 Core Image</span></div><div class="line">书中的用例是对 CIImage 进行封装。为了让自己更明白本章所讲的内容，我把 CIImage 换成了 Int 类型来实现，两者的本质并无太大的区别，重点是对函数化这一概念要有清晰的认识。</div><div class="line">我们首先将<span class="built_in"> Filter </span>定义为一个函数，该函数接受 Int 型作为参数，并且返回一个新的 Int 型。`typealias<span class="built_in"> Filter </span>= (Int) -&gt; Int`。</div><div class="line">首先，我们定义一个简单的 +1 的方法，返回值是 Filter(**是一个函数**)。</div></pre></td></tr></table></figure></p>
-<p>func addOne(describe: String) -&gt; Filter {<br>    return { number in<br>        return number + 1<br>    }<br>}<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这样调用起来就是： `<span class="selector-tag">addOne</span>(<span class="attribute">describe</span>: <span class="string">"简单的 10+1"</span>)(<span class="number">10</span>) <span class="comment">// 11` </span></div><div class="line">接下来在的定义一个 +<span class="selector-tag">2</span> 的方法，同上</div></pre></td></tr></table></figure></p>
-<p>func addTwo(describe: String) -&gt; Filter {<br>    return { number in<br>        return number + 2<br>    }<br>}<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">到这里都挺简单的，现在如果我们要再实现一个 +<span class="number">3</span> 的方法，再复制就显得太蠢了，所以转换一下思路，通过 +<span class="number">1</span> 和 +<span class="number">2</span> 的方法实现：</div></pre></td></tr></table></figure></p>
-<p>func addThree(describe: String) -&gt; Filter {<br>    return { number in<br>        let one = addOne(describe: “+ 1:”)(number)<br>        return addTwo(describe: “+ 2:”)(one)<br>    }<br>}<br>addThree(describe: “+ 3:”)(100) // 103<br>```</p>
-
+<p>此时，定义一个 typealias，表示把 Position 转化为 bool 的函数。<br><code>typealias Region = (Position) -&gt; Bool</code>。</p>
+<p>接下来创建函数的返回值就可以是一个函数(Region) </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func circle(radius: Int) -&gt; Region &#123;</div><div class="line">    return &#123; loc <span class="keyword">in</span> return loc.x &lt;<span class="built_in"> radius </span>&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中 </p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; (参数) -&gt; (返回值) in </div><div class="line">	(函数具体的操作)</div><div class="line">	return (返回值)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>括号内就是表示一个函数。</p>
+<h4 id="案例研究：封装-Core-Image"><a href="#案例研究：封装-Core-Image" class="headerlink" title="案例研究：封装 Core Image"></a>案例研究：封装 Core Image</h4><p>书中的用例是对 CIImage 进行封装。为了让自己更明白本章所讲的内容，我把 CIImage 换成了 Int 类型来实现，两者的本质并无太大的区别，重点是对函数化这一概念要有清晰的认识。<br>我们首先将 Filter 定义为一个函数，该函数接受 Int 型作为参数，并且返回一个新的 Int 型。<code>typealias Filter = (Int) -&gt; Int</code>。<br>首先，我们定义一个简单的 +1 的方法，返回值是 Filter(<strong>是一个函数</strong>)。 </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">func addOne(describe: String) -&gt;<span class="built_in"> Filter </span>&#123;</div><div class="line">    return &#123; number <span class="keyword">in</span></div><div class="line">        return number + 1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样调用起来就是： <code>addOne(describe: &quot;简单的 10+1&quot;)(10) // 11</code><br>接下来在的定义一个 +2 的方法，同上</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">func addTwo(describe: String) -&gt;<span class="built_in"> Filter </span>&#123;</div><div class="line">    return &#123; number <span class="keyword">in</span></div><div class="line">        return number + 2</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>到这里都挺简单的，现在如果我们要再实现一个 +3 的方法，再复制就显得太蠢了，所以转换一下思路，通过 +1 和 +2 的方法实现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">func addThree(<span class="keyword">describe</span>: <span class="keyword">String</span>) -&gt; Filter &#123;</div><div class="line">    <span class="keyword">return</span> &#123; <span class="built_in">number</span> <span class="keyword">in</span></div><div class="line">        let one = addOne(<span class="keyword">describe</span>: <span class="string">"+ 1:"</span>)(<span class="built_in">number</span>)</div><div class="line">        <span class="keyword">return</span> addTwo(<span class="keyword">describe</span>: <span class="string">"+ 2:"</span>)(one)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">addThree(<span class="keyword">describe</span>: <span class="string">"+ 3:"</span>)(<span class="number">100</span>) // <span class="number">103</span></div></pre></td></tr></table></figure>
+<h5 id="复合函数"><a href="#复合函数" class="headerlink" title="复合函数"></a>复合函数</h5><p>现在，如果我们想要实现 0 + 1 + 2 + 3 的功能，就可以这么调用：<br><code>addThree(describe: &quot;3&quot;)(addTwo(describe: &quot;2&quot;)(addOne(describe: &quot;1&quot;)(0))) // 6</code>。<br>感觉这么调用并不友好，我们需要优化一下实现方式。书中给了一种方案是使用<strong>复合函数</strong>。<br>首先定义一个用于组合的函数：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">func</span> <span class="selector-tag">compose</span>(<span class="attribute">filter1</span>: <span class="variable">@escaping</span> Filter, <span class="attribute">fileter2</span>: <span class="variable">@escaping</span> Filter) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Filter</span> &#123;</div><div class="line">    <span class="selector-tag">return</span> &#123; <span class="selector-tag">num</span> <span class="selector-tag">in</span> <span class="selector-tag">fileter2</span>(filter1(num)) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样可以使用复合函数来定义：<br><code>compose(compose(addOne(describe: &quot;1&quot;), addTwo(describe: &quot;2&quot;)), addThree(describe: &quot;3&quot;))(100) // 106</code></p>
+<h5 id="自定义运算符"><a href="#自定义运算符" class="headerlink" title="自定义运算符"></a>自定义运算符</h5><p>但是看起来也很不容易理解。为了让代码更具可读性，我们可以再进一步，为组合引入运算符。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">infix</span> <span class="selector-tag">operator</span> &gt;&gt;&gt;: <span class="selector-tag">pro</span></div><div class="line"><span class="selector-tag">precedencegroup</span> <span class="selector-tag">pro</span> &#123;</div><div class="line">    <span class="attribute">associativity</span>: left</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">func</span> &gt;&gt;&gt;(<span class="attribute">filter1</span>: <span class="variable">@escaping</span> Filter, <span class="attribute">fileter2</span>: <span class="variable">@escaping</span> Filter) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Filter</span> &#123;</div><div class="line">    <span class="selector-tag">return</span> &#123; <span class="selector-tag">num</span> <span class="selector-tag">in</span> <span class="selector-tag">fileter2</span>(filter1(num)) &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就可以用运算符来实现了，</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = addOne(<span class="name">describe</span>: <span class="string">"1"</span>) &gt;&gt;&gt; addTwo(<span class="name">describe</span>: <span class="string">"2"</span>) &gt;&gt;&gt; addThree(<span class="name">describe</span>: <span class="string">"3"</span>)</div><div class="line">result(<span class="number">0</span>) // <span class="number">6</span></div></pre></td></tr></table></figure>
+<h5 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h5><p>函数接受参数之后，返回一个<strong>闭包</strong>，然后等待第二个参数。<code>add(1)(2)</code>。函数中的箭头 -&gt; 向右结合。这也就是说没你可以将 A -&gt; B -&gt; C 理解为 A -&gt; (B -&gt; C)。</p>
+<h4 id="Map、Filter-和-Reduce"><a href="#Map、Filter-和-Reduce" class="headerlink" title="Map、Filter 和 Reduce"></a>Map、Filter 和 Reduce</h4>
       
     </div>
     
@@ -547,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#函数式思想"><span class="nav-number">1.</span> <span class="nav-text">函数式思想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数式思想"><span class="nav-number">1.</span> <span class="nav-text">函数式思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例研究：封装-Core-Image"><span class="nav-number">2.</span> <span class="nav-text">案例研究：封装 Core Image</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#复合函数"><span class="nav-number">2.1.</span> <span class="nav-text">复合函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义运算符"><span class="nav-number">2.2.</span> <span class="nav-text">自定义运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#柯里化"><span class="nav-number">2.3.</span> <span class="nav-text">柯里化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map、Filter-和-Reduce"><span class="nav-number">3.</span> <span class="nav-text">Map、Filter 和 Reduce</span></a></li></ol></div>
             
 
           </div>
