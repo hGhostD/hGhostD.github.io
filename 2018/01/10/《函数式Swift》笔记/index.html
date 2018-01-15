@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
+<meta name="description" content="函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
 <meta name="keywords" content="Swift,读书">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《函数式 Swift》读书笔记">
 <meta property="og:url" content="http://yoursite.com/2018/01/10/《函数式Swift》笔记/index.html">
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
-<meta property="og:description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
+<meta property="og:description" content="函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-14T14:44:13.000Z">
+<meta property="og:updated_time" content="2018-01-15T03:50:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《函数式 Swift》读书笔记">
-<meta name="twitter:description" content="函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
+<meta name="twitter:description" content="函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数， 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
 
 
 
@@ -360,7 +360,7 @@
       
 
       
-        <pre><code>函数在 Swift 中是 **一等公民**，换句话说，函数可以作为参数被传递到其他函数，
+        <pre><code>函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数，
 也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。
 </code></pre><a id="more"></a>
 <h4 id="函数式思想"><a href="#函数式思想" class="headerlink" title="函数式思想"></a>函数式思想</h4><p>在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。<br>假设有一个 struct 包含 x 和 y 坐标:</p>
@@ -408,7 +408,10 @@
 <h5 id="泛型和-Any-类型"><a href="#泛型和-Any-类型" class="headerlink" title="泛型和 Any 类型"></a>泛型和 Any 类型</h5><p>除了泛型，Swift 还支持 Any 类型，它能代表任何类型的值。泛型可以用于定义灵活的函数，类型检查仍然由编译器负责；而 Any 类型则可以避开 Swift 的类型系统（<strong>所以应该尽可能避免使用</strong>）。</p>
 <p>泛型函数的类型十分丰富，这里我们可以考虑一下上一章对自定义函数组合运算符 &gt;&gt;&gt; 的泛型实现:</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">infix operator &gt;&gt;|: pro</div><div class="line">precedencegroup pro &#123;</div><div class="line">    associativity: left</div><div class="line">&#125;</div><div class="line">func &gt;&gt;|&lt;A, B, C&gt;<span class="function"><span class="params">(f: @escaping (A) -&gt; (B), g: @escaping (B) -&gt; (C))</span> -&gt;</span> <span class="function"><span class="params">(A)</span> -&gt;</span> (C) &#123;</div><div class="line">    <span class="keyword">return</span> &#123; x <span class="keyword">in</span> g(f(x))&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> result = addOne(describe: <span class="string">"1"</span>) &gt;&gt;| addTwo(describe: <span class="string">"2"</span>) &gt;&gt;| addThree(describe: <span class="string">"3"</span>)</div><div class="line">result(<span class="number">10</span>) <span class="regexp">// 16</span></div></pre></td></tr></table></figure>
-<h4 id="可选值"><a href="#可选值" class="headerlink" title="可选值"></a>可选值</h4>
+<h4 id="可选值"><a href="#可选值" class="headerlink" title="可选值"></a>可选值</h4><p><code>??</code> 运算符的简易定义是这样的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> ??</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> ??&lt;T&gt;<span class="params">(lhs: T?, rhs: T)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> result = lhs &#123;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> rhs</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> result: <span class="type">Int</span>? = &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;()</div><div class="line">result ?? <span class="number">100</span>		<span class="comment">// 100</span></div></pre></td></tr></table></figure>
+<p><code>??</code> 运算符提供了一个相比于强制可选解包更安全的替代，并且不像可选绑定一样繁琐。</p>
+<h4 id="案例研究：图表"><a href="#案例研究：图表" class="headerlink" title="案例研究：图表"></a>案例研究：图表</h4>
       
     </div>
     
@@ -586,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数式思想"><span class="nav-number">1.</span> <span class="nav-text">函数式思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例研究：封装-Core-Image"><span class="nav-number">2.</span> <span class="nav-text">案例研究：封装 Core Image</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#复合函数"><span class="nav-number">2.1.</span> <span class="nav-text">复合函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义运算符"><span class="nav-number">2.2.</span> <span class="nav-text">自定义运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#柯里化"><span class="nav-number">2.3.</span> <span class="nav-text">柯里化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map、Filter-和-Reduce"><span class="nav-number">3.</span> <span class="nav-text">Map、Filter 和 Reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Map-和-Filter"><span class="nav-number">3.1.</span> <span class="nav-text">Map 和 Filter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reduce"><span class="nav-number">3.2.</span> <span class="nav-text">Reduce</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#泛型和-Any-类型"><span class="nav-number">3.3.</span> <span class="nav-text">泛型和 Any 类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选值"><span class="nav-number">4.</span> <span class="nav-text">可选值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数式思想"><span class="nav-number">1.</span> <span class="nav-text">函数式思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例研究：封装-Core-Image"><span class="nav-number">2.</span> <span class="nav-text">案例研究：封装 Core Image</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#复合函数"><span class="nav-number">2.1.</span> <span class="nav-text">复合函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义运算符"><span class="nav-number">2.2.</span> <span class="nav-text">自定义运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#柯里化"><span class="nav-number">2.3.</span> <span class="nav-text">柯里化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map、Filter-和-Reduce"><span class="nav-number">3.</span> <span class="nav-text">Map、Filter 和 Reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Map-和-Filter"><span class="nav-number">3.1.</span> <span class="nav-text">Map 和 Filter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reduce"><span class="nav-number">3.2.</span> <span class="nav-text">Reduce</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#泛型和-Any-类型"><span class="nav-number">3.3.</span> <span class="nav-text">泛型和 Any 类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选值"><span class="nav-number">4.</span> <span class="nav-text">可选值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例研究：图表"><span class="nav-number">5.</span> <span class="nav-text">案例研究：图表</span></a></li></ol></div>
             
 
           </div>
