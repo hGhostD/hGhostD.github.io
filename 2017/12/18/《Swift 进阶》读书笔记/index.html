@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.3" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Swift,读书," />
+
+
+<meta name="description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
+<meta name="keywords" content="Swift,读书">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Swift 进阶》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2017/12/18/《Swift 进阶》读书笔记/index.html">
+<meta property="og:site_name" content="咱俩谁跟谁啊~">
+<meta property="og:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-15T09:19:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Swift 进阶》读书笔记">
+<meta name="twitter:description" content="Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。  使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/18/《Swift 进阶》读书笔记/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>《Swift 进阶》读书笔记 | 咱俩谁跟谁啊~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咱俩谁跟谁啊~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">跟谁俩呢啊~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-swift">
+          <a href="/categories/Swift/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />Swift</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/categories/读书/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-book"></i> <br />读书</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-diary">
+          <a href="/categories/日记/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />日记</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-will">
+          <a href="/categories/待续/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />续待</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/18/《Swift 进阶》读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="你谁啊~">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/1024.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咱俩谁跟谁啊~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Swift 进阶》读书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T17:26:04+08:00">2017-12-18</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>Swift 既是一门高层级语言，又是一门低层级语言。Swift 是一门多范式语言。 
+</code></pre><p>使用 Swift 也有一段时间了，这本书作为一门进阶用书写的十分优秀，翻译也十分浅显易懂。把学到内容作为笔记记录下来，也方便以后查看。<br><a id="more"></a></p>
+<h5 id="第一章-介绍"><a href="#第一章-介绍" class="headerlink" title="第一章 介绍"></a>第一章 介绍</h5><p>这一章倒是并没有介绍太过深奥的内容，知识介绍了一些对 Swift 语言的整体印象，以及在使用过程中经常会遇到的术语，这些和其他编程语言都是通用的，就不一一列举出来了。就列出一些平常自己不知道的内容了。</p>
+<blockquote>
+<p>在程序语言的论文里，<code>==</code> 有时候被称为结构相等，而 <code>===</code> 则被称为<strong>指针相等</strong>或者<strong>引用相等</strong>。</p>
+</blockquote>
+<p>高阶函数：</p>
+<blockquote>
+<p>如果一个函数接受别的函数作为参数，或者一个函数的返回值是函数，那么这样的函数就叫作<strong>高阶函数</strong>。</p>
+</blockquote>
+<h5 id="第二章-内建集合类型"><a href="#第二章-内建集合类型" class="headerlink" title="第二章 内建集合类型"></a>第二章 内建集合类型</h5><h6 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h6><p><strong>运算符也是函数</strong><br>所以:<br><code>let sum = fibs.reduce(0) { totle, num in totle + num}</code><br>完全等价于<br><code>let sum = fibs.reduce(0, +)</code><br>reduce 的具体实现是:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reduce</span>&lt;Result&gt;<span class="params">(<span class="number">_</span> initialResult: Result, <span class="number">_</span> nextPartialResult: <span class="params">(Result, Element)</span></span></span> -&gt; <span class="type">Result</span>) -&gt; <span class="type">Result</span> &#123;</div><div class="line">        <span class="keyword">var</span> result = initialResult</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            result = <span class="keyword">try</span> nextPartialResult(result, x)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h6><p>flatMap 和 map 类似，但是它们直接的区别是 faltMap 返回的是另一个数组，而不是单独的元素。<br>flatMap 的具体实现是:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;SegmentOfResult : Sequence&gt;<span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">        <span class="number">_</span> transform: <span class="params">(Element)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">SegmentOfResult</span></div><div class="line">        ) <span class="keyword">rethrows</span> -&gt; [<span class="type">SegmentOfResult</span>.<span class="type">Element</span>] &#123;</div><div class="line">        <span class="keyword">var</span> result: [<span class="type">SegmentOfResult</span>.<span class="type">Element</span>] = []</div><div class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> <span class="keyword">self</span> &#123;</div><div class="line">            result.append(contentsOf: <span class="keyword">try</span> transform(element))</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="常用的函数参数"><a href="#常用的函数参数" class="headerlink" title="常用的函数参数"></a>常用的函数参数</h6><ul>
+<li>map 和 flatMap 对元素进行变换。</li>
+<li>filter 元素是否应该被包含在结果中。</li>
+<li>reduce 将元素河滨到一个总和的值中。</li>
+<li>sequence 序列中下一个元素。</li>
+<li>forEach 对每一个元素进行操作。</li>
+<li>sort 对元素进行排序。</li>
+<li>index, contains 元素符合某个条件。</li>
+<li>min max 元素中最小值和最大值。</li>
+<li>starts 元素是否相等。</li>
+<li>split 切割元素。</li>
+</ul>
+<h5 id="第三章-集合类型协议"><a href="#第三章-集合类型协议" class="headerlink" title="第三章 集合类型协议"></a>第三章 集合类型协议</h5><h6 id="Sequence"><a href="#Sequence" class="headerlink" title="Sequence"></a>Sequence</h6><p>Sequence 协议是集合类型结构中的基础。一个序列（Sequence）代表的是一系列具有相同类型的值，你可以对这些值进行迭代。遍历一个序列最简单的方式是使用 for 循环。<br>这个函数有两个版本：<br>第一种方法：<code>sequence(first: next:)</code>。将使用第一个参数的值作为序列的首个元素，并使用 <code>next</code> 参数传入的闭包生成序列的后续元素。这里先定义一个 next 的闭包，用来生成一个随机数且要比前一个数小，到零为止:</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let calculte = &#123; (previouse: <span class="type">UInt32</span>) -&gt; UInt32? <span class="keyword">in</span></div><div class="line">    let <span class="keyword">new</span><span class="type">Value</span> = arc4random_uniform(previouse)</div><div class="line">    guard <span class="keyword">new</span><span class="type">Value</span> &gt; <span class="number">0</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span> nil&#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span><span class="type">Value</span></div><div class="line"><span class="type"></span>&#125;</div></pre></td></tr></table></figure>
+<p>定义好这个 next 闭包，就能够直接构建好一个 Sequence。<code>let randomNumbsers = sequence(first: 100, next: calculte)</code>。其中定义好初始化数据 first 为 100。<br><code>Array(randomNumbsers) // [100, 56, 9, 6, 3, 2]</code><br>第二个方法：<code>sequence(state: next:)</code>。因为它可以在两次 next 闭包被调用之间保存任意的可变状态，所以它更强大一些。这里我们通过它来创建一个<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="external">斐波那契序列</a>:</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let calculte2 = &#123; (<span class="keyword">state</span>: inout (Int, Int)) -&gt; Int? <span class="keyword">in</span></div><div class="line">    let result = <span class="keyword">state</span>.<span class="number">0</span></div><div class="line">    <span class="keyword">state</span> = (<span class="keyword">state</span>.<span class="number">1</span>, <span class="keyword">state</span>.<span class="number">0</span> + <span class="keyword">state</span>.<span class="number">1</span>)</div><div class="line">    return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义初始数据为一个元组 (0, 1)，再将这个元素传递给 next，然后取出元组中第一个数据，并修改元组数据:第一个数据 -&gt; 第二个数据，第二个数据 -&gt; 第一个与第二个数据的和。<br><code>fibs = sequence(state: (0, 1), next: calculte2)</code>。<br><code>Array(fibs.prefix(10)) // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</code></p>
+<blockquote>
+<p><code>sequence(first:next:)</code> 和 <code>sequence(state:next:)</code> 的返回值类型是 <code>UnfoldSequence</code>。这个术语来自函数式编程，在函数式编程中，这种操作为成为展开(unfold)。sequence 是和 reduce 对应的(在函数式编程中 reduce 有常被叫做 fold)。reduce 将一个序列缩减(或者说折叠)为一个单一的返回值，而 sequence 则将一个单一的值展开形成一个序列。</p>
+</blockquote>
+<h5 id="第四章-可选值"><a href="#第四章-可选值" class="headerlink" title="第四章 可选值"></a>第四章 可选值</h5><h6 id="if-let"><a href="#if-let" class="headerlink" title="if let"></a>if let</h6><p>使用 <code>if let</code> 来进行可选绑定(optional binding)要比使用 <code>switch</code> 语句稍好一些。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> urlString = <span class="string">"http://www.objc.io/logo.png"</span></div><div class="line"><span class="keyword">if</span> <span class="built_in">let</span> url = URL(<span class="built_in">string</span>: urlString),</div><div class="line">	<span class="built_in">let</span> data = try? Data(contentsOf: url),</div><div class="line">	<span class="built_in">let</span> <span class="built_in">image</span> = UIImage(data: data) </div><div class="line">&#123;	</div><div class="line">	<span class="built_in">let</span> <span class="built_in">view</span> = UIImageView(<span class="built_in">image</span>: <span class="built_in">image</span>)</div><div class="line">	PlaygroundPage.current.liveView = <span class="built_in">view</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="while-let"><a href="#while-let" class="headerlink" title="while let"></a>while let</h6><p><code>while let</code> 和 <code>if let</code> 非常相似，它代表一个当遇到 nil 时终止的循环。注意，一旦条件为 false，循环就会停止(也许你错误地认为 where 条件会像 filter 那样工作，其实不然)。</p>
+<h6 id="nil-合并运算"><a href="#nil-合并运算" class="headerlink" title="nil 合并运算"></a>nil 合并运算</h6><p><code>??</code> 和 Objective-C 中的 <code>?:</code> 十分相似，但是它们还是有不同的地方，那就是 Swift 中的可选值<strong>不是指针</strong>。<br>我们可以对 Array 进行扩展来包含检查索引值是否在数组边界内:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</div><div class="line">    <span class="keyword">subscript</span>(safe idx: <span class="type">Int</span>) -&gt; <span class="type">Element</span>? &#123;</div><div class="line">        <span class="keyword">return</span> idx &lt; endIndex ? <span class="keyword">self</span>[idx] : <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 现在就可以这样写</span></div><div class="line">array[safe: <span class="number">5</span>] ?? <span class="number">0</span> <span class="comment">// 0</span></div></pre></td></tr></table></figure>
+<p>合并操作也能够进行链接—-如果有多个可能的可选值，并且想要选择第一个非 nil 的值，则可以将他们按顺序合并:</p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> i: <span class="keyword">Int</span>? = nil</div><div class="line"><span class="keyword">let</span> j: <span class="keyword">Int</span>? = nil</div><div class="line"><span class="keyword">let</span> k: <span class="keyword">Int</span>? = <span class="number">42</span></div><div class="line">i ?? j ?? k <span class="comment">// Optional(42)</span></div></pre></td></tr></table></figure>
+<h5 id="第五章-结构体和类"><a href="#第五章-结构体和类" class="headerlink" title="第五章 结构体和类"></a>第五章 结构体和类</h5><h6 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h6><p>结构体(和枚举)是<strong>值类型</strong>，而类是<strong>引用类型</strong>。因为结构体只有一个持有者，所以它不可能造成引用循环。而对于类和函数这样的引用类型，我们需要特别小心，避免造成引用循环的问题。<br>如果想要将两个 Point 相加，则可以对 + 操作符进行重载。在方法中，我们可以将成员相加，并返回新的 Point:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">func</span> +(<span class="attribute">lhs</span>: Point, <span class="attribute">rhs</span>: Point) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Point</span> &#123;</div><div class="line">	<span class="selector-tag">return</span> <span class="selector-tag">Point</span>(<span class="attribute">x</span>: lhs.x + rhs.x, <span class="attribute">y</span>: lhs.y + rhs.y)</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">screen</span><span class="selector-class">.origin</span> + <span class="selector-tag">Point</span>(<span class="attribute">x</span>: <span class="number">10</span>, <span class="attribute">y</span>: <span class="number">10</span>) <span class="comment">// (x: 20, y: 20)</span></div></pre></td></tr></table></figure>
+<p>如果想要改变 self，或者嵌套的(比如 self.origin.x)任何属性，就需要将方法标记为 <code>mutating</code>。只有使用了这个关键字，我们才能在方法内部进行改变。<br>Swift 的结构体一般被存储在栈上，而非堆上。如果结构体太大，它也会被存储在堆上。</p>
+<h6 id="捕获列表"><a href="#捕获列表" class="headerlink" title="捕获列表"></a>捕获列表</h6><p>为了打破循环引用，需要保证闭包不去引用视图。通过使用<strong>捕获列表</strong>并将捕获变量 view 标记为 weak 或者 unowned 来达到这个目的。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">window</span>?onRotate = &#123; [weak <span class="keyword">view</span>] <span class="keyword">in</span></div><div class="line">	<span class="keyword">print</span>(<span class="string">"We now also need to update the view: \(view)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="第六章-函数"><a href="#第六章-函数" class="headerlink" title="第六章 函数"></a>第六章 函数</h5><ol>
+<li>函数可以像 Int 或者 String 那样被赋值给变量，也可以作为另一个函数的输入参数，或者另一个函数的返回值来使用。</li>
+<li>函数能够<strong>捕获</strong>存在于其作用域之外的变量。</li>
+<li>有两种方法可以创建函数，一种是使用 func 关键字，另一种是 { }。在 Swift 中，后一种被称为闭包表达式。</li>
+</ol>
+<h5 id="第七章-字符串"><a href="#第七章-字符串" class="headerlink" title="第七章 字符串"></a>第七章 字符串</h5><p>这一章主要介绍了 String，但是书中还是介绍 Swift3.0 的版本，而最新的 Swift4.0 对此更改了很多。我就直接记录一些 String 的变化吧。<br>String 现在已经更改为一个集合类型了，所以现在直接废除了 <code>.characters</code> 这个属性了。其他的操作也都遵循了 Collection 协议了。</p>
+<h5 id="第八章-错误处理"><a href="#第八章-错误处理" class="headerlink" title="第八章 错误处理"></a>第八章 错误处理</h5><h6 id="抛出和捕获"><a href="#抛出和捕获" class="headerlink" title="抛出和捕获"></a>抛出和捕获</h6><p>Swift 没有使用返回 Result 的方法来表示失败，而是将方法标记为 throws。Result 是作用于类型上的，而 throw 是作用于函数的。</p>
+<p>如果我们想要在错误中给出更多的信息，则可以使用带有关联值的枚举。(任何遵循 Error 协议的类型都可以被抛出函数作为错误抛出。)</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LoginError</span>: <span class="title">Error</span> &#123;</span></div><div class="line">    <span class="keyword">case</span> wrongUser</div><div class="line">    <span class="keyword">case</span> passwordError(<span class="symbol">user:</span> String)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>你可以指定你的函数可能抛出的具体错误类型，但这并不是必须的。因为现在 Swift 中的<strong>错误类型是无类型的</strong>，所以通过文档来说明你的函数会抛出怎样的错误是非常重要的。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">login</span><span class="params">(user: String, passWord: String)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    <span class="keyword">if</span> user.isEmpty &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">LoginError</span>.wrongUser</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> passWord != <span class="string">"123"</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">LoginError</span>.passwordError(user: user)</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"登录成功！！！"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">try</span> login(user: <span class="string">"hu"</span>, passWord: <span class="string">"111"</span>)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="type">LoginError</span>.wrongUser &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"用户不存在"</span>)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="type">LoginError</span>.passwordError(<span class="keyword">let</span> id) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(id)</span>的密码输入错误！！！"</span>) <span class="comment">// hu的密码输入错误！！！</span></div><div class="line">&#125;<span class="keyword">catch</span> &#123;</div><div class="line">    <span class="built_in">print</span>(error.localizedDescription)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看出，在 Swift 中，我们虽然把这块内容叫做“异常”，但是实质上它更多的还是“错误”而非真正意义上的异常。</p>
+<h6 id="使用-defer-进行清理"><a href="#使用-defer-进行清理" class="headerlink" title="使用 defer 进行清理"></a>使用 defer 进行清理</h6><p>Swift 中的 <code>defer</code> ，围绕的代码块一定会在函数返回时被执行（就是相当于在 return 之后再执行一些操作）。<br><code>defer</code> 类似于其他语言的 <code>finally</code>，但是 <code>defer</code> 不只是用于错误处理，可以将 <code>defer</code> 放在代码块的任意地方。<br>如果同一个作用域里使用多个 <code>defer</code>，那么它们会被逆序执行，可以把它想象成一个栈。用意在于，比如我们开启数据库然后连接，用 <code>defer</code> 就能自然的先关闭连接，再关闭数据库。</p>
+<h6 id="高阶函数和错误"><a href="#高阶函数和错误" class="headerlink" title="高阶函数和错误"></a>高阶函数和错误</h6><p>刚才我们就已经看出来了，在实际使用 Swift 中，经常能遇到网络请求这种异步处理错误的情况，如果按照刚才的写法，就是使用 <code>throws</code> 来捕获异常进行处理，这并不是一个好的方法，通常也不建议这么使用，因为可选值和 <code>Result</code> 作用于类型，而 <code>throws</code> 只对函数类型起效。将一个函数标注为 throws 意味着这个函数可能会失败。所以为了解决异步处理产生的问题，默认的规则就是定义 <code>Result&lt;T&gt;</code>：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt; &#123;</span></div><div class="line">    <span class="keyword">case</span> success(T)</div><div class="line">    <span class="keyword">case</span> fail(LoginError)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Result 是异步错误处理的正确道路。不好的地方在于，如果你已经在同步函数中使用 throws 了，那么再在异步函数中转为使用 Result 将会在两种接口之间导入差异。</p>
+<h5 id="第九章-泛型"><a href="#第九章-泛型" class="headerlink" title="第九章 泛型"></a>第九章 泛型</h5><h6 id="使用闭包对行为进行参数化"><a href="#使用闭包对行为进行参数化" class="headerlink" title="使用闭包对行为进行参数化"></a>使用闭包对行为进行参数化</h6><p>对 Array 进行判断，标准库中提供的 <code>contains</code> 是这么做的:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Sequence</span> </span>&#123;</div><div class="line">	<span class="comment">/// 根据序列是否包含满足给定断言的元素，返回一个布尔值。</span></div><div class="line">	<span class="function"><span class="keyword">func</span> <span class="title">contains</span><span class="params">(<span class="keyword">where</span> predicate: <span class="params">(Iterator.Element)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>)</div><div class="line">		<span class="keyword">return</span> -&gt; <span class="type">Bool</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也就是说，它接受一个函数，这个函数从序列中取出一个元素，并对他进行一些检查。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> isEven = &#123; $<span class="number">0</span> % <span class="number">2</span> == <span class="number">0</span>&#125;</div><div class="line">(<span class="number">0</span>...<span class="number">5</span>).<span class="built_in">contains</span>(<span class="keyword">where</span>: isEven)  <span class="comment">// ture</span></div><div class="line">[<span class="number">1</span>,<span class="number">3</span>,<span class="number">99</span>].<span class="built_in">contains</span>(<span class="keyword">where</span>: isEven) <span class="comment">//false</span></div></pre></td></tr></table></figure>
+<h6 id="使用泛型进行代码设计"><a href="#使用泛型进行代码设计" class="headerlink" title="使用泛型进行代码设计"></a>使用泛型进行代码设计</h6><p>让我们来写一些与网络服务交互的函数。比如获取用户列表的数据，并解析为 User 数据类型。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">func loadUsers<span class="function"><span class="params">(callback: ([User]?) -&gt; ())</span> &#123;</span></div><div class="line"><span class="function">	<span class="title">let</span> <span class="title">usersURL</span> = <span class="title">webserviceURL</span>.<span class="title">appendingPathComponent</span><span class="params">(<span class="string">"/users"</span>)</span></span></div><div class="line"><span class="function">	<span class="title">let</span> <span class="title">data</span> = <span class="title">try</span>? <span class="title">Data</span><span class="params">(contentsOf: usersURL)</span></span></div><div class="line"><span class="function">	<span class="title">let</span> <span class="title">json</span> = <span class="title">data</span>.<span class="title">flatMap</span> &#123;</span></div><div class="line"><span class="function">		<span class="title">try</span>? <span class="title">JSONSerialization</span>.<span class="title">jsonObject</span><span class="params">(<span class="keyword">with</span>: $<span class="number">0</span>, options: [])</span></span></div><div class="line"><span class="function">	&#125;</span></div><div class="line"><span class="function">	<span class="title">let</span> <span class="title">users</span> = <span class="params">(json as? [Any])</span>.<span class="title">flatMap</span> &#123; <span class="title">jsonObject</span> <span class="title">in</span></span></div><div class="line"><span class="function">		<span class="title">jsonObject</span>.<span class="title">flatMap</span><span class="params">(User.init)</span></span></div><div class="line"><span class="function">	&#125;</span></div><div class="line"><span class="function">	<span class="title">callback</span><span class="params">(users)</span></span></div><div class="line"><span class="function">&#125;</span></div></pre></td></tr></table></figure>
+<p>这个函数会发生三种错误情况：URL 加载可能失败，JOSN解析可能失败，通过 JSON 数组构建用户对象也可能失败。</p>
+<p>现在，如果我们想要写一个相同的函数来加载其他资源。比如，我们需要一个加载博客文章的函数，它看起来是这样的：</p>
+<p><code>func loadBlogPosts(callback: ([BlogPost])? -&gt; ())</code><br>此函数的实现和前面的用户函数几乎相同。相比于复制和粘贴，将函数中 User 相关的部分提取出来，将其他部分进行重用，会是更好的方式。</p>
+<h5 id="第十章-协议"><a href="#第十章-协议" class="headerlink" title="第十章 协议"></a>第十章 协议</h5><h6 id="面向协议编程和协议拓展"><a href="#面向协议编程和协议拓展" class="headerlink" title="面向协议编程和协议拓展"></a>面向协议编程和协议拓展</h6><p>假设我们有一个只有 String 属性的 结构体 Obj</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Obj</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> value = <span class="string">"0"</span></div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(str: String)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> num = <span class="type">Int</span>(value) ?? <span class="number">0</span> + <span class="number">1</span></div><div class="line">        value = <span class="type">String</span>(num)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在我们想通过协议的方式对一个 String 进行加一操作：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">transform</span> </span>&#123;</div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">addOne</span><span class="params">(str: String)</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>只要对结构体 Obj 进拓展并具体实现加一方法，来满足协议:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Obj</span>: <span class="title">transform</span> </span>&#123;</div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">addOne</span><span class="params">(str: String)</span></span> &#123;</div><div class="line">        <span class="keyword">let</span> n1 = <span class="type">Int</span>(str) ?? <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> n2 = <span class="type">Int</span>(value) ?? <span class="number">0</span></div><div class="line">        <span class="keyword">let</span> tmp = n1 + n2</div><div class="line">        value = <span class="type">String</span>(tmp)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在只需要假设 content 是满足协议的，就可以实现独立的方法：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">content</span>: <span class="built_in">transform</span> = Obj(value: <span class="string">"1"</span>)</div><div class="line"><span class="built_in">content</span>.addOne(str: <span class="string">"2"</span>) 		// Obj(value: <span class="string">"3"</span>)</div></pre></td></tr></table></figure>
+<p>除此之外，同样可以通过协议拓展的方式。</p>
+<h6 id="协议内幕"><a href="#协议内幕" class="headerlink" title="协议内幕"></a>协议内幕</h6><p>当我们通过协议类型创建一个变量时，这个变量会被包装到一个叫存在容器的盒子中。<br>使用泛型参数确实要比使用协议类型高效的多。通过使用泛型参数，可以避免隐式的泛型封装。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 隐式打包</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printProtocol</span><span class="params">(array: [CustomStringConvertible])</span></span> &#123;</div><div class="line">	<span class="built_in">print</span>(array)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 没有打包</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printGeneric</span>&lt;A: CustomStringConvertible&gt;<span class="params">(array: [A])</span></span> &#123;</div><div class="line">	<span class="built_in">print</span>(array)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/读书/" rel="tag"># 读书</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/20/Swift协议拓展/" rel="next" title="Swift协议拓展">
+                <i class="fa fa-chevron-left"></i> Swift协议拓展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/01/2017年末总结/" rel="prev" title="2017年末总结">
+                2017年末总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/1024.png"
+                alt="你谁啊~" />
+            
+              <p class="site-author-name" itemprop="name">你谁啊~</p>
+              <p class="site-description motion-element" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章-介绍"><span class="nav-number">1.</span> <span class="nav-text">第一章 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二章-内建集合类型"><span class="nav-number">2.</span> <span class="nav-text">第二章 内建集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#reduce"><span class="nav-number">2.1.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#flatMap"><span class="nav-number">2.2.</span> <span class="nav-text">flatMap</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#常用的函数参数"><span class="nav-number">2.3.</span> <span class="nav-text">常用的函数参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三章-集合类型协议"><span class="nav-number">3.</span> <span class="nav-text">第三章 集合类型协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Sequence"><span class="nav-number">3.1.</span> <span class="nav-text">Sequence</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四章-可选值"><span class="nav-number">4.</span> <span class="nav-text">第四章 可选值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#if-let"><span class="nav-number">4.1.</span> <span class="nav-text">if let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#while-let"><span class="nav-number">4.2.</span> <span class="nav-text">while let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nil-合并运算"><span class="nav-number">4.3.</span> <span class="nav-text">nil 合并运算</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第五章-结构体和类"><span class="nav-number">5.</span> <span class="nav-text">第五章 结构体和类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#值类型"><span class="nav-number">5.1.</span> <span class="nav-text">值类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#捕获列表"><span class="nav-number">5.2.</span> <span class="nav-text">捕获列表</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第六章-函数"><span class="nav-number">6.</span> <span class="nav-text">第六章 函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第七章-字符串"><span class="nav-number">7.</span> <span class="nav-text">第七章 字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第八章-错误处理"><span class="nav-number">8.</span> <span class="nav-text">第八章 错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#抛出和捕获"><span class="nav-number">8.1.</span> <span class="nav-text">抛出和捕获</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用-defer-进行清理"><span class="nav-number">8.2.</span> <span class="nav-text">使用 defer 进行清理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#高阶函数和错误"><span class="nav-number">8.3.</span> <span class="nav-text">高阶函数和错误</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第九章-泛型"><span class="nav-number">9.</span> <span class="nav-text">第九章 泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用闭包对行为进行参数化"><span class="nav-number">9.1.</span> <span class="nav-text">使用闭包对行为进行参数化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用泛型进行代码设计"><span class="nav-number">9.2.</span> <span class="nav-text">使用泛型进行代码设计</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第十章-协议"><span class="nav-number">10.</span> <span class="nav-text">第十章 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#面向协议编程和协议拓展"><span class="nav-number">10.1.</span> <span class="nav-text">面向协议编程和协议拓展</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#协议内幕"><span class="nav-number">10.2.</span> <span class="nav-text">协议内幕</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">你谁啊~</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
