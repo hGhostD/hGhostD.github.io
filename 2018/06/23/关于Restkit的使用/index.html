@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="咱俩谁跟谁啊~">
 <meta property="og:description" content="最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-27T16:04:09.803Z">
+<meta property="og:updated_time" content="2018-06-28T01:48:30.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于RestKit的使用">
 <meta name="twitter:description" content="最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。">
@@ -380,7 +380,7 @@
         <p>最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。<br><a id="more"></a></p>
 <h4 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h4><p>使用 RestKit 框架，需要有一个支持 Restful 的网络接口，为了方便自己测试，我们可以自行搭建一个本地的 Restful 接口。方法不是很复杂可以参考 <a href="http://mclspace.com/2016/06/26/node-json-server/" target="_blank" rel="external">搭建 Restful 服务器</a>。搭建成功后访问本地 3000 端口，访问 <a href="http://localhost:3000/posts/1" target="_blank" rel="external">http://localhost:3000/posts/1</a> 可以获得返回 json。</p>
 <h4 id="RestKit-文档"><a href="#RestKit-文档" class="headerlink" title="RestKit 文档"></a>RestKit 文档</h4><p>关于使用 RestKit 的文章，可以参考<a href="https://segmentfault.com/a/1190000003745207" target="_blank" rel="external">这里</a>，十分详细我们可以参考这里的介绍来使用。</p>
-<h4 id="集成-RestKit"><a href="#集成-RestKit" class="headerlink" title="集成 RestKit"></a>集成 RestKit</h4><p>还是推荐使用 cocopad 集成，方便管理。</p>
+<h4 id="集成-RestKit"><a href="#集成-RestKit" class="headerlink" title="集成 RestKit"></a>集成 RestKit</h4><p>还是推荐使用 cocoapods 集成，方便管理。</p>
 <h4 id="创建解析-Model"><a href="#创建解析-Model" class="headerlink" title="创建解析 Model"></a>创建解析 Model</h4><p>RestKit 非常强大的功能就是能够对返回 json 进行映射处理。所以很多时候需要使用 <code>RKObjectMapping</code> 来管理映射对象。刚才已经成功搭建了自己的服务器，先访问一下看看 json 的格式，如下：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"id"</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"json-server"</span>,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">"typicode"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个 json 很容易理解，我们只需创建一个 ResultModel 的 class，来映射 json 即可，只需要在 .h 文件中声明 key。</p>
