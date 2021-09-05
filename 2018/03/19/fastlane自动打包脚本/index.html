@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Fastlane是麻省理工学院批准的开源项目，可以将Mac、iOS、android项目的自动打包、发布等一系列繁琐的任务自动化。  使用 fastlane 可以极大的节约打包上架的时间。  准备工作关于 fastlane 的安装初始化，就不做说明了，网上很容易搜索到。当环境搭建完成后，我们可以在自己的项目工程中会看到多出来一个 fastlane 的文件。关于打包的配置在这个文件夹里面都可以进行配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fastlane自动打包脚本">
+<meta property="og:url" content="http://yoursite.com/2018/03/19/fastlane%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="咱俩谁跟谁啊~">
+<meta property="og:description" content="Fastlane是麻省理工学院批准的开源项目，可以将Mac、iOS、android项目的自动打包、发布等一系列繁琐的任务自动化。  使用 fastlane 可以极大的节约打包上架的时间。  准备工作关于 fastlane 的安装初始化，就不做说明了，网上很容易搜索到。当环境搭建完成后，我们可以在自己的项目工程中会看到多出来一个 fastlane 的文件。关于打包的配置在这个文件夹里面都可以进行配">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-19T14:31:13.000Z">
+<meta property="article:modified_time" content="2018-03-20T08:59:54.000Z">
+<meta property="article:author" content="你谁啊~">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/03/19/fastlane%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E8%84%9A%E6%9C%AC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>fastlane自动打包脚本 | 咱俩谁跟谁啊~</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">咱俩谁跟谁啊~</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">跟谁俩呢啊~</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/19/fastlane%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="你谁啊~">
+      <meta itemprop="description" content="心有猛虎，嗷嗷待哺！嗷呜~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咱俩谁跟谁啊~">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          fastlane自动打包脚本
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-19 22:31:13" itemprop="dateCreated datePublished" datetime="2018-03-19T22:31:13+08:00">2018-03-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-03-20 16:59:54" itemprop="dateModified" datetime="2018-03-20T16:59:54+08:00">2018-03-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>Fastlane是麻省理工学院批准的开源项目，可以将Mac、iOS、android项目的自动打包、发布等一系列繁琐的任务自动化。</p>
+</blockquote>
+<p>使用 fastlane 可以极大的节约打包上架的时间。</p>
+<!--- more --->
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>关于 fastlane 的安装初始化，就不做说明了，网上很容易搜索到。当环境搭建完成后，我们可以在自己的项目工程中会看到多出来一个 fastlane 的文件。关于打包的配置在这个文件夹里面都可以进行配置。</p>
+<p>首先，我们需要使用 fastlane 来完成我们的打包工作，我们需要弄清楚我们脚本的工作流程，简单整理一下需求。</p>
+<p>我们需要执行一个脚本，脚本填写我们的<font color=#d13f28><strong>项目路径</strong></font>，输入我们想要修改的<font color=#d13f28><strong>版本号</strong></font>。然后用时间戳设置项目的<font color=#0277BD><strong>build号</strong></font>。在脚本的当前路径创建一个build文件夹，并且在里面创建一个 archive 文件夹用来放置 .xcarive 文件。在 build 文件夹下将打包出来的 ipa 文件放置在以自己 scheme 名命名的文件夹中。<br>简单总结下：<br>输入： 项目路径、版本号。<br>生成：build 号、xcarchive 文件 和 ipa 文件。<br>上传：自动上传 ipa 文件到 fir。</p>
+<h4 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h4><p>创建一个 .sh 文件，第一次执行 .sh 文件的时候可能会报 <code>zsh: permission denied:</code> 警告。这需要我们允许一下脚本执行权限 <code>chmod -R 777 XXX.sh</code>。再次执行不会报错。</p>
+<p>我们需要接受第一个参数为路径地址，和第二个参数为版本号。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数传递目标工程 和 版本号</span></span><br><span class="line"><span class="attr">rootPath</span>=<span class="variable">$1</span></span><br><span class="line"><span class="attr">version</span>=<span class="variable">$2</span></span><br></pre></td></tr></table></figure>
+<p>然后处理一下当前时间作为 build 号，并获取一下工程文件夹的名称</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 工程名默认与文件夹同名</span></span><br><span class="line"><span class="attr">project_name</span>=$(basename <span class="variable">$rootPath</span>)</span><br><span class="line"><span class="comment"># scheme 默认与工程名同名</span></span><br><span class="line"><span class="attr">scheme_name</span>=<span class="variable">$project_name</span></span><br><span class="line"><span class="comment"># 打包时间 设置为 build 号码</span></span><br><span class="line"><span class="attr">BuildDate</span>=$(date +%Y%m%d%H%M)</span><br></pre></td></tr></table></figure>
+<p>如果需要打包不同的 scheme 可以再对脚本做修改。</p>
+<p>接下来需要指定打包输出文件的位置</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定项目地址</span></span><br><span class="line"><span class="attribute">workspace_path</span>=<span class="string">&quot;<span class="variable">$rootPath</span>/<span class="variable">$scheme_name</span>.xcworkspace&quot;</span></span><br><span class="line"><span class="comment"># 指定输出路径</span></span><br><span class="line"><span class="attribute">output_path</span>=$(pwd)/build</span><br><span class="line"><span class="comment"># 指定输出归档文件地址</span></span><br><span class="line"><span class="attribute">archive_path</span>=<span class="string">&quot;<span class="variable">$output_path</span>/archive/<span class="variable">$&#123;scheme_name&#125;</span>_<span class="variable">$&#123;BuildDate&#125;</span>.xcarchive&quot;</span></span><br><span class="line"><span class="comment"># 指定输出ipa地址</span></span><br><span class="line"><span class="attribute">ipa_path</span>=<span class="string">&quot;<span class="variable">$output_path</span>/<span class="variable">$scheme_name</span>&quot;</span></span><br><span class="line"><span class="comment"># 指定输出ipa名称</span></span><br><span class="line"><span class="attribute">ipa_name</span>=<span class="string">&quot;<span class="variable">$&#123;scheme_name&#125;</span>_<span class="variable">$&#123;BuildDate&#125;</span>.ipa&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="修改-版本号、build号"><a href="#修改-版本号、build号" class="headerlink" title="修改 版本号、build号"></a>修改 版本号、build号</h4><p>由于我们用到了 fastlan 进行打包，这里就有2个思路来解决修改版本号的问题。第一种就是直接在脚本上找到工程的 Info.plist 文件修改 <code>CFBundleShortVersionString</code> 和 <code>CFBundleVersion</code> 的值。第二种就是使用 fastlane 的插件修改，在 Fastfile 中安装 versioning 插件来修改。工程目录下执行 <code>fastlane add_plugin versioning</code> 安装。注：之前使用 fastlane 自带的修改方法，由于苹果有设置，所以修改不了，使用插件才可以。</p>
+<h5 id="直接修改-Info-plist-文件"><a href="#直接修改-Info-plist-文件" class="headerlink" title="直接修改 Info.plist 文件"></a>直接修改 Info.plist 文件</h5><p>需要找到 Info.plist 位置直接进行修改。可能每个工程的 Info.plist 文件位置不同，所以需要指定一下文件位置</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Info.plist 文件路径</span></span><br><span class="line">infoPath=<span class="variable">$project_name</span>/Info.plist</span><br><span class="line">echo <span class="string">&quot;============================ 正在 修改Build ============================&quot;</span></span><br><span class="line">cd <span class="variable">$rootPath</span></span><br><span class="line"><span class="regexp">/usr/</span>libexec/PlistBuddy -c <span class="string">&quot;Set :CFBundleShortVersionString $version&quot;</span> <span class="variable">$infoPath</span> || <span class="keyword">exit</span></span><br><span class="line"><span class="regexp">/usr/</span>libexec/PlistBuddy -c <span class="string">&quot;Set :CFBundleVersion $BuildDate&quot;</span> <span class="variable">$infoPath</span> || <span class="keyword">exit</span></span><br><span class="line">echo <span class="string">&quot;!!!!!!!!!!!!!!!!!!!!!!!!!!!! 修改 完成 $&#123;version&#125; $&#123;BuildDate&#125;   !!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</span></span><br></pre></td></tr></table></figure>
+<h5 id="在-Fastfile-修改"><a href="#在-Fastfile-修改" class="headerlink" title="在 Fastfile 修改"></a>在 Fastfile 修改</h5><p>插件安装成功后，可以使用插件的方法来修改。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改版本号和build号函数 例: version:1.1.1 build:123</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">prepare_version</span><span class="params">(options)</span></span></span><br><span class="line">    increment_build_number_in_plist(</span><br><span class="line">  		<span class="comment"># target: [target_name],</span></span><br><span class="line">  		<span class="symbol">build_number:</span> options[<span class="symbol">:build</span>]</span><br><span class="line">  	)</span><br><span class="line">  	increment_version_number_in_plist(</span><br><span class="line">    	<span class="symbol">version_number:</span> options[<span class="symbol">:version</span>]</span><br><span class="line">    ) </span><br></pre></td></tr></table></figure>
+<p>这样调用的时候只需要将 version 和 bild 作为参数传递过去就可以。</p>
+<h4 id="打包成-ipa-文件"><a href="#打包成-ipa-文件" class="headerlink" title="打包成 ipa 文件"></a>打包成 ipa 文件</h4><p>打包使用 fastlane 很方便，需要自定义 lane，将参数传递过去就可以。<br>在 Fastfile 文件中编写</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">desc</span> &quot;打包上传到 Fir&quot;</span><br><span class="line">	lane :fir <span class="keyword">do</span> |<span class="keyword">options</span>|</span><br><span class="line">		#sigh(adhoc:<span class="keyword">true</span>)  #如果要使用ad-hoc打包, 则需打开此项配置</span><br><span class="line">		gym(scheme: <span class="keyword">options</span>[:scheme],</span><br><span class="line">		# workspace: &quot;xxx.xcworkspace&quot;, # 可省略</span><br><span class="line">		<span class="keyword">configuration</span>: &quot;Debug&quot;,         # <span class="keyword">Debug</span> <span class="keyword">or</span> <span class="keyword">Release</span></span><br><span class="line">		archive_path: <span class="keyword">options</span>[:archive_path],</span><br><span class="line">		clean: <span class="keyword">true</span>,                 #清空上次打包信息</span><br><span class="line">		output_directory: <span class="keyword">options</span>[:outPath],</span><br><span class="line">		output_name: <span class="keyword">options</span>[:ipa_name],</span><br><span class="line">		export_method:&quot;development&quot;  # app-store, ad-hoc, package, enterprise, development, developer-id</span><br><span class="line">		)	</span><br><span class="line">		firim(firim_api_token:&quot;554c539d32252425f397dbf39e1831d9&quot;)</span><br><span class="line">		#使用自动证书管理</span><br><span class="line">		# enable_automatic_code_signing(<span class="type">path</span>: &quot;HUIpaTest.xcodeproj&quot;)</span><br><span class="line">	<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>在脚本中只需要将关键信息传递过去就可以了调用了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;============================ 开始打包 ipa 文件 ============================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;scheme_name&#125;</span></span><br><span class="line">fastlane fir scheme:<span class="string">&quot;<span class="variable">$&#123;scheme_name&#125;</span>&quot;</span> \</span><br><span class="line">			 buildDate:<span class="string">&quot;<span class="variable">$&#123;BuildDate&#125;</span>&quot;</span> \</span><br><span class="line">			 archive_path:<span class="string">&quot;<span class="variable">$&#123;archive_path&#125;</span>&quot;</span> \</span><br><span class="line">			 outPath:<span class="string">&quot;<span class="variable">$&#123;ipa_path&#125;</span>&quot;</span> \</span><br><span class="line">			 ipa_name:<span class="string">&quot;<span class="variable">$&#123;ipa_name&#125;</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;!!!!!!!!!!!!!!!!!!!!!!!!!!!! 打包完成 !!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</span></span><br></pre></td></tr></table></figure>
+<p>至此，打包的流程就可以实现了，我们会在脚本的根目录下看到一个 build 文件夹，其中包括一个 archive 文件夹，用来存放 .xcarchive 文件。还有一个以 scheme 命名的文件夹，其中放置我们上传需要的 ipa 文件。</p>
+<h4 id="上传-ipa-文件到"><a href="#上传-ipa-文件到" class="headerlink" title="上传 ipa 文件到"></a>上传 ipa 文件到</h4><p>很多时候需要将打包出来的 ipa 文件进行发布测试，这些工作脚本也可以替我们完成。这里还是有2个方法来处理，第一种还是使用 fir 提供的脚本指令直径进行上传。第二种就是使用 fastlane 的插件来完成。注：安装指令为 <code>fastlane add_plugin firim</code>。</p>
+<h5 id="sh-指令上传"><a href="#sh-指令上传" class="headerlink" title="sh 指令上传"></a>sh 指令上传</h5><p>指令很简单，安装好 fir 的脚本环境后，直接使用。</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">上传到fir</span><br><span class="line"><span class="built_in">echo</span> &quot;============================ 开始上传 ipa 文件 ============================&quot;</span><br><span class="line">fir publish &quot;$&#123;ipa_path&#125;/$&#123;ipa_name&#125;&quot; -T &quot;$&#123;Fir_token&#125;&quot; -c</span><br><span class="line"><span class="built_in">echo</span> &quot;<span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span>! 上传完成 <span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span><span class="variable">!!!</span>!&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="fastlane-指令"><a href="#fastlane-指令" class="headerlink" title="fastlane 指令"></a>fastlane 指令</h5><p>在 fastfile 文件中直接在打包完成后添加指令即可。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">firim</span><span class="params">(firim_api_token:<span class="string">&quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>如果需要上传到 testflight，大概的思路也差不多，不过 fastlane 已经提供了对应的方法，不需要在导入插件了。</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>至此，打包测试脚本就可以使用了。fastlane 还有很多功能需要慢慢去学习掌握，后面如果用到了，再来做一些更新吧。完整的 sh 文件在<a target="_blank" rel="noopener" href="https://github.com/hGhostD/Shell/blob/master/ipa%E6%89%93%E5%8C%85/ipa.sh">这里</a>。<br><br><br><br></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.fastlane.tools/getting-started/ios/appstore-deployment/">fastlane 官方网文档</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23180455">小团队的自动化发布－Fastlane带来的全自动化部署</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/08/%E4%BD%BF%E7%94%A8%20UIPresentationController%20%E5%AE%9E%E7%8E%B0%E5%BA%95%E9%83%A8%E5%BC%B9%E5%87%BA%E9%A1%B5%E9%9D%A2%20/" rel="prev" title="使用 UIPresentationController 实现底部弹出页面">
+      <i class="fa fa-chevron-left"></i> 使用 UIPresentationController 实现底部弹出页面
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/03/22/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/" rel="next" title="Swift实现可编辑标签页">
+      Swift实现可编辑标签页 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">编写脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-%E7%89%88%E6%9C%AC%E5%8F%B7%E3%80%81build%E5%8F%B7"><span class="nav-number">3.</span> <span class="nav-text">修改 版本号、build号</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9-Info-plist-%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">直接修改 Info.plist 文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8-Fastfile-%E4%BF%AE%E6%94%B9"><span class="nav-number">3.2.</span> <span class="nav-text">在 Fastfile 修改</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%88%90-ipa-%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">打包成 ipa 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0-ipa-%E6%96%87%E4%BB%B6%E5%88%B0"><span class="nav-number">5.</span> <span class="nav-text">上传 ipa 文件到</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sh-%E6%8C%87%E4%BB%A4%E4%B8%8A%E4%BC%A0"><span class="nav-number">5.1.</span> <span class="nav-text">sh 指令上传</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fastlane-%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.</span> <span class="nav-text">fastlane 指令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">你谁啊~</p>
+  <div class="site-description" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">你谁啊~</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

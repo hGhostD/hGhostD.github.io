@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在网上看到了一款实现效果不错的提示框，可以自定义提示框样式，设置提示框出现位置。决定看一下别人是如何实现的，了解下别人的实现思路。  实现效果效果如下图所示。使用起来也很简单，文档也有很仔细的说明，这里就无需在多做说明。 代码解读具体化还是看一下 PopMenu 是如何实现的。借鉴一下别人的实现思路。 初始化类型PopMenu 使用了两种方式进行实例化对象。第一种是用 Manager 创建单例对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PopMenu提示框实现">
+<meta property="og:url" content="http://yoursite.com/2018/05/11/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="咱俩谁跟谁啊~">
+<meta property="og:description" content="在网上看到了一款实现效果不错的提示框，可以自定义提示框样式，设置提示框出现位置。决定看一下别人是如何实现的，了解下别人的实现思路。  实现效果效果如下图所示。使用起来也很简单，文档也有很仔细的说明，这里就无需在多做说明。 代码解读具体化还是看一下 PopMenu 是如何实现的。借鉴一下别人的实现思路。 初始化类型PopMenu 使用了两种方式进行实例化对象。第一种是用 Manager 创建单例对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/CaliCastle/PopMenu/master/.assets/Demo_Showcase.gif">
+<meta property="article:published_time" content="2018-05-11T07:15:49.000Z">
+<meta property="article:modified_time" content="2018-05-16T08:54:43.000Z">
+<meta property="article:author" content="你谁啊~">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CaliCastle/PopMenu/master/.assets/Demo_Showcase.gif">
+
+<link rel="canonical" href="http://yoursite.com/2018/05/11/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PopMenu提示框实现 | 咱俩谁跟谁啊~</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">咱俩谁跟谁啊~</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">跟谁俩呢啊~</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="你谁啊~">
+      <meta itemprop="description" content="心有猛虎，嗷嗷待哺！嗷呜~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咱俩谁跟谁啊~">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PopMenu提示框实现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-11 15:15:49" itemprop="dateCreated datePublished" datetime="2018-05-11T15:15:49+08:00">2018-05-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-05-16 16:54:43" itemprop="dateModified" datetime="2018-05-16T16:54:43+08:00">2018-05-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在网上看到了一款实现效果不错的提示框，可以自定义提示框样式，设置提示框出现位置。决定看一下别人是如何实现的，了解下别人的实现思路。</p>
+<!---more--->
+<h4 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h4><p>效果如下图所示。<br><img src="https://raw.githubusercontent.com/CaliCastle/PopMenu/master/.assets/Demo_Showcase.gif"><br>使用起来也很简单，<a target="_blank" rel="noopener" href="https://calicastle.github.io/PopMenu/index.html">文档</a>也有很仔细的说明，这里就无需在多做说明。</p>
+<h4 id="代码解读"><a href="#代码解读" class="headerlink" title="代码解读"></a>代码解读</h4><p>具体化还是看一下 PopMenu 是如何实现的。借鉴一下别人的实现思路。</p>
+<h5 id="初始化类型"><a href="#初始化类型" class="headerlink" title="初始化类型"></a>初始化类型</h5><p>PopMenu 使用了两种方式进行实例化对象。第一种是用 Manager 创建单例对象，第二种是创建 Controller 进行使用。<br>这里我们先研究下第一种实现方式。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuManager</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">/// 默认的管理对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">let</span> `default` <span class="operator">=</span> <span class="type">PopMenuManager</span>()</span><br><span class="line">    <span class="comment">/// 放置 Action 数组</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> actions: [<span class="type">PopMenuAction</span>] <span class="operator">=</span> []</span><br><span class="line">    ···	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式可以通过直接调用静态属性 <code>default</code>。创建对象，然后添加 <code>actions</code> 中的内容。可以清楚的看到 <code>action</code> 中需要存放遵循 <code>PopMenuAction</code> 协议的对象。这样就可以通过实现协议来自定义 action 的 UI。</p>
+<h5 id="自定义-Action"><a href="#自定义-Action" class="headerlink" title="自定义 Action"></a>自定义 Action</h5><p>只要遵循实现 <code>PopMenAction</code> 协议，就可以实现自定义的 Action。让我们看一下默认的的 <code>PopMenuDefaultAction</code> 是如何实现的。首先是 <code>PopMenuAction</code> 协议，这里就只列出简单的属性。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Image of the action.</span></span><br><span class="line"><span class="keyword">@objc</span> <span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">PopMenuAction</span>: <span class="title">NSObjectProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> image: <span class="type">UIImage</span>? &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> view: <span class="type">UIView</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    ······</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">renderActionView</span>()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当协议完成了，就可以创建一个 class 来遵循这个协议，实现默认的 Action。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuDefaultAction</span>: <span class="title">NSObject</span>, <span class="title">PopMenuAction</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> image: <span class="type">UIImage</span>?</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> view: <span class="type">UIView</span></span><br><span class="line">    ······</span><br><span class="line">    <span class="comment">/// 初始化方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">init</span>(<span class="params">image</span>: <span class="type">UIImage</span>? <span class="operator">=</span> <span class="literal">nil</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.image <span class="operator">=</span> image</span><br><span class="line">        view <span class="operator">=</span> <span class="type">UIView</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/// 加载渲染的 view</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">renderActionView</span>()</span> &#123;</span><br><span class="line">        <span class="comment">/// 自定义 UI</span></span><br><span class="line">        configureViews()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认的 Action 实现好了，使用就比较简单了，直接将实例对象赋到数组中就行。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">manager.actions = [</span><br><span class="line">    PopMenuDefaultAction(<span class="built_in">title</span>: <span class="string">&quot;标题一&quot;</span>),</span><br><span class="line">    PopMenuDefaultAction(<span class="built_in">title</span>: <span class="string">&quot;有图片的标题&quot;</span>, <span class="built_in">image</span>: #imageLiteral(resourceName: <span class="string">&quot;clear-day&quot;</span>), <span class="built_in">color</span>: UIColor.orange, didSelect: complete)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h5 id="显示-amp-消失-提示框"><a href="#显示-amp-消失-提示框" class="headerlink" title="显示 &amp; 消失 提示框"></a>显示 &amp; 消失 提示框</h5><p>准备工作都完成了，就可以在需要的地方调用显示方法就行。</p>
+<p><code>manager.present(sourceView: button, on: self, animated: true)</code><br>一句话即可实现，让我们看看到底是怎么完成这个显示的，其中包括了，转场，显示动画和消失的动画。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">present</span>(<span class="params">sourceView</span>: <span class="type">AnyObject</span>? <span class="operator">=</span> <span class="literal">nil</span>, <span class="params">on</span> <span class="params">viewController</span>: <span class="type">UIViewController</span>? <span class="operator">=</span> <span class="literal">nil</span>, <span class="params">animated</span>: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">true</span>, <span class="params">completion</span>: (() -&gt; <span class="type">Void</span>)<span class="operator">?</span> <span class="operator">=</span> <span class="literal">nil</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">        prepareViewController(sourceView: sourceView)</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> popMenu <span class="operator">=</span> popMenu <span class="keyword">else</span> &#123; <span class="built_in">print</span>(<span class="string">&quot;Pop Menu has not been initialized yet.&quot;</span>); <span class="keyword">return</span> &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> presentOn <span class="operator">=</span> viewController &#123;</span><br><span class="line">            presentOn.present(popMenu, animated: animated, completion: completion)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> topViewController <span class="operator">=</span> <span class="type">PopMenuManager</span>.getTopViewControllerInWindow() &#123;</span><br><span class="line">                topViewController.present(popMenu, animated: animated, completion: completion)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>看起来很简单的实现方式，首先准备了一个 VC <code>prepareViewController(sourceView: sourceView)</code>。然后使自身 <code>popMenu</code> 持有该属性。然后获取 VC 显示 <code>popMenu</code>。</p>
+<p>关键就在于如何实现这个准备用的 VC <code>PopMenuViewController</code>了。</p>
+<p>观察代码可以发现，<code>PopMenuViewController</code> 这个自定义的 VC 实现了提示框的 UI 设置与手势交互。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> actionsView <span class="operator">=</span> <span class="type">UIStackView</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="function"><span class="keyword">func</span> <span class="title">configureActionsView</span>()</span> &#123;</span><br><span class="line">    	<span class="comment">//// 给 actionsView 添加 具体的 View 并做好布局</span></span><br><span class="line">    &#125;</span><br><span class="line">    ······</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整体实现的思路还是很清晰的，具体的细节有很多，就不一一列举了。<br>关于显示 VC，让 <code>PopMenuViewController </code> 遵循转场动画协议 <code>UIViewControllerTransitioningDelegate</code> 并实现它。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PopMenuViewController</span>: <span class="title">UIViewControllerTransitioningDelegate</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">animationController</span>(<span class="params">forPresented</span> <span class="params">presented</span>: <span class="type">UIViewController</span>, <span class="params">presenting</span>: <span class="type">UIViewController</span>, <span class="params">source</span>: <span class="type">UIViewController</span>)</span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PopMenuPresentAnimationController</span>(sourceFrame: absoluteSourceFrame)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">animationController</span>(<span class="params">forDismissed</span> <span class="params">dismissed</span>: <span class="type">UIViewController</span>)</span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PopMenuDismissAnimationController</span>(sourceFrame: absoluteSourceFrame)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuPresentAnimationController</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerAnimatedTransitioning</span> </span>&#123;</span><br><span class="line">	<span class="comment">/// 实现代理方法 自定义细节动画</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于消失，实现思路就很简单了，在 VC 的背景 View 中添加手势，并实现系统点击事件 <code>dismiss()</code>，消失整个 VC 即可。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这个 PopMenu 实现思路并不是很复杂，但是其中的细节做得很到位，效果也很好，文档也写的很棒。让我对自定义提示框的理解学习到了很多。<br><br></p>
+<blockquote>
+<p>参考资料<br><a target="_blank" rel="noopener" href="https://github.com/CaliCastle/PopMenu">PopMenu Git</a><br><a target="_blank" rel="noopener" href="https://calicastle.github.io/PopMenu/index.html">PopMenu使用文档</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/22/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/" rel="prev" title="Swift实现可编辑标签页">
+      <i class="fa fa-chevron-left"></i> Swift实现可编辑标签页
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/23/%E5%85%B3%E4%BA%8ERestkit%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="关于RestKit的使用">
+      关于RestKit的使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C"><span class="nav-number">1.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="nav-number">2.</span> <span class="nav-text">代码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">初始化类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Action"><span class="nav-number">2.2.</span> <span class="nav-text">自定义 Action</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA-amp-%E6%B6%88%E5%A4%B1-%E6%8F%90%E7%A4%BA%E6%A1%86"><span class="nav-number">2.3.</span> <span class="nav-text">显示 &amp; 消失 提示框</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">你谁啊~</p>
+  <div class="site-description" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">你谁啊~</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
