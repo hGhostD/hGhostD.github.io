@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="《Swift 设计模式》已经看过一遍了，不过大多时候也是看完就忘记了，这里重新再看一遍并记录一下。  对象模板模式 其实这个设计模式就是我们通常概念的 面向对象 编程。使用 类 或者 结构体 作为数据类型及其逻辑的规范。创建对象时使用 模板，并在初始化是完成数据赋值。赋值时，要么使用模板中的 默认值，要么使用类或者结构体的 构造器 提供数值。  技巧：有时候可以通过添加计算属性来保护不希望被随意修">
@@ -82,7 +82,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -118,12 +118,37 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-swift">
+
+    <a href="/categories/Swift/" rel="section"><i class="sitemap fa-fw"></i>Swift</a>
+
+  </li>
+        <li class="menu-item menu-item-objective-c">
+
+    <a href="/categories/Objective-C/" rel="section"><i class="briefcase fa-fw"></i>Objective-C</a>
+
+  </li>
+        <li class="menu-item menu-item-read">
+
+    <a href="/categories/%E8%AF%BB%E4%B9%A6/" rel="section"><i class="book fa-fw"></i>读书</a>
+
+  </li>
+        <li class="menu-item menu-item-diary">
+
+    <a href="/categories/%E6%97%A5%E8%AE%B0/" rel="section"><i class="tags fa-fw"></i>日记</a>
+
+  </li>
+        <li class="menu-item menu-item-will">
+
+    <a href="/categories/%E5%BE%85%E7%BB%AD/" rel="section"><i class="calendar fa-fw"></i>待续</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -157,7 +182,7 @@
     <link itemprop="mainEntityOfPage" href="https://hghostd.top/2017/11/07/%E5%9B%9E%E9%A1%BESwift%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/img/1024.png">
       <meta itemprop="name" content="你谁啊~">
       <meta itemprop="description" content="心有猛虎，嗷嗷待哺！嗷呜~">
     </span>
@@ -227,7 +252,7 @@
 <p>将一个值赋给变量时，Swift会自动使用原型模式。值类型是使用结构体定义，而且所有Swift内置类型的底层都是用结构图实现。</p>
 </blockquote>
 <p>换句话说: Swift 只会为 <font color=#d13f28><strong>值类型(结构体)</strong></font> 创建默认的<font color=#d13f28><strong>初始化器</strong></font>。而<strong>不会</strong>为 <font color=#d13f28><strong>引用类型(类)</strong></font> 创建<font color=#d13f28><strong>初始化器</strong></font>。这就会导致创建完原型对象后，之后再创建任意多个同类对象，使用 <strong>结构体</strong> 模板创建的对象不会带来内存开销问题，而使用 <strong>类</strong> 模板创建的对象会有内存指向的问题。(2个变量会指向同一个对象。)<br>为了解决这个问题可以实现 NSCopying 协议，来支持克隆对象，实现深复制。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Appointment</span>: <span class="title">NSObject</span>, <span class="title">NSCopying</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">	<span class="keyword">var</span> day: <span class="type">String</span></span><br><span class="line">	<span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>, <span class="params">day</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">		<span class="keyword">self</span>.name <span class="operator">=</span> name</span><br><span class="line">		<span class="keyword">self</span>.day  <span class="operator">=</span> day</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 在实现</span></span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">copy</span>(<span class="params">with</span> <span class="params">zone</span>: <span class="type">NSZone</span>? <span class="operator">=</span> <span class="literal">nil</span>)</span> -&gt; <span class="keyword">Any</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">AppointmentClass</span>(name: <span class="keyword">self</span>.name, day: <span class="keyword">self</span>.day)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b1 <span class="operator">=</span> <span class="type">Appointment</span>(name: <span class="string">&quot;Bob&quot;</span>,day: <span class="string">&quot;1&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> w1 <span class="operator">=</span> b1.copy() <span class="keyword">as!</span> <span class="type">Appointment</span></span><br><span class="line">w1.name <span class="operator">=</span> <span class="string">&quot;Ali&quot;</span></span><br><span class="line">w1.day  <span class="operator">=</span> <span class="string">&quot;2&quot;</span></span><br><span class="line"><span class="comment">// 此时使用 copy() 创建的 w1 此时就不会对 b1 产生印象</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Appointment</span>: <span class="title">NSObject</span>, <span class="title">NSCopying</span> </span>&#123;</span><br><span class="line">true<span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">true<span class="keyword">var</span> day: <span class="type">String</span></span><br><span class="line">true<span class="function"><span class="keyword">init</span>(<span class="params">name</span>: <span class="type">String</span>, <span class="params">day</span>: <span class="type">String</span>)</span> &#123;</span><br><span class="line">truetrue<span class="keyword">self</span>.name <span class="operator">=</span> name</span><br><span class="line">truetrue<span class="keyword">self</span>.day  <span class="operator">=</span> day</span><br><span class="line">true&#125;</span><br><span class="line">true<span class="comment">// 在实现</span></span><br><span class="line">true<span class="function"><span class="keyword">func</span> <span class="title">copy</span>(<span class="params">with</span> <span class="params">zone</span>: <span class="type">NSZone</span>? <span class="operator">=</span> <span class="literal">nil</span>)</span> -&gt; <span class="keyword">Any</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">AppointmentClass</span>(name: <span class="keyword">self</span>.name, day: <span class="keyword">self</span>.day)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b1 <span class="operator">=</span> <span class="type">Appointment</span>(name: <span class="string">&quot;Bob&quot;</span>,day: <span class="string">&quot;1&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> w1 <span class="operator">=</span> b1.copy() <span class="keyword">as!</span> <span class="type">Appointment</span></span><br><span class="line">w1.name <span class="operator">=</span> <span class="string">&quot;Ali&quot;</span></span><br><span class="line">w1.day  <span class="operator">=</span> <span class="string">&quot;2&quot;</span></span><br><span class="line"><span class="comment">// 此时使用 copy() 创建的 w1 此时就不会对 b1 产生印象</span></span><br></pre></td></tr></table></figure>
 <p>Tips: 只有类才可以实现 NSCopying 协议，结构体不可以。因为结构体本身实现了深复制。</p>
 <h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><blockquote>
 <p>单例模式能够确保某个类型的对象在应用中只存一个实例。</p>
@@ -253,7 +278,7 @@
 <p>注释: reserveCapacity 这个方法非常有趣。数组类型的元素并不一定需要是连续的（除非你使用 ContiguousArray），但是它们大部分都是连续的。正因如此，我们常常分配一段内存空间，用来存储我们的数组——特别是当我们知道数组的大致大小时。例如，<code>map()</code> 方法总是会返回和调用该方法的序列一样大小的一个数组。所以，<code>map()</code> 方法在填充数组之前，应该会使用 <code>reserveCapacity</code>。这一点可能不容易理解。<code>map()</code> 作用于 SequenceType 类型，不仅仅是 CollectionType 类型。Sequence 类型并没有 count 属性——那么如何才能得到序列的长度呢？即使它有 count 属性，CollectionType 类型的该属性，应该返回 Index.Distance，而对于 <code>reserveCapacity</code> 来说，需要一个 Int 类型。</p>
 </blockquote>
 <h5 id="使用信号量解决并发问题"><a href="#使用信号量解决并发问题" class="headerlink" title="使用信号量解决并发问题"></a>使用信号量解决并发问题</h5><p>创建一个信号量 <code>private let semaphore: DispatchSemaphore</code> 并且在初始化的时候初始化它。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pool</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">init</span>(<span class="params">items</span>: [<span class="type">T</span>])</span> &#123;</span><br><span class="line">		<span class="comment">// 为信号源创建一个计数器</span></span><br><span class="line">		semaphore <span class="operator">=</span> <span class="type">DispatchSemaphore</span>(value: items.count)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">getFromPool</span>()</span> -&gt; <span class="type">T</span>? &#123;</span><br><span class="line">		<span class="comment">// 每次调用 semaphore.wait 都会使计数器的值减一 </span></span><br><span class="line">		<span class="keyword">if</span> semaphore.wait(timeout: .distantFuture) <span class="operator">==</span> .success &#123;</span><br><span class="line">			<span class="comment">//确保在分线程执行操作 如果再主线程操作 整个 APP 就会冻住</span></span><br><span class="line">			arrayQ.sync &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">returnToPool</span>(<span class="params">item</span>: <span class="type">T</span>)</span> &#123;</span><br><span class="line">		arrayQ.sync &#123;</span><br><span class="line">			<span class="comment">//</span></span><br><span class="line">			semaphore.singal()</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pool</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">true<span class="function"><span class="keyword">init</span>(<span class="params">items</span>: [<span class="type">T</span>])</span> &#123;</span><br><span class="line">truetrue<span class="comment">// 为信号源创建一个计数器</span></span><br><span class="line">truetruesemaphore <span class="operator">=</span> <span class="type">DispatchSemaphore</span>(value: items.count)</span><br><span class="line">true&#125;</span><br><span class="line">true<span class="function"><span class="keyword">func</span> <span class="title">getFromPool</span>()</span> -&gt; <span class="type">T</span>? &#123;</span><br><span class="line">truetrue<span class="comment">// 每次调用 semaphore.wait 都会使计数器的值减一 </span></span><br><span class="line">truetrue<span class="keyword">if</span> semaphore.wait(timeout: .distantFuture) <span class="operator">==</span> .success &#123;</span><br><span class="line">truetruetrue<span class="comment">//确保在分线程执行操作 如果再主线程操作 整个 APP 就会冻住</span></span><br><span class="line">truetruetruearrayQ.sync &#123;</span><br><span class="line">truetruetrue&#125;</span><br><span class="line">truetrue&#125;</span><br><span class="line">true&#125;</span><br><span class="line">true<span class="function"><span class="keyword">func</span> <span class="title">returnToPool</span>(<span class="params">item</span>: <span class="type">T</span>)</span> &#123;</span><br><span class="line">truetruearrayQ.sync &#123;</span><br><span class="line">truetruetrue<span class="comment">//</span></span><br><span class="line">truetruetruesemaphore.singal()</span><br><span class="line">truetrue&#125;</span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h4><blockquote>
 <p>工厂方法模式通过选取相关的实现类来满足调用组件的请求，调用组件无需了解这些实现类的细节以及它们之间的关系。当存在多个类共同实现一个协议或者共同继承一个基类时，就可以使用工厂方法模式。</p>
@@ -415,6 +440,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="你谁啊~"
+      src="/img/1024.png">
   <p class="site-author-name" itemprop="name">你谁啊~</p>
   <div class="site-description" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</div>
 </div>
@@ -437,6 +464,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hGhostD" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hGhostD" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -465,7 +497,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">你谁啊~</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
@@ -483,12 +515,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>

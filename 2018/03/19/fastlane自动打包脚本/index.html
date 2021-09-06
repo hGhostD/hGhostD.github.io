@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Fastlane是麻省理工学院批准的开源项目，可以将Mac、iOS、android项目的自动打包、发布等一系列繁琐的任务自动化。  使用 fastlane 可以极大的节约打包上架的时间。  准备工作关于 fastlane 的安装初始化，就不做说明了，网上很容易搜索到。当环境搭建完成后，我们可以在自己的项目工程中会看到多出来一个 fastlane 的文件。关于打包的配置在这个文件夹里面都可以进行配">
@@ -80,7 +80,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -116,12 +116,37 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-swift">
+
+    <a href="/categories/Swift/" rel="section"><i class="sitemap fa-fw"></i>Swift</a>
+
+  </li>
+        <li class="menu-item menu-item-objective-c">
+
+    <a href="/categories/Objective-C/" rel="section"><i class="briefcase fa-fw"></i>Objective-C</a>
+
+  </li>
+        <li class="menu-item menu-item-read">
+
+    <a href="/categories/%E8%AF%BB%E4%B9%A6/" rel="section"><i class="book fa-fw"></i>读书</a>
+
+  </li>
+        <li class="menu-item menu-item-diary">
+
+    <a href="/categories/%E6%97%A5%E8%AE%B0/" rel="section"><i class="tags fa-fw"></i>日记</a>
+
+  </li>
+        <li class="menu-item menu-item-will">
+
+    <a href="/categories/%E5%BE%85%E7%BB%AD/" rel="section"><i class="calendar fa-fw"></i>待续</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -155,7 +180,7 @@
     <link itemprop="mainEntityOfPage" href="https://hghostd.top/2018/03/19/fastlane%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E8%84%9A%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/img/1024.png">
       <meta itemprop="name" content="你谁啊~">
       <meta itemprop="description" content="心有猛虎，嗷嗷待哺！嗷呜~">
     </span>
@@ -226,12 +251,12 @@
 <h5 id="直接修改-Info-plist-文件"><a href="#直接修改-Info-plist-文件" class="headerlink" title="直接修改 Info.plist 文件"></a>直接修改 Info.plist 文件</h5><p>需要找到 Info.plist 位置直接进行修改。可能每个工程的 Info.plist 文件位置不同，所以需要指定一下文件位置</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Info.plist 文件路径</span></span><br><span class="line">infoPath=<span class="variable">$project_name</span>/Info.plist</span><br><span class="line">echo <span class="string">&quot;============================ 正在 修改Build ============================&quot;</span></span><br><span class="line">cd <span class="variable">$rootPath</span></span><br><span class="line"><span class="regexp">/usr/</span>libexec/PlistBuddy -c <span class="string">&quot;Set :CFBundleShortVersionString $version&quot;</span> <span class="variable">$infoPath</span> || <span class="keyword">exit</span></span><br><span class="line"><span class="regexp">/usr/</span>libexec/PlistBuddy -c <span class="string">&quot;Set :CFBundleVersion $BuildDate&quot;</span> <span class="variable">$infoPath</span> || <span class="keyword">exit</span></span><br><span class="line">echo <span class="string">&quot;!!!!!!!!!!!!!!!!!!!!!!!!!!!! 修改 完成 $&#123;version&#125; $&#123;BuildDate&#125;   !!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</span></span><br></pre></td></tr></table></figure>
 <h5 id="在-Fastfile-修改"><a href="#在-Fastfile-修改" class="headerlink" title="在 Fastfile 修改"></a>在 Fastfile 修改</h5><p>插件安装成功后，可以使用插件的方法来修改。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改版本号和build号函数 例: version:1.1.1 build:123</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">prepare_version</span><span class="params">(options)</span></span></span><br><span class="line">    increment_build_number_in_plist(</span><br><span class="line">  		<span class="comment"># target: [target_name],</span></span><br><span class="line">  		<span class="symbol">build_number:</span> options[<span class="symbol">:build</span>]</span><br><span class="line">  	)</span><br><span class="line">  	increment_version_number_in_plist(</span><br><span class="line">    	<span class="symbol">version_number:</span> options[<span class="symbol">:version</span>]</span><br><span class="line">    ) </span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改版本号和build号函数 例: version:1.1.1 build:123</span></span><br><span class="line">true<span class="function"><span class="keyword">def</span> <span class="title">prepare_version</span><span class="params">(options)</span></span></span><br><span class="line">    increment_build_number_in_plist(</span><br><span class="line">  		<span class="comment"># target: [target_name],</span></span><br><span class="line">  		<span class="symbol">build_number:</span> options[<span class="symbol">:build</span>]</span><br><span class="line">  	)</span><br><span class="line">  	increment_version_number_in_plist(</span><br><span class="line">    	<span class="symbol">version_number:</span> options[<span class="symbol">:version</span>]</span><br><span class="line">    ) </span><br></pre></td></tr></table></figure>
 <p>这样调用的时候只需要将 version 和 bild 作为参数传递过去就可以。</p>
 <h4 id="打包成-ipa-文件"><a href="#打包成-ipa-文件" class="headerlink" title="打包成 ipa 文件"></a>打包成 ipa 文件</h4><p>打包使用 fastlane 很方便，需要自定义 lane，将参数传递过去就可以。<br>在 Fastfile 文件中编写</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">desc</span> &quot;打包上传到 Fir&quot;</span><br><span class="line">	lane :fir <span class="keyword">do</span> |<span class="keyword">options</span>|</span><br><span class="line">		#sigh(adhoc:<span class="keyword">true</span>)  #如果要使用ad-hoc打包, 则需打开此项配置</span><br><span class="line">		gym(scheme: <span class="keyword">options</span>[:scheme],</span><br><span class="line">		# workspace: &quot;xxx.xcworkspace&quot;, # 可省略</span><br><span class="line">		<span class="keyword">configuration</span>: &quot;Debug&quot;,         # <span class="keyword">Debug</span> <span class="keyword">or</span> <span class="keyword">Release</span></span><br><span class="line">		archive_path: <span class="keyword">options</span>[:archive_path],</span><br><span class="line">		clean: <span class="keyword">true</span>,                 #清空上次打包信息</span><br><span class="line">		output_directory: <span class="keyword">options</span>[:outPath],</span><br><span class="line">		output_name: <span class="keyword">options</span>[:ipa_name],</span><br><span class="line">		export_method:&quot;development&quot;  # app-store, ad-hoc, package, enterprise, development, developer-id</span><br><span class="line">		)	</span><br><span class="line">		firim(firim_api_token:&quot;554c539d32252425f397dbf39e1831d9&quot;)</span><br><span class="line">		#使用自动证书管理</span><br><span class="line">		# enable_automatic_code_signing(<span class="type">path</span>: &quot;HUIpaTest.xcodeproj&quot;)</span><br><span class="line">	<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">desc</span> &quot;打包上传到 Fir&quot;</span><br><span class="line">truelane :fir <span class="keyword">do</span> |<span class="keyword">options</span>|</span><br><span class="line">truetrue#sigh(adhoc:<span class="keyword">true</span>)  #如果要使用ad-hoc打包, 则需打开此项配置</span><br><span class="line">truetruegym(scheme: <span class="keyword">options</span>[:scheme],</span><br><span class="line">truetrue# workspace: &quot;xxx.xcworkspace&quot;, # 可省略</span><br><span class="line">truetrue<span class="keyword">configuration</span>: &quot;Debug&quot;,         # <span class="keyword">Debug</span> <span class="keyword">or</span> <span class="keyword">Release</span></span><br><span class="line">truetruearchive_path: <span class="keyword">options</span>[:archive_path],</span><br><span class="line">truetrueclean: <span class="keyword">true</span>,                 #清空上次打包信息</span><br><span class="line">truetrueoutput_directory: <span class="keyword">options</span>[:outPath],</span><br><span class="line">truetrueoutput_name: <span class="keyword">options</span>[:ipa_name],</span><br><span class="line">truetrueexport_method:&quot;development&quot;  # app-store, ad-hoc, package, enterprise, development, developer-id</span><br><span class="line">truetrue)	</span><br><span class="line">truetruefirim(firim_api_token:&quot;554c539d32252425f397dbf39e1831d9&quot;)</span><br><span class="line">truetrue#使用自动证书管理</span><br><span class="line">truetrue# enable_automatic_code_signing(<span class="type">path</span>: &quot;HUIpaTest.xcodeproj&quot;)</span><br><span class="line">true<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>在脚本中只需要将关键信息传递过去就可以了调用了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;============================ 开始打包 ipa 文件 ============================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;scheme_name&#125;</span></span><br><span class="line">fastlane fir scheme:<span class="string">&quot;<span class="variable">$&#123;scheme_name&#125;</span>&quot;</span> \</span><br><span class="line">			 buildDate:<span class="string">&quot;<span class="variable">$&#123;BuildDate&#125;</span>&quot;</span> \</span><br><span class="line">			 archive_path:<span class="string">&quot;<span class="variable">$&#123;archive_path&#125;</span>&quot;</span> \</span><br><span class="line">			 outPath:<span class="string">&quot;<span class="variable">$&#123;ipa_path&#125;</span>&quot;</span> \</span><br><span class="line">			 ipa_name:<span class="string">&quot;<span class="variable">$&#123;ipa_name&#125;</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;!!!!!!!!!!!!!!!!!!!!!!!!!!!! 打包完成 !!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;============================ 开始打包 ipa 文件 ============================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;scheme_name&#125;</span></span><br><span class="line">fastlane fir scheme:<span class="string">&quot;<span class="variable">$&#123;scheme_name&#125;</span>&quot;</span> \</span><br><span class="line">truetruetrue buildDate:<span class="string">&quot;<span class="variable">$&#123;BuildDate&#125;</span>&quot;</span> \</span><br><span class="line">truetruetrue archive_path:<span class="string">&quot;<span class="variable">$&#123;archive_path&#125;</span>&quot;</span> \</span><br><span class="line">truetruetrue outPath:<span class="string">&quot;<span class="variable">$&#123;ipa_path&#125;</span>&quot;</span> \</span><br><span class="line">truetruetrue ipa_name:<span class="string">&quot;<span class="variable">$&#123;ipa_name&#125;</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;!!!!!!!!!!!!!!!!!!!!!!!!!!!! 打包完成 !!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</span></span><br></pre></td></tr></table></figure>
 <p>至此，打包的流程就可以实现了，我们会在脚本的根目录下看到一个 build 文件夹，其中包括一个 archive 文件夹，用来存放 .xcarchive 文件。还有一个以 scheme 命名的文件夹，其中放置我们上传需要的 ipa 文件。</p>
 <h4 id="上传-ipa-文件到"><a href="#上传-ipa-文件到" class="headerlink" title="上传 ipa 文件到"></a>上传 ipa 文件到</h4><p>很多时候需要将打包出来的 ipa 文件进行发布测试，这些工作脚本也可以替我们完成。这里还是有2个方法来处理，第一种还是使用 fir 提供的脚本指令直径进行上传。第二种就是使用 fastlane 的插件来完成。注：安装指令为 <code>fastlane add_plugin firim</code>。</p>
 <h5 id="sh-指令上传"><a href="#sh-指令上传" class="headerlink" title="sh 指令上传"></a>sh 指令上传</h5><p>指令很简单，安装好 fir 的脚本环境后，直接使用。</p>
@@ -332,6 +357,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="你谁啊~"
+      src="/img/1024.png">
   <p class="site-author-name" itemprop="name">你谁啊~</p>
   <div class="site-description" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</div>
 </div>
@@ -354,6 +381,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hGhostD" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hGhostD" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -382,7 +414,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">你谁啊~</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
@@ -400,12 +432,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>

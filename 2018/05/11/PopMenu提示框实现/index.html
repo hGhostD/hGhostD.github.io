@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="在网上看到了一款实现效果不错的提示框，可以自定义提示框样式，设置提示框出现位置。决定看一下别人是如何实现的，了解下别人的实现思路。  实现效果效果如下图所示。使用起来也很简单，文档也有很仔细的说明，这里就无需在多做说明。 代码解读具体化还是看一下 PopMenu 是如何实现的。借鉴一下别人的实现思路。 初始化类型PopMenu 使用了两种方式进行实例化对象。第一种是用 Manager 创建单例对象">
@@ -82,7 +82,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -118,12 +118,37 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-swift">
+
+    <a href="/categories/Swift/" rel="section"><i class="sitemap fa-fw"></i>Swift</a>
+
+  </li>
+        <li class="menu-item menu-item-objective-c">
+
+    <a href="/categories/Objective-C/" rel="section"><i class="briefcase fa-fw"></i>Objective-C</a>
+
+  </li>
+        <li class="menu-item menu-item-read">
+
+    <a href="/categories/%E8%AF%BB%E4%B9%A6/" rel="section"><i class="book fa-fw"></i>读书</a>
+
+  </li>
+        <li class="menu-item menu-item-diary">
+
+    <a href="/categories/%E6%97%A5%E8%AE%B0/" rel="section"><i class="tags fa-fw"></i>日记</a>
+
+  </li>
+        <li class="menu-item menu-item-will">
+
+    <a href="/categories/%E5%BE%85%E7%BB%AD/" rel="section"><i class="calendar fa-fw"></i>待续</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -157,7 +182,7 @@
     <link itemprop="mainEntityOfPage" href="https://hghostd.top/2018/05/11/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/img/1024.png">
       <meta itemprop="name" content="你谁啊~">
       <meta itemprop="description" content="心有猛虎，嗷嗷待哺！嗷呜~">
     </span>
@@ -233,7 +258,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> actionsView <span class="operator">=</span> <span class="type">UIStackView</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="function"><span class="keyword">func</span> <span class="title">configureActionsView</span>()</span> &#123;</span><br><span class="line">    	<span class="comment">//// 给 actionsView 添加 具体的 View 并做好布局</span></span><br><span class="line">    &#125;</span><br><span class="line">    ······</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>整体实现的思路还是很清晰的，具体的细节有很多，就不一一列举了。<br>关于显示 VC，让 <code>PopMenuViewController </code> 遵循转场动画协议 <code>UIViewControllerTransitioningDelegate</code> 并实现它。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PopMenuViewController</span>: <span class="title">UIViewControllerTransitioningDelegate</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">animationController</span>(<span class="params">forPresented</span> <span class="params">presented</span>: <span class="type">UIViewController</span>, <span class="params">presenting</span>: <span class="type">UIViewController</span>, <span class="params">source</span>: <span class="type">UIViewController</span>)</span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PopMenuPresentAnimationController</span>(sourceFrame: absoluteSourceFrame)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">animationController</span>(<span class="params">forDismissed</span> <span class="params">dismissed</span>: <span class="type">UIViewController</span>)</span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PopMenuDismissAnimationController</span>(sourceFrame: absoluteSourceFrame)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuPresentAnimationController</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerAnimatedTransitioning</span> </span>&#123;</span><br><span class="line">	<span class="comment">/// 实现代理方法 自定义细节动画</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PopMenuViewController</span>: <span class="title">UIViewControllerTransitioningDelegate</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">animationController</span>(<span class="params">forPresented</span> <span class="params">presented</span>: <span class="type">UIViewController</span>, <span class="params">presenting</span>: <span class="type">UIViewController</span>, <span class="params">source</span>: <span class="type">UIViewController</span>)</span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PopMenuPresentAnimationController</span>(sourceFrame: absoluteSourceFrame)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">animationController</span>(<span class="params">forDismissed</span> <span class="params">dismissed</span>: <span class="type">UIViewController</span>)</span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">PopMenuDismissAnimationController</span>(sourceFrame: absoluteSourceFrame)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PopMenuPresentAnimationController</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerAnimatedTransitioning</span> </span>&#123;</span><br><span class="line">true<span class="comment">/// 实现代理方法 自定义细节动画</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>关于消失，实现思路就很简单了，在 VC 的背景 View 中添加手势，并实现系统点击事件 <code>dismiss()</code>，消失整个 VC 即可。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这个 PopMenu 实现思路并不是很复杂，但是其中的细节做得很到位，效果也很好，文档也写的很棒。让我对自定义提示框的理解学习到了很多。<br><br></p>
@@ -329,6 +354,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="你谁啊~"
+      src="/img/1024.png">
   <p class="site-author-name" itemprop="name">你谁啊~</p>
   <div class="site-description" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</div>
 </div>
@@ -351,6 +378,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hGhostD" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hGhostD" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -379,7 +411,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">你谁啊~</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
@@ -397,12 +429,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>

@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hghostd.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="工作中遇到一个需要自定义的标签页，在网上找到了一个比较合适的 demo，可惜是以 Objective-C 实现的。就正好自己再用 swift 重写一下，也学习一下别人的思路。  SDTagsView这里 是原作者的 demo，他分别采用了 Label 和 CollectionView 两种实现方式。不过作者比较推荐第二种，我也只以 CollectionView 的方式实现。 目录结构因为我们这个">
@@ -84,7 +84,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -120,12 +120,37 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-swift">
+
+    <a href="/categories/Swift/" rel="section"><i class="sitemap fa-fw"></i>Swift</a>
+
+  </li>
+        <li class="menu-item menu-item-objective-c">
+
+    <a href="/categories/Objective-C/" rel="section"><i class="briefcase fa-fw"></i>Objective-C</a>
+
+  </li>
+        <li class="menu-item menu-item-read">
+
+    <a href="/categories/%E8%AF%BB%E4%B9%A6/" rel="section"><i class="book fa-fw"></i>读书</a>
+
+  </li>
+        <li class="menu-item menu-item-diary">
+
+    <a href="/categories/%E6%97%A5%E8%AE%B0/" rel="section"><i class="tags fa-fw"></i>日记</a>
+
+  </li>
+        <li class="menu-item menu-item-will">
+
+    <a href="/categories/%E5%BE%85%E7%BB%AD/" rel="section"><i class="calendar fa-fw"></i>待续</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -159,7 +184,7 @@
     <link itemprop="mainEntityOfPage" href="https://hghostd.top/2018/03/22/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/img/1024.png">
       <meta itemprop="name" content="你谁啊~">
       <meta itemprop="description" content="心有猛虎，嗷嗷待哺！嗷呜~">
     </span>
@@ -222,9 +247,9 @@
 <h4 id="实现-HUCollectViewCell-和-HUCollectionTagsFlowLayout"><a href="#实现-HUCollectViewCell-和-HUCollectionTagsFlowLayout" class="headerlink" title="实现 HUCollectViewCell 和 HUCollectionTagsFlowLayout"></a>实现 HUCollectViewCell 和 HUCollectionTagsFlowLayout</h4><p>这两个配置文件是对 collectionview 的具体必要配置，可以按照自己的需求进行自定义。</p>
 <h4 id="点击移动-item"><a href="#点击移动-item" class="headerlink" title="点击移动 item"></a>点击移动 item</h4><p>至此，整体的结构已经实现完成，最后要实现一些点击事件的交互逻辑就可以完成。</p>
 <p>由于点击事件的代理方法是绑定在 view 中的，但是我们想要点击时对 Controller 中的数据进行修改，就需要将事件传递出去。实现方式有很多，可以使用代理、block等。这里我们采用代理方式，需要自定义一个协议。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">HUCollectionTagsViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">collectionTagsView</span>(<span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// HUCollectionTagsView </span></span><br><span class="line"><span class="keyword">var</span> hu_delegate: <span class="type">HUCollectionTagsViewDelegate</span>?</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionView</span>(<span class="keyword">_</span> <span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span> &#123;</span><br><span class="line">	<span class="keyword">self</span>.hu_delegate<span class="operator">?</span>.collectionTagsView(collectionView: <span class="keyword">self</span>, didSelectItemAt: indexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">HUCollectionTagsViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">collectionTagsView</span>(<span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// HUCollectionTagsView </span></span><br><span class="line"><span class="keyword">var</span> hu_delegate: <span class="type">HUCollectionTagsViewDelegate</span>?</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionView</span>(<span class="keyword">_</span> <span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span> &#123;</span><br><span class="line">true<span class="keyword">self</span>.hu_delegate<span class="operator">?</span>.collectionTagsView(collectionView: <span class="keyword">self</span>, didSelectItemAt: indexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个协议只有一个必要实现的方法，就是响应点击具体的 item。<br>再由 HUEditTagsViewController 来实现：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionTagsView</span>(<span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span> &#123;</span><br><span class="line">		<span class="comment">/// 处理点击 改变数据内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionTagsView</span>(<span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span> &#123;</span><br><span class="line">truetrue<span class="comment">/// 处理点击 改变数据内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>做的时候觉得数据的传递绑定处理的不太完善，但是一直也没想到更好的处理办法，还需要进行优化，如果后面想到了，再来修改吧。<br>最后实现效果：<br><img src="https://github.com/hGhostD/MarkDownPhotos/blob/master/Swift%20%E7%AC%94%E8%AE%B0/%E6%A0%87%E7%AD%BE%E6%95%88%E6%9E%9C.gif?raw=true"><br>完整代码在<a target="_blank" rel="noopener" href="https://github.com/hGhostD/HUTagsView">这里</a></p>
 <br>
 <br>
@@ -318,6 +343,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="你谁啊~"
+      src="/img/1024.png">
   <p class="site-author-name" itemprop="name">你谁啊~</p>
   <div class="site-description" itemprop="description">心有猛虎，嗷嗷待哺！嗷呜~</div>
 </div>
@@ -340,6 +367,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hGhostD" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hGhostD" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -368,7 +400,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">你谁啊~</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
@@ -386,12 +418,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>
