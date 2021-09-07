@@ -12,7 +12,7 @@ categories:
 ##### hexo 安装
 
 关于搭建和环境 npm 安装就不做过多说明，可以再[官网](https://hexo.io/zh-cn/)上查到相内容。
-<!--- more --->
+<!-- more -->
 ##### 创建文件
 
 ```

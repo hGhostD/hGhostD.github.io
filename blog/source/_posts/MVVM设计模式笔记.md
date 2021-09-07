@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 很早就听说过 MVVM 系统模式，但是都是一知半解的。这次就借助泊学网视频重新搭建一个查看天气的项目，系统的研究一下 MVVM 设计模式。
-<!--- more --->
+<!-- more -->
 #### 概述
 简易的画了一个 MVVM 设计图。整体流程如下，接下来将根据这个图进行设计。
 ![MVVM](https://github.com/hGhostD/MarkDownPhotos/blob/master/MVVM/MVVM%E6%A6%82%E8%BF%B0.jpg?raw=true)

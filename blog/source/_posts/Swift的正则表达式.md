@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 有的时候会遇到了需要自定义正则来判断输入信息  
-<!--- more --->
+<!-- more -->
 
 ```
 extension String {

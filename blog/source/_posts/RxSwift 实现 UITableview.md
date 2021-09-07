@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 UITableView 在开发中是最常使用的控件，由于 UITableview 相对来说功能比较多，所以对应的方法也很多，实现操作起来比较繁琐。通过 RxSwift 可以简化实现 UITableview 的方法，让开发者更注重业务逻辑。
-<!----more----> 
+<!-- more -->
 #### 简单的实现方式
 创建一个没有额外 Section 的 Tableview 可以很容易的实现。思路就是通过 Observable 将数据逐个绑定到相应的 Cell 上。
 

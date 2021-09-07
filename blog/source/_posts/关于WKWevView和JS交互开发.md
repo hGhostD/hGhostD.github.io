@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。
-<!--- more --->
+<!-- more -->
 #### 引言
 关于 WKwebview 的优点就不多说了，苹果公司也推荐使用 WKWebView 来代替 UIWebView 作为网页浏览器开发。正好遇到的项目有这一部分需求，就直接使用了，也顺便学习一下，将遇到的问题记录下来。
 #### 设置WKWebView

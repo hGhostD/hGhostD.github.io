@@ -9,7 +9,7 @@ categories:
 ---
 #### 使用 VPS 搭建 SS
 由于之前的 VPN 到期了，刚好想自己搞一个 VPS，初步搭建记录一下过程。
-<!--- more --->
+<!-- more -->
 #### 购买 VPS 服务器
 登录 [Vultr](https://my.vultr.com/) 官网选择需要的服务器。我选择日本东京的服务器。服务器类型选择 CentOS 7 x64 ![CentOS 7 x64](https://raw.githubusercontent.com/hGhostD/MarkDownPhotos/master/VPS/ServerType.png)等服务器启动后可以获取相关信息，查看 IP 地址和密码![](https://raw.githubusercontent.com/hGhostD/MarkDownPhotos/master/VPS/Account.jpeg)
 #### 配置服务器

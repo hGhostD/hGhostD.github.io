@@ -8,7 +8,7 @@ categories:
 - Objective-C
 ---
 最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。
-<!--- more --->
+<!-- more -->
 #### 服务器搭建
 使用 RestKit 框架，需要有一个支持 Restful 的网络接口，为了方便自己测试，我们可以自行搭建一个本地的 Restful 接口。方法不是很复杂可以参考 [搭建 Restful 服务器](http://mclspace.com/2016/06/26/node-json-server/)。搭建成功后访问本地 3000 端口，访问 http://localhost:3000/posts/1 可以获得返回 json。
 #### RestKit 文档

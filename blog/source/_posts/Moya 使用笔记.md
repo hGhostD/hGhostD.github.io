@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 Swift 经常用 Alamofire 来做网络库，而 Moya 在 Alamofire 的基础上又封装了一层。Moya 是你的 app 中缺失的网络层。不用再去想在哪儿（或者如何）安放网络请求，Moya 替你管理。
-<!---more--->
+<!-- more -->
 ##### 安装配置
 由于我在项目使用了 CocoaPods，而且也使用了 RxSwift 这个框架，所以直接在在 Podfile 文件中添加 `pod 'Moya/RxSwift'` 即可。
 ##### 创建 APIManager

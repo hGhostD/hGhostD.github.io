@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 工作中遇到一个需要自定义的标签页，在网上找到了一个比较合适的 demo，可惜是以 Objective-C 实现的。就正好自己再用 swift 重写一下，也学习一下别人的思路。
-<!---- more ---->
+<!-- more -->
 #### SDTagsView  
 [这里](https://github.com/SlowDony/SDTagsView) 是原作者的 demo，他分别采用了 Label 和 CollectionView 两种实现方式。不过作者比较推荐第二种，我也只以 CollectionView 的方式实现。
 ![SDTagsView](https://github.com/SlowDony/SDTagsView/blob/master/SDTagsView/SDEditTagsView.gif?raw=true)

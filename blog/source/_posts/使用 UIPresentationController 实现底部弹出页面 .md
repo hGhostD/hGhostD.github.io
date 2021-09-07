@@ -8,7 +8,7 @@ categories:
 - Swift
 ---
 底部弹出框在项目中很常见，之前对此的理解很肤浅，不太明白如何更好的实现自定义的页面。刚好在 [GitHub](https://github.com/IkeBanPC/PresentBottom) 看到有一中很简单的实现方式，是利用 UIPresentationController 和继承的方式实现。学习一下，自己再通过协议的方式实现下，加深自己的理解。
-<!--- more --->
+<!-- more -->
 #### 实现效果
 ![UIPresentationController 底部弹出](https://raw.githubusercontent.com/IkeBanPC/PresentBottom/master/Pics/Select.gif)
 #### 实现 UIPresentationController
