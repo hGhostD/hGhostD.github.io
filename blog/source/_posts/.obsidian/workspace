@@ -1,0 +1,95 @@
+{
+  "main": {
+    "id": "684c49e8ef574bb5",
+    "type": "split",
+    "children": [
+      {
+        "id": "c6521c420b4ad034",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "PopMenu提示框实现.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "caaef0539ad666c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "ec8bb8bd957cf034",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "845df0e4b2260ae6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "f39c4618b80d60fd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1650624d897ad13a",
+    "type": "split",
+    "children": [
+      {
+        "id": "9ba1791d299a1852",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be25cdaae84b53ab",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "PopMenu提示框实现.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "c6521c420b4ad034",
+  "lastOpenFiles": [
+    "PopMenu提示框实现.md",
+    "什么能力很重要，但大多数人却没有.md",
+    "《亲密关系》读书笔记.md",
+    "2020年末总结.md"
+  ]
+}
