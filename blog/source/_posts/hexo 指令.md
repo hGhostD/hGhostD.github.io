@@ -60,3 +60,15 @@ $ hexo publish [layout] <filename>
 ```
 $ hexo d
 ```
+
+###### git 相关
+git 校验有效性
+```
+ssh -T git@github.com
+```
+
+git 冲突解决
+```
+git fetch origin
+git reset --hard origin/master
+```

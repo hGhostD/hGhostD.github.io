@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "c6521c420b4ad034",
+        "id": "ea064806088ebe8e",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Vim使用技巧笔记.md",
+            "file": "hexo 指令.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Vim使用技巧笔记.md",
+                "file": "hexo 指令.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,8 +85,9 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "c6521c420b4ad034",
+  "active": "ea064806088ebe8e",
   "lastOpenFiles": [
+    "hexo 指令.md",
     "Vim使用技巧笔记.md",
     "Xcode 单元测试.md",
     "Swift协议拓展.md",
@@ -95,7 +96,6 @@
     "RxSwift 实现 UITableview.md",
     "PopMenu提示框实现.md",
     "MVVM设计模式笔记.md",
-    "Moya 使用笔记.md",
-    "hexo 指令.md"
+    "Moya 使用笔记.md"
   ]
 }
