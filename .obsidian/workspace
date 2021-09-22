@@ -1,32 +1,29 @@
 {
   "main": {
-    "id": "684c49e8ef574bb5",
+    "id": "04373b17803b4cda",
     "type": "split",
     "children": [
       {
-        "id": "ea064806088ebe8e",
+        "id": "dc306970d34d7afb",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Vim使用技巧笔记.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "caaef0539ad666c7",
+    "id": "defa4f3a951029b6",
     "type": "split",
     "children": [
       {
-        "id": "ec8bb8bd957cf034",
+        "id": "3662b7a1bb009bed",
         "type": "tabs",
         "children": [
           {
-            "id": "845df0e4b2260ae6",
+            "id": "cab38e44dbd4597b",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -34,7 +31,7 @@
             }
           },
           {
-            "id": "f39c4618b80d60fd",
+            "id": "70ec3f544536facd",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -55,20 +52,19 @@
     "width": 300
   },
   "right": {
-    "id": "1650624d897ad13a",
+    "id": "0a606eda5a453d03",
     "type": "split",
     "children": [
       {
-        "id": "9ba1791d299a1852",
+        "id": "adfd38937f356d59",
         "type": "tabs",
         "children": [
           {
-            "id": "be25cdaae84b53ab",
+            "id": "a823460bdceebc42",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Vim使用技巧笔记.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,19 +79,9 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
-  "active": "ea064806088ebe8e",
-  "lastOpenFiles": [
-    "Vim使用技巧笔记.md",
-    "hexo 指令.md",
-    "Xcode 单元测试.md",
-    "Swift协议拓展.md",
-    "Swift实现可编辑标签页.md",
-    "Swift的正则表达式.md",
-    "RxSwift 实现 UITableview.md",
-    "PopMenu提示框实现.md",
-    "MVVM设计模式笔记.md",
-    "Moya 使用笔记.md"
-  ]
+  "active": "dc306970d34d7afb",
+  "lastOpenFiles": []
 }
