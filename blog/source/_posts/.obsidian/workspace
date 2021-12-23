@@ -4,13 +4,26 @@
     "type": "split",
     "children": [
       {
-        "id": "ea064806088ebe8e",
+        "id": "09a1e52265ecc1f0",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Vim使用技巧笔记.md",
-            "mode": "source"
+            "file": "黑苹果10500-OpenCore-升级.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "6ef452e554176b67",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "黑苹果10500-OpenCore-升级.md",
+            "mode": "preview",
+            "source": false
           }
         }
       }
@@ -68,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Vim使用技巧笔记.md",
+                "file": "黑苹果10500-OpenCore-升级.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,19 +96,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
-  "active": "ea064806088ebe8e",
+  "active": "09a1e52265ecc1f0",
   "lastOpenFiles": [
-    "Vim使用技巧笔记.md",
-    "hexo 指令.md",
-    "Xcode 单元测试.md",
-    "Swift协议拓展.md",
-    "Swift实现可编辑标签页.md",
-    "Swift的正则表达式.md",
-    "RxSwift 实现 UITableview.md",
-    "PopMenu提示框实现.md",
+    "黑苹果10500-OpenCore-升级.md",
     "MVVM设计模式笔记.md",
-    "Moya 使用笔记.md"
+    "Moya 使用笔记.md",
+    "fastlane自动打包脚本.md",
+    "使用 UIPresentationController 实现底部弹出页面 .md",
+    "2017年末总结.md",
+    "《Swift 进阶》读书笔记.md",
+    "关于Restkit的使用.md",
+    "第一篇Swift.md",
+    "关于WKWevView和JS交互开发.md"
   ]
 }
