@@ -58,12 +58,12 @@ EFI 参照地址：**https://github.com/ansonliao/Asrock-B460m-ITX-AC-OC-EFI**
 开始以为是 USB 定制的问题，尝试自己修改 USB 端口驱动文件。在安装的过程中突然想起来可能是前置 USB 端口的问题，之前查到过资料说安装黑苹果时，**不能使用 USB 3.0 接口，需要使用 USB 2.0 接口进行安装。** 又更换到后面板重新进行安装，顺利进入到了恢复界面。由于之前已经成功安装过黑苹果系统，所以不用再对磁盘进行抹除，选择升级的磁盘，直接进行系统升级。
 期间重启了 3 次，由于我的 windows 引导被我修改过。需要每次手动从 BIOS 选择 U 盘启动，这个问题在升级成功后重新处理 windows 启动引导。
 
-### 概览
+#### 概览
 
 成功安装 12.1
 ![](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/Snipaste_2021-12-23_15-31-14.jpg?raw=true)
-#### Hackintool
 
+#### Hackintool
 设备正常读取
 ![](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/Snipaste_2021-12-23_15-33-08.jpg?raw=true)
 
