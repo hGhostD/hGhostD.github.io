@@ -48,3 +48,46 @@ USB 使用的是国光定制过的驱动，由于我和他使用的是同一品�
 
 ### 遇到的问题
 这是第一次完全自己动手安装黑苹果，所以遇到了很多问题，这里记录一下是如何解决的。
+
+#### 无法进入安装恢复界面
+1. 出现打开鼠标电源动画
+![缺少蓝牙补丁](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/telegram-cloud-document-5-6188333109373567780.GIF?raw=true)
+
+我在配置 EFI 文件的时候遇到了这个问题，在群里查到的结局方案是补齐蓝牙驱动的补丁。
+重点还是需要针对 BlueToolFixup 进行设置，由于我使用的是免驱蓝牙网卡，BrcmPatchRAM3.kext 并不需要添加。
+
+>![](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/photo_2021-12-29%2016.22.15.jpeg?raw=true)
+> Mac OS monterey 第三方非白果卡蓝牙解决方法 
+> 使用“每日构建版的BrcmPatchRAM驱动” 
+> 注：BCM和英特尔都需要 
+> 注：Z3和Z4只需要BlueToolFixup 
+> 设置： 
+> BlueToolFixup最低内核限制”21.0.0“ 
+> 设置： 
+> BCM的“BrcmBluetoothInjector” 
+> 英特尔的“IntelBluetoothInjector” 
+> 最高内核限制”20.99.99“ 
+> 每日构建版下载链接：https://dortania.github.io/builds/ 
+> 非白果卡 12蓝牙关了打不开 
+> sudo pkill bluetoothd 
+> 终端来一次 
+> 12蓝牙关了打不开大神已经发pr了等待通过 
+> https://github.com/acidanthera/BrcmPat> chRAM/pull/18
+> 下载之后重新生成一下机器的三码并保存。
+
+
+
+2. SMCSuperIO ssio: @detected device Nuvoton NCT6687D
+DSMOS has arrived
+![](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/981639757624_.pic.jpg?raw=true)
+最开始查到资料说是 FakeSMCKeyStore 的问题，更换之后出现了下一张图的报错，发现这个驱动早已经不再更新维护了，需要继续使用最新的 SMCProcessor.kext。
+
+3.SMMSensors:[Error] Unable to validate SMM signature, not loading SMMSensors
+![](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/991639757624_.pic.jpg?raw=true)
+这个问题是由于我的 BIOS 设置不正确，没有禁用 CFG 锁定，也没有开启 VT-D，修改 BIOS
+设置之后问题解决了。
+
+4.VirtualSMC kstore:
+DSMOS has arrived
+![](https://github.com/hGhostD/MarkDownPhotos/blob/master/%E9%BB%91%E8%8B%B9%E6%9E%9C/1011639847352_.pic.jpg?raw=true)
+这个问题处理了很长时间，开始以为是 EFI 的问题，更新替换都没有解决。后来查到资料是由于 USB 3.0 接口的问题，**安装黑苹果需要使用 USB 2.0 接口。** 更换 U 盘接口重新安装之后成功进入安装界面。
