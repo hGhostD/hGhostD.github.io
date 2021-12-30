@@ -802,14 +802,14 @@
 
 "hexo-renderer-pug@^2.0.0":
   "integrity" "sha512-5AJpVmPzAuwB6pqtm/bOfaYjjxyc1Ue9hLvJdJwxib3bzVIVm17QWEiT+nYO4lU5Nn75s5WqHh7jPg03cgTgig=="
-  "resolved" "https://registry.npmjs.org/hexo-renderer-pug/-/hexo-renderer-pug-2.0.0.tgz"
+  "resolved" "https://repo.huaweicloud.com/repository/npm/hexo-renderer-pug/-/hexo-renderer-pug-2.0.0.tgz"
   "version" "2.0.0"
   dependencies:
     "pug" "^3.0.2"
 
 "hexo-renderer-stylus@^2.0.1":
-  "integrity" "sha1-xlVm6X6QWKUuRsgrDEXPVh9LlMs="
-  "resolved" "https://registry.npm.taobao.org/hexo-renderer-stylus/download/hexo-renderer-stylus-2.0.1.tgz"
+  "integrity" "sha512-1S4AG8RtzWqVrqKIYv2AJ4UYms5SHDjkdYS7IiGwgUejL24agbTktpAbnH2cG1JWZ15SRqYN0UGB9aAoSAgvEA=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/hexo-renderer-stylus/-/hexo-renderer-stylus-2.0.1.tgz"
   "version" "2.0.1"
   dependencies:
     "nib" "^1.1.2"
@@ -831,11 +831,16 @@
 
 "hexo-theme-butterfly@^3.8.4":
   "integrity" "sha512-d7S3LVVxmpWhL0YEYhMUejLMHbbTTosB8yLDkAnbe04HA4IoYiZTlE5zYdmLEcxIiNzyjW5Va4tnn4CNggR0Vg=="
-  "resolved" "https://registry.npmjs.org/hexo-theme-butterfly/-/hexo-theme-butterfly-3.8.4.tgz"
+  "resolved" "https://repo.huaweicloud.com/repository/npm/hexo-theme-butterfly/-/hexo-theme-butterfly-3.8.4.tgz"
   "version" "3.8.4"
   dependencies:
     "hexo-renderer-pug" "^2.0.0"
     "hexo-renderer-stylus" "^2.0.1"
+
+"hexo-theme-fluid@^1.8.13":
+  "integrity" "sha512-geDMRvO6W2z/OUeUDfkMedmCNcBEh7GT8XFtFVY0UYzrCw7lBUKt2quyqBcohTURTWi+3ebuHpIGpEFImS+H+g=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/hexo-theme-fluid/-/hexo-theme-fluid-1.8.13.tgz"
+  "version" "1.8.13"
 
 "hexo-util@^2.0.0", "hexo-util@^2.1.0", "hexo-util@^2.4.0", "hexo-util@^2.5.0", "hexo-util@latest":
   "integrity" "sha1-3lY1NBEWuiVjp4mg6861WodSIa0="
@@ -1271,7 +1276,7 @@
   "resolved" "https://registry.nlark.com/normalize-path/download/normalize-path-3.0.0.tgz"
   "version" "3.0.0"
 
-"nunjucks@^3.2.1":
+"nunjucks@^3.0.0", "nunjucks@^3.2.1":
   "integrity" "sha1-GzNhUkcpDpTigmO12FXs52VkijE="
   "resolved" "https://registry.nlark.com/nunjucks/download/nunjucks-3.2.3.tgz"
   "version" "3.2.3"

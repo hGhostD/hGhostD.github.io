@@ -72,3 +72,8 @@ git 冲突解决
 git fetch origin
 git reset --hard origin/master
 ```
+
+##### Butterfly 主题
+文档地址：https://butterfly.js.org/posts/21cfbf15/
+
+安装使用的时候遇到了 `WARN  No layout: index.html` 这个提示，是由于 theme 文件夹下没有下载主题导致的。安装主题有两种方式，一种是通过 git 安装主题文件，另一种是通过 npm 安装。后来使用了 npm  的方式安装，感觉比较简洁，复制 _config.butterfly.yml 配置文件。
