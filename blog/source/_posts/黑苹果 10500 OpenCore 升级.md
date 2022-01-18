@@ -7,6 +7,7 @@ tags:
 - 日记
 categories:
 - 日记
+top_img: https://s2.loli.net/2022/01/18/sxjA4a73bOTDhuS.jpg
 ---
 
 Monterey 出来也已经有一段时间了，这次决定手动升级一下。

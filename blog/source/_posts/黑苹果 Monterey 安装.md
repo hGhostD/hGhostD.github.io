@@ -5,6 +5,7 @@ tags:
 - 日记
 categories:
 - 日记
+top_img: https://www.apple.com.cn/macos/monterey/images/overview/hero/hero_desktop__buokcfsx51py_large.jpg
 ---
 
 为了实现自己安装黑苹果，特意将之前的 AMD 2600x 和 x470 主板换掉，更换了成了 Intel 的 i7-10700 CPU 和 b560m 主板。
