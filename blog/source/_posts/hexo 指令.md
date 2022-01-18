@@ -6,6 +6,7 @@ tags:
 - 待续
 categories: 
 - 待续
+tog_img: https://s2.loli.net/2022/01/07/PX3iRIcTzZUJBb7.jpg
 ---
 #### 记录 hexo 常用指令
 
