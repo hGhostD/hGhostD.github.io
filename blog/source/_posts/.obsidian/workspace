@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "黑苹果 10500 OpenCore 升级.md",
+            "file": "2017年末总结.md",
             "mode": "source",
             "source": true
           }
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "黑苹果 10500 OpenCore 升级.md",
+                "file": "2017年末总结.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +101,15 @@
   },
   "active": "3a3e1ef75c7ed146",
   "lastOpenFiles": [
-    "黑苹果 10500 OpenCore 升级.md",
-    "黑苹果 Monterey 安装.md",
+    "2017年末总结.md",
+    "2020年末总结.md",
     "回顾Swift设计模式.md",
+    "什么能力很重要，但大多数人却没有.md",
+    "黑苹果 Monterey 安装.md",
+    "黑苹果 10500 OpenCore 升级.md",
     "hexo 指令.md",
     "使用 UIPresentationController 实现底部弹出页面 .md",
     "Pasted image 20211228001312.png.md",
-    "Pasted image 20211228001312.png",
-    "Pasted image 20211228001557.png",
-    "关于WKWevView和JS交互开发.md",
-    "MVVM设计模式笔记.md"
+    "Pasted image 20211228001312.png"
   ]
 }
