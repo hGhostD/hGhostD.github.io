@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关于RestKit的使用 | H</title><meta name="keywords" content="Objective-C"><meta name="author" content="有鬼啊啊啊啊"><meta name="copyright" content="有鬼啊啊啊啊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于RestKit的使用">
+<meta property="og:url" content="https://hghostd.top/2018/06/23/%E5%85%B3%E4%BA%8ERestkit%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="H">
+<meta property="og:description" content="最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2018-06-23T10:34:37.000Z">
+<meta property="article:modified_time" content="2022-07-19T03:51:24.038Z">
+<meta property="article:author" content="有鬼啊啊啊啊">
+<meta property="article:tag" content="Objective-C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hghostd.top/2018/06/23/%E5%85%B3%E4%BA%8ERestkit%E7%9A%84%E4%BD%BF%E7%94%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于RestKit的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-19 11:51:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1024.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">H</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">关于RestKit的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-06-23T10:34:37.000Z" title="发表于 2018-06-23 18:34:37">2018-06-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-19T03:51:24.038Z" title="更新于 2022-07-19 11:51:24">2022-07-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Objective-C/">Objective-C</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">682</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="关于RestKit的使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>最新需要使用 RestKit 框架处理网络请求，查了一下资料发现网上的资料确实不多，但还是有人翻译了一些资料的，趁此机会学习一下吧。</p>
+<span id="more"></span>
+<h4 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h4><p>使用 RestKit 框架，需要有一个支持 Restful 的网络接口，为了方便自己测试，我们可以自行搭建一个本地的 Restful 接口。方法不是很复杂可以参考 <a target="_blank" rel="noopener" href="http://mclspace.com/2016/06/26/node-json-server/">搭建 Restful 服务器</a>。搭建成功后访问本地 3000 端口，访问 <a target="_blank" rel="noopener" href="http://localhost:3000/posts/1">http://localhost:3000/posts/1</a> 可以获得返回 json。</p>
+<h4 id="RestKit-文档"><a href="#RestKit-文档" class="headerlink" title="RestKit 文档"></a>RestKit 文档</h4><p>关于使用 RestKit 的文章，可以参考<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003745207">这里</a>，十分详细我们可以参考这里的介绍来使用。</p>
+<h4 id="集成-RestKit"><a href="#集成-RestKit" class="headerlink" title="集成 RestKit"></a>集成 RestKit</h4><p>还是推荐使用 cocoapods 集成，方便管理。</p>
+<h4 id="创建解析-Model"><a href="#创建解析-Model" class="headerlink" title="创建解析 Model"></a>创建解析 Model</h4><p>RestKit 非常强大的功能就是能够对返回 json 进行映射处理。所以很多时候需要使用 <code>RKObjectMapping</code> 来管理映射对象。刚才已经成功搭建了自己的服务器，先访问一下看看 json 的格式，如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;json-server&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;typicode&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个 json 很容易理解，我们只需创建一个 ResultModel 的 class，来映射 json 即可，只需要在 .h 文件中声明 key。</p>
+<h4 id="URL-请求设置"><a href="#URL-请求设置" class="headerlink" title="URL 请求设置"></a>URL 请求设置</h4><p>在发送网络请求前，一定要明确的信息就是 URL，在使用 RestKit 前，就需要创建好 URL 的使用类。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">NSURL</span> *baseUrl = [<span class="symbol">NSURL</span> <span class="symbol">URLWithString</span>:@<span class="string">&quot;http://localhost:3000&quot;</span>];</span><br><span class="line"><span class="symbol">AFRKHTTPClient</span> *httpClient = [[<span class="symbol">AFRKHTTPClient</span> alloc]initWithBaseURL:baseUrl];</span><br><span class="line">    </span><br><span class="line"><span class="symbol">RKObjectManager</span> *objectManager = [[<span class="symbol">RKObjectManager</span> alloc]initWithHTTPClient:httpClient];</span><br><span class="line">[objectManager setRequestSerializationMIMEType:<span class="symbol">RKMIMETypeJSON</span>];</span><br><span class="line">httpClient.allowsInvalidSSLCertificate = <span class="symbol">YES</span>;</span><br></pre></td></tr></table></figure>
+<p>相应的一些 header 的关键信息，就可以添加到 httpClient 中，例如 <code>[httpClient setDefaultHeader:@&quot;Content-Encoding&quot; value:@&quot;gzip&quot;];</code>。</p>
+<h4 id="RKResponseDescriptor-设置"><a href="#RKResponseDescriptor-设置" class="headerlink" title="RKResponseDescriptor 设置"></a>RKResponseDescriptor 设置</h4><p>在发送请求之前，还需要的关键一步就是对返回 response 的处理，在这里设置对返回 json 的映射处理。</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[ResultModel <span class="keyword">class</span>]];</span><br><span class="line">[mapping addAttributeMappingsFromDictionary:@<span class="comment">&#123;@&quot;id&quot;:@&quot;identifier&quot;,@&quot;title&quot;:@&quot;title&quot;,@&quot;author&quot;:@&quot;author&quot;&#125;</span>];</span><br><span class="line">NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);</span><br><span class="line">RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping </span><br><span class="line"><span class="function"><span class="keyword">method</span>:</span>RKRequestMethodGET</span><br><span class="line">pathPattern:<span class="keyword">nil</span> </span><br><span class="line">keyPath:<span class="keyword">nil</span></span><br><span class="line">statusCodes:statusCodes];</span><br><span class="line">[objectManager addResponseDescriptor:responseDescriptor];</span><br></pre></td></tr></table></figure>
+<h4 id="发送参数访问"><a href="#发送参数访问" class="headerlink" title="发送参数访问"></a>发送参数访问</h4><p>最后一步就是想正确的路径发送参数进行访问了，很容易理解。</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[RKObjectManager.sharedManager getObject:_manager path:@<span class="string">&quot;posts/1&quot;</span></span><br><span class="line">parameters:nil</span><br><span class="line">success:^(<span class="name">RKObjectRequestOperation</span> *operation, RKMappingResult *mappingResult) &#123;</span><br><span class="line">truesuccessBlock(<span class="name">mappingResult</span>)<span class="comment">;</span></span><br><span class="line">&#125; failure:^(<span class="name">RKObjectRequestOperation</span> *operation, NSError *error) &#123;</span><br><span class="line">trueerrorBlock(<span class="name">error</span>)<span class="comment">;</span></span><br><span class="line">&#125;]<span class="comment">;                                      </span></span><br></pre></td></tr></table></figure>
+<p>至此，一个基本的访问请求已经可以实现了。但是 RestKit 支持的功能还有很多没有使用到，最近公司也有个需求是要使请求发送 Gzip 数据，这就需要对 RestKit 进行一些拓展了，以后会详细说明。</p>
+<br>
+> [搭建 Restful 服务器](http://mclspace.com/2016/06/26/node-json-server/)
+> [RestKit ,一个用于更好支持RESTful风格服务器接口的iOS库](https://segmentfault.com/a/1190000003745207)</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">有鬼啊啊啊啊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hghostd.top/2018/06/23/%E5%85%B3%E4%BA%8ERestkit%E7%9A%84%E4%BD%BF%E7%94%A8/">https://hghostd.top/2018/06/23/%E5%85%B3%E4%BA%8ERestkit%E7%9A%84%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hghostd.top" target="_blank">H</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Objective-C/">Objective-C</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/02/24/hexo%20%E6%8C%87%E4%BB%A4/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hexo 指令</div></div></a></div><div class="next-post pull-right"><a href="/2018/05/11/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PopMenu提示框实现</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/1024.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">有鬼啊啊啊啊</div><div class="author-info__description">心有猛虎，嗷嗷待哺！嗷呜~</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hGhostD" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">服务器搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RestKit-%E6%96%87%E6%A1%A3"><span class="toc-number">2.</span> <span class="toc-text">RestKit 文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E6%88%90-RestKit"><span class="toc-number">3.</span> <span class="toc-text">集成 RestKit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%A3%E6%9E%90-Model"><span class="toc-number">4.</span> <span class="toc-text">创建解析 Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL-%E8%AF%B7%E6%B1%82%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">URL 请求设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RKResponseDescriptor-%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text">RKResponseDescriptor 设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%8F%82%E6%95%B0%E8%AE%BF%E9%97%AE"><span class="toc-number">7.</span> <span class="toc-text">发送参数访问</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8%20OpenCV.js%20%E5%BC%80%E5%8F%91/" title="微信小程序使用 OpenCV.js 开发">微信小程序使用 OpenCV.js 开发</a><time datetime="2022-11-09T05:37:40.000Z" title="发表于 2022-11-09 13:37:40">2022-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/20/%E3%80%8A%E4%BC%9A%E8%AF%B4%E7%9A%84%E4%BA%BA%E8%BF%90%E6%B0%94%E9%83%BD%E4%B8%8D%E4%BC%9A%E5%A4%AA%E5%B7%AE%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《会说的人运气都不会太差》读书笔记">《会说的人运气都不会太差》读书笔记</a><time datetime="2022-07-20T09:40:04.000Z" title="发表于 2022-07-20 17:40:04">2022-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/23/%E9%BB%91%E8%8B%B9%E6%9E%9C%20Monterey%20%E5%AE%89%E8%A3%85/" title="黑苹果 Monterey 安装">黑苹果 Monterey 安装</a><time datetime="2021-12-23T15:46:06.000Z" title="发表于 2021-12-23 23:46:06">2021-12-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/22/%E9%BB%91%E8%8B%B9%E6%9E%9C%2010500%20OpenCore%20%E5%8D%87%E7%BA%A7/" title="黑苹果 10500 OpenCore 升级">黑苹果 10500 OpenCore 升级</a><time datetime="2021-12-22T06:02:40.000Z" title="发表于 2021-12-22 14:02:40">2021-12-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/01/2020%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2020年末总结">2020年末总结</a><time datetime="2021-01-01T14:47:59.000Z" title="发表于 2021-01-01 22:47:59">2021-01-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 有鬼啊啊啊啊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

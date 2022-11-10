@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>《函数式 Swift》读书笔记 | H</title><meta name="keywords" content="Swift,读书"><meta name="author" content="有鬼啊啊啊啊"><meta name="copyright" content="有鬼啊啊啊啊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数，     也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《函数式 Swift》读书笔记">
+<meta property="og:url" content="https://hghostd.top/2018/01/10/%E3%80%8A%E5%87%BD%E6%95%B0%E5%BC%8FSwift%E3%80%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="H">
+<meta property="og:description" content="函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数，     也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2018-01-10T08:03:21.000Z">
+<meta property="article:modified_time" content="2022-07-19T03:51:24.037Z">
+<meta property="article:author" content="有鬼啊啊啊啊">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="读书">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hghostd.top/2018/01/10/%E3%80%8A%E5%87%BD%E6%95%B0%E5%BC%8FSwift%E3%80%8B%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《函数式 Swift》读书笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-19 11:51:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1024.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">H</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《函数式 Swift》读书笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-01-10T08:03:21.000Z" title="发表于 2018-01-10 16:03:21">2018-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-19T03:51:24.037Z" title="更新于 2022-07-19 11:51:24">2022-07-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Swift/">Swift</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《函数式 Swift》读书笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><pre><code>    函数在 Swift 中是一等公民，换句话说，函数可以作为参数被传递到其他函数，
+    也可以作为其他函数的返回值。函数式编程的核心理念就是函数是值。
+</code></pre>
+<span id="more"></span>
+<h4 id="函数式思想"><a href="#函数式思想" class="headerlink" title="函数式思想"></a>函数式思想</h4><p>在 Swift 中计算和传递函数的方式与整形或布尔型没有任何不同。<br>假设有一个 struct 包含 x 和 y 坐标:</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Position &#123;</span><br><span class="line">    <span class="keyword">let</span> x: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">let</span> y: <span class="built_in">Int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时，定义一个 typealias，表示把 Position 转化为 bool 的函数。<br><code>typealias Region = (Position) -&gt; Bool</code>。</p>
+<p>接下来创建函数的返回值就可以是一个函数(Region) </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">circle</span>(<span class="params">radius</span>: <span class="type">Int</span>)</span> -&gt; <span class="type">Region</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; loc <span class="keyword">in</span> <span class="keyword">return</span> loc.x <span class="operator">&lt;</span> radius &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 </p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123; (参数) -&gt; (返回值) in </span><br><span class="line">true(函数具体的操作)</span><br><span class="line">truereturn (返回值)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大括号内就是表示一个函数。</p>
+<h4 id="案例研究：封装-Core-Image"><a href="#案例研究：封装-Core-Image" class="headerlink" title="案例研究：封装 Core Image"></a>案例研究：封装 Core Image</h4><p>书中的用例是对 CIImage 进行封装。为了让自己更明白本章所讲的内容，我把 CIImage 换成了 Int 类型来实现，两者的本质并无太大的区别，重点是对函数化这一概念要有清晰的认识。<br>我们首先将 Filter 定义为一个函数，该函数接受 Int 型作为参数，并且返回一个新的 Int 型。<code>typealias Filter = (Int) -&gt; Int</code>。<br>首先，我们定义一个简单的 +1 的方法，返回值是 Filter(<strong>是一个函数</strong>)。 </p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addOne</span><span class="params">(describe: String)</span> -&gt; <span class="title">Filter</span> &#123;</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="built_in">number</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">number</span> + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样调用起来就是： <code>addOne(describe: &quot;简单的 10+1&quot;)(10) // 11</code><br>接下来在的定义一个 +2 的方法，同上</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addTwo</span><span class="params">(describe: String)</span> -&gt; <span class="title">Filter</span> &#123;</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="built_in">number</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">number</span> + <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里都挺简单的，现在如果我们要再实现一个 +3 的方法，再复制就显得太蠢了，所以转换一下思路，通过 +1 和 +2 的方法实现：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func add<span class="constructor">Three(<span class="params">describe</span>: String)</span> -&gt; Filter &#123;</span><br><span class="line">    return &#123; number <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">let</span> one = add<span class="constructor">One(<span class="params">describe</span>: <span class="string">&quot;+ 1:&quot;</span>)</span>(number)</span><br><span class="line">        return add<span class="constructor">Two(<span class="params">describe</span>: <span class="string">&quot;+ 2:&quot;</span>)</span>(one)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">add<span class="constructor">Three(<span class="params">describe</span>: <span class="string">&quot;+ 3:&quot;</span>)</span>(<span class="number">100</span>) <span class="comment">// 103</span></span><br></pre></td></tr></table></figure>
+<h5 id="复合函数"><a href="#复合函数" class="headerlink" title="复合函数"></a>复合函数</h5><p>现在，如果我们想要实现 0 + 1 + 2 + 3 的功能，就可以这么调用：<br><code>addThree(describe: &quot;3&quot;)(addTwo(describe: &quot;2&quot;)(addOne(describe: &quot;1&quot;)(0))) // 6</code>。<br>感觉这么调用并不友好，我们需要优化一下实现方式。书中给了一种方案是使用<strong>复合函数</strong>。<br>首先定义一个用于组合的函数：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">func</span> <span class="selector-tag">compose</span>(<span class="attribute">filter1</span>: <span class="variable">@escaping</span> Filter, <span class="attribute">fileter2</span>: <span class="variable">@escaping</span> Filter) <span class="selector-tag">-</span>&gt; <span class="selector-tag">Filter</span> &#123;</span><br><span class="line">    <span class="selector-tag">return</span> &#123; <span class="selector-tag">num</span> <span class="selector-tag">in</span> <span class="selector-tag">fileter2</span>(filter1(num)) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样可以使用复合函数来定义：<br><code>compose(compose(addOne(describe: &quot;1&quot;), addTwo(describe: &quot;2&quot;)), addThree(describe: &quot;3&quot;))(100) // 106</code></p>
+<h5 id="自定义运算符"><a href="#自定义运算符" class="headerlink" title="自定义运算符"></a>自定义运算符</h5><p>但是看起来也很不容易理解。为了让代码更具可读性，我们可以再进一步，为组合引入运算符。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">infix</span> <span class="selector-tag">operator</span> &gt;&gt;&gt;: <span class="selector-tag">pro</span></span><br><span class="line"><span class="selector-tag">precedencegroup</span> <span class="selector-tag">pro</span> &#123;</span><br><span class="line">    associativity: <span class="attribute">left</span></span><br><span class="line"><span class="attribute">&#125;</span></span><br><span class="line"><span class="attribute"></span></span><br><span class="line"><span class="attribute">func &gt;&gt;&gt;(filter1</span>: <span class="variable">@escaping</span> Filter, <span class="attribute">fileter2</span>: <span class="variable">@escaping</span> Filter) -&gt; Filter &#123;</span><br><span class="line">    return &#123; num in fileter2(filter1(num)) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以用运算符来实现了，</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = add<span class="constructor">One(<span class="params">describe</span>: <span class="string">&quot;1&quot;</span>)</span> &gt;&gt;&gt; add<span class="constructor">Two(<span class="params">describe</span>: <span class="string">&quot;2&quot;</span>)</span> &gt;&gt;&gt; add<span class="constructor">Three(<span class="params">describe</span>: <span class="string">&quot;3&quot;</span>)</span></span><br><span class="line">result(<span class="number">0</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<h5 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h5><p>函数接受参数之后，返回一个<strong>闭包</strong>，然后等待第二个参数。<code>add(1)(2)</code>。函数中的箭头 -&gt; 向右结合。这也就是说没你可以将 A -&gt; B -&gt; C 理解为 A -&gt; (B -&gt; C)。</p>
+<h4 id="Map、Filter-和-Reduce"><a href="#Map、Filter-和-Reduce" class="headerlink" title="Map、Filter 和 Reduce"></a>Map、Filter 和 Reduce</h4><h5 id="Map-和-Filter"><a href="#Map-和-Filter" class="headerlink" title="Map 和 Filter"></a>Map 和 Filter</h5><p>关于 Map 官网的描述是:</p>
+<blockquote>
+<p>Returns an array containing the results of mapping the given closure over the sequence’s elements.</p>
+</blockquote>
+<p>翻译过来就是: 返回一个数组，数组中的元素是由闭包提供的映射序列产生的。</p>
+<p><code>func map&lt;T&gt;(_ transform: (Element) throws -&gt; T) rethrows -&gt; [T]</code><br>其中关于参数的描述是:</p>
+<blockquote>
+<p>A mapping closure. transform accepts an element of this sequence as its parameter and returns a transformed value of the same or of a different type.</p>
+</blockquote>
+<p>一个映射的闭包，以一个序列的<strong>每个元素</strong>作为参数，返回一个相同或不同的类型<strong>新值</strong>。可以知道我们需要提供的参数是<strong>一个闭包</strong>。这个闭包中的参数和返回值可以是任意类型的（由泛型定义）。</p>
+<p>Map的定义是这样的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">true<span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;<span class="type">T</span>&gt;(<span class="params">transform</span>: <span class="type">Element</span> -&gt; <span class="type">T</span>)</span> -&gt; [<span class="type">T</span>] &#123;</span><br><span class="line">truetrue<span class="keyword">var</span> result: [<span class="type">T</span>] <span class="operator">=</span> []</span><br><span class="line">truetrue<span class="keyword">for</span> x <span class="keyword">in</span> <span class="keyword">self</span> &#123;</span><br><span class="line">truetruetrueresult.append(transform(x))</span><br><span class="line">truetrue&#125;</span><br><span class="line">truetrue<span class="keyword">return</span> result</span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以在调用的时候，我们就需要提供一个变换方法的闭包。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.map &#123; <span class="variable">$0</span>.lowercaseString &#125; <span class="regexp">//</span> [<span class="string">&quot;vivien&quot;</span>, <span class="string">&quot;marlon&quot;</span>, <span class="string">&quot;kim&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h5 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h5><p>关于 Reduce 官网的描述是：</p>
+<blockquote>
+<p>Returns the result of combining the elements of the sequence using the given closure.</p>
+</blockquote>
+<p>翻译过来是：返回组合运算的结果，组合运算是由提供的序列经过闭包处理每个元素产生的。</p>
+<p><code>func reduce&lt;Result&gt;(_ initialResult: Result, _ nextPartialResult: (Result, Element) throws -&gt; Result) rethrows -&gt; Result</code></p>
+<h5 id="泛型和-Any-类型"><a href="#泛型和-Any-类型" class="headerlink" title="泛型和 Any 类型"></a>泛型和 Any 类型</h5><p>除了泛型，Swift 还支持 Any 类型，它能代表任何类型的值。泛型可以用于定义灵活的函数，类型检查仍然由编译器负责；而 Any 类型则可以避开 Swift 的类型系统（<strong>所以应该尽可能避免使用</strong>）。</p>
+<p>泛型函数的类型十分丰富，这里我们可以考虑一下上一章对自定义函数组合运算符 &gt;&gt;&gt; 的泛型实现:</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">infix operator &gt;&gt;|: pro</span><br><span class="line">precedencegroup pro &#123;</span><br><span class="line">    associativity: left</span><br><span class="line">&#125;</span><br><span class="line">func &gt;&gt;|&lt;A, B, C&gt;<span class="function"><span class="params">(f: @escaping (A) -&gt; (B), g: @escaping (B) -&gt; (C))</span> -&gt;</span> <span class="function"><span class="params">(A)</span> -&gt;</span> (C) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; x <span class="keyword">in</span> g(f(x))&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = addOne(describe: <span class="string">&quot;1&quot;</span>) &gt;&gt;| addTwo(describe: <span class="string">&quot;2&quot;</span>) &gt;&gt;| addThree(describe: <span class="string">&quot;3&quot;</span>)</span><br><span class="line">result(<span class="number">10</span>) <span class="regexp">// 16</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="可选值"><a href="#可选值" class="headerlink" title="可选值"></a>可选值</h4><p><code>??</code> 运算符的简易定义是这样的：</p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">infix operator ??</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> ??&lt;T&gt;(lhs: T?, rhs: T) -&gt; T &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">result</span> = lhs &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> rhs</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="literal">result</span>: <span class="type">Int</span>? = &#123; <span class="keyword">return</span> <span class="keyword">nil</span> &#125;()</span><br><span class="line"><span class="literal">result</span> ?? <span class="number">100</span>		// <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p><code>??</code> 运算符提供了一个相比于强制可选解包更安全的替代，并且不像可选绑定一样繁琐。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">有鬼啊啊啊啊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hghostd.top/2018/01/10/%E3%80%8A%E5%87%BD%E6%95%B0%E5%BC%8FSwift%E3%80%8B%E7%AC%94%E8%AE%B0/">https://hghostd.top/2018/01/10/%E3%80%8A%E5%87%BD%E6%95%B0%E5%BC%8FSwift%E3%80%8B%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hghostd.top" target="_blank">H</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Swift/">Swift</a><a class="post-meta__tags" href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2018/01/26/RxSwift%20%E5%AE%9E%E7%8E%B0%20UITableview/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">RxSwift 实现 UITableview</div></div></a></div><div class="next-post pull-right"><a href="/2018/01/01/2017%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/"><img class="next-cover" src="https://cdn.pixabay.com/photo/2017/01/04/17/49/happy-year-2017-1952601_960_720.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2017年末总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2017/12/18/%E3%80%8ASwift%20%E8%BF%9B%E9%98%B6%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《Swift 进阶》读书笔记"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-12-18</div><div class="title">《Swift 进阶》读书笔记</div></div></a></div><div><a href="/2017/11/14/MVVM%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="MVVM 设计模式笔记"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-14</div><div class="title">MVVM 设计模式笔记</div></div></a></div><div><a href="/2018/02/06/Moya%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="Moya 使用"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-02-06</div><div class="title">Moya 使用</div></div></a></div><div><a href="/2018/05/11/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/" title="PopMenu提示框实现"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-05-11</div><div class="title">PopMenu提示框实现</div></div></a></div><div><a href="/2018/01/26/RxSwift%20%E5%AE%9E%E7%8E%B0%20UITableview/" title="RxSwift 实现 UITableview"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-01-26</div><div class="title">RxSwift 实现 UITableview</div></div></a></div><div><a href="/2017/11/20/Swift%E5%8D%8F%E8%AE%AE%E6%8B%93%E5%B1%95/" title="Swift协议拓展"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-20</div><div class="title">Swift协议拓展</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/1024.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">有鬼啊啊啊啊</div><div class="author-info__description">心有猛虎，嗷嗷待哺！嗷呜~</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hGhostD" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%80%9D%E6%83%B3"><span class="toc-number">1.</span> <span class="toc-text">函数式思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%EF%BC%9A%E5%B0%81%E8%A3%85-Core-Image"><span class="toc-number">2.</span> <span class="toc-text">案例研究：封装 Core Image</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">复合函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">2.2.</span> <span class="toc-text">自定义运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%AF%E9%87%8C%E5%8C%96"><span class="toc-number">2.3.</span> <span class="toc-text">柯里化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map%E3%80%81Filter-%E5%92%8C-Reduce"><span class="toc-number">3.</span> <span class="toc-text">Map、Filter 和 Reduce</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Map-%E5%92%8C-Filter"><span class="toc-number">3.1.</span> <span class="toc-text">Map 和 Filter</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Reduce"><span class="toc-number">3.2.</span> <span class="toc-text">Reduce</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E5%92%8C-Any-%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">泛型和 Any 类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">可选值</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8%20OpenCV.js%20%E5%BC%80%E5%8F%91/" title="微信小程序使用 OpenCV.js 开发">微信小程序使用 OpenCV.js 开发</a><time datetime="2022-11-09T05:37:40.000Z" title="发表于 2022-11-09 13:37:40">2022-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/20/%E3%80%8A%E4%BC%9A%E8%AF%B4%E7%9A%84%E4%BA%BA%E8%BF%90%E6%B0%94%E9%83%BD%E4%B8%8D%E4%BC%9A%E5%A4%AA%E5%B7%AE%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《会说的人运气都不会太差》读书笔记">《会说的人运气都不会太差》读书笔记</a><time datetime="2022-07-20T09:40:04.000Z" title="发表于 2022-07-20 17:40:04">2022-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/23/%E9%BB%91%E8%8B%B9%E6%9E%9C%20Monterey%20%E5%AE%89%E8%A3%85/" title="黑苹果 Monterey 安装">黑苹果 Monterey 安装</a><time datetime="2021-12-23T15:46:06.000Z" title="发表于 2021-12-23 23:46:06">2021-12-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/22/%E9%BB%91%E8%8B%B9%E6%9E%9C%2010500%20OpenCore%20%E5%8D%87%E7%BA%A7/" title="黑苹果 10500 OpenCore 升级">黑苹果 10500 OpenCore 升级</a><time datetime="2021-12-22T06:02:40.000Z" title="发表于 2021-12-22 14:02:40">2021-12-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/01/2020%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2020年末总结">2020年末总结</a><time datetime="2021-01-01T14:47:59.000Z" title="发表于 2021-01-01 22:47:59">2021-01-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 有鬼啊啊啊啊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
