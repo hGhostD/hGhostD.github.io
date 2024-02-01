@@ -9,8 +9,8 @@
 menu:
   主页: / || fas fa-home
   归档: /archives/ || fas fa-archive
-  # Tags: /tags/ || fas fa-tags
-  # Categories: /categories/ || fas fa-folder-open
+  Tags: /tags/ || fas fa-tags
+  Categories: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
@@ -411,6 +411,12 @@ footer:
     since: 2020
   custom_text:
   copyright: true # Copyright of theme and framework
+  beian:
+    enable: true
+    icp_text: 辽ICP备2021008629号-1
+    police_text:
+    police_code: https://beian.miit.gov.cn/
+    police_icon:
 
 # Analysis
 # --------------------------------------
