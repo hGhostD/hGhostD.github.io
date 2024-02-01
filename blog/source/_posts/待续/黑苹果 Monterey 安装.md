@@ -1,4 +1,6 @@
 ---
+layout:
+  - 待续
 title: 黑苹果 Monterey 安装
 date: 2021-12-23 23:46:06
 tags:

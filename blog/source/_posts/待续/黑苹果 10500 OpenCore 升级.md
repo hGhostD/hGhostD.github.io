@@ -1,6 +1,6 @@
 ---
 layout:
-  - 黑苹果安装
+  - 待续
 title: 黑苹果 10500 OpenCore 升级
 date: 2021-12-22 14:02:40
 tags:
