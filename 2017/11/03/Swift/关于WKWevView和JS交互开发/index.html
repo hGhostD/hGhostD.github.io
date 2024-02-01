@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关于WKWebView和JS交互开发 | H</title><meta name="keywords" content="Swift"><meta name="author" content="有鬼啊啊啊啊"><meta name="copyright" content="有鬼啊啊啊啊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于WKWebView和JS交互开发">
+<meta property="og:url" content="https://hghostd.top/2017/11/03/Swift/%E5%85%B3%E4%BA%8EWKWevView%E5%92%8CJS%E4%BA%A4%E4%BA%92%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="H">
+<meta property="og:description" content="在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2017-11-03T01:18:58.000Z">
+<meta property="article:modified_time" content="2022-11-27T11:27:44.825Z">
+<meta property="article:author" content="有鬼啊啊啊啊">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hghostd.top/2017/11/03/Swift/%E5%85%B3%E4%BA%8EWKWevView%E5%92%8CJS%E4%BA%A4%E4%BA%92%E5%BC%80%E5%8F%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于WKWebView和JS交互开发',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-27 19:27:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1024.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">H</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">关于WKWebView和JS交互开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-11-03T01:18:58.000Z" title="发表于 2017-11-03 09:18:58">2017-11-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-27T11:27:44.825Z" title="更新于 2022-11-27 19:27:44">2022-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Swift/">Swift</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">773</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="关于WKWebView和JS交互开发"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>在工作中使用到了 WKWebView 和 JS 交互开发的问题，在此留作笔记。</p>
+<span id="more"></span>
+<h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>关于 WKwebview 的优点就不多说了，苹果公司也推荐使用 WKWebView 来代替 UIWebView 作为网页浏览器开发。正好遇到的项目有这一部分需求，就直接使用了，也顺便学习一下，将遇到的问题记录下来。</p>
+<h4 id="设置WKWebView"><a href="#设置WKWebView" class="headerlink" title="设置WKWebView"></a>设置WKWebView</h4><p>最简单的第一步还是需要引入头文件 <code>import WebKit</code></p>
+<p>为了能与 JS 进行交互，需要对 WKWebView 进行设置</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建配置</span></span><br><span class="line"><span class="keyword">let</span> config = <span class="constructor">WKWebViewConfiguration()</span></span><br><span class="line"><span class="comment">// 创建UserContentController（提供JavaScript向webView发送消息的方法）</span></span><br><span class="line"><span class="keyword">let</span> userContent = <span class="constructor">WKUserContentController()</span></span><br><span class="line"><span class="comment">// 添加消息处理，注意：self指代的对象需要遵守WKScriptMessageHandler协议，结束时需要移除</span></span><br><span class="line">userContent.add(self, name: <span class="string">&quot;webViewApp&quot;</span>)</span><br><span class="line"><span class="comment">// 将UserConttentController设置到配置文件</span></span><br><span class="line">config.userContentController = userContent</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> frame = <span class="constructor">CGRect(<span class="params">x</span>: 0, <span class="params">y</span>: 0, <span class="params">width</span>: SCREEN_WIDTH, <span class="params">height</span>: SCREEN_HEIGHT - 64)</span></span><br><span class="line">webView = <span class="constructor">WKWebView(<span class="params">frame</span>: <span class="params">frame</span>, <span class="params">configuration</span>: <span class="params">config</span>)</span></span><br><span class="line">webView.uiDelegate = self           <span class="comment">//WKUIDelegate</span></span><br><span class="line">webView.navigationDelegate = self   <span class="comment">//WKNavigationDelegate</span></span><br></pre></td></tr></table></figure>
+<p>注意，这里的 <code>userContent.add(self, name: &quot;webViewApp&quot;)</code> 其中的 <code>webViewApp</code> 是与前端JS规定好的关键字，可以自行定义。</p>
+<p>至此，关于 WKWebView 的基本设置已经完成，我们需要实现相关的代理方法。</p>
+<h4 id="实现代理方法"><a href="#实现代理方法" class="headerlink" title="实现代理方法"></a>实现代理方法</h4><p>一些基本的代理就不做特殊说明了。</p>
+<h5 id="WKNavigationDelegate"><a href="#WKNavigationDelegate" class="headerlink" title="WKNavigationDelegate"></a>WKNavigationDelegate</h5><p>之前一直使用旧的 webView 加载完成的代理方法，还奇怪怎么一直不生效。后来才发现 WKWebView 需要使用 <code>webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)</code> 方法才行。加载失败的代理方法同理。</p>
+<h5 id="WKScriptMessageHandler"><a href="#WKScriptMessageHandler" class="headerlink" title="WKScriptMessageHandler"></a>WKScriptMessageHandler</h5><p>当 JS 调用 WKWebView 时需要 JS 实现 ```<br>window.webkit.messageHandlers.webViewApp.postMessage(value);</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">其中 `webViewApp` 是我们在开始注册的关键字。</span><br><span class="line"></span><br><span class="line">为了接受 <span class="keyword">JS </span>调用必须实现这个协议和其中的代理方法 `userContentController(_ userContentController: WKUserContentController, <span class="keyword">didReceive </span>message: WKScriptMessage)`</span><br><span class="line">并且可以从 `message` 中获取由 <span class="keyword">JS </span>传递过来的 <span class="keyword">JSON </span>信息。</span><br><span class="line">`let <span class="keyword">dict </span>= message.<span class="keyword">body </span>as? <span class="keyword">Dictionary&lt;String,String&gt;`</span></span><br><span class="line"><span class="keyword"></span>例：从<span class="keyword">dict中取值 </span>`if let pageId = <span class="keyword">dict?[&quot;pageId&quot;] </span>&#123; K_CONFIGJSON.pageId = pageId &#125;`</span><br><span class="line">后来发现用 <span class="keyword">SwiftyJson </span>框架处理 <span class="keyword">JSON </span>信息更容易些，我就换成了下面的处理方法:</span><br></pre></td></tr></table></figure>
+<p>let dict = JSON(message.body)<br>K_CONFIGJSON.pageId = dict[“pageId”].stringValue</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在此方法中就可根据需求实现自定义方法。</span><br><span class="line">#### WKWebview 调用 JS 方法</span><br></pre></td></tr></table></figure>
+<p>DispatchQueue.main.async {<br>    let email = K_USERMODEL.email<br>    let password = K_USERMODEL.password<br>     self.webView.evaluateJavaScript(“nativeCallBack(‘(email),(password)’)”) { (item, error) in<br>        print(item ?? “没有返回”,error ?? “没有错误”)<br>    }<br>}</p>
+<p>```<br>注意：这里调用 JS 方法一定要在主线程调用，不然有时会造成崩溃！！！<br>最初我发现调用 JS 的方法如果添加了参数会导致方法失效，参数不能传递过去。通过查阅资料发现了可以通过前端更改代码来解决问题，参考资料在最后。</p>
+<h4 id="最后还有一点"><a href="#最后还有一点" class="headerlink" title="最后还有一点"></a>最后还有一点</h4><p>本来还想在 XCode 的调试窗口里显示出 JS 的 <code>console.log()</code> 信息，因为这个功能在 Android 上是自带的。但是发现还需要自己集成，太麻烦了。。。所以我就放弃了。不过发现了一篇关于这个的文章，就先放这里吧。<br><br></p>
+<blockquote>
+<p>参考资料<br><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c9ceb6a824e2">WK 与 JS 的那些事</a><br><a target="_blank" rel="noopener" href="https://lvwenhan.com/ios/462.html">实现 js 向 Swift 的传值</a><br><a target="_blank" rel="noopener" href="https://github.com/johnlui/Swift-On-iOS/tree/master/BuildYourOwnHybridDevelopmentFramework/BuildYourOwnHybridDevelopmentFramework">Swift-On-iOS</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">有鬼啊啊啊啊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hghostd.top/2017/11/03/Swift/%E5%85%B3%E4%BA%8EWKWevView%E5%92%8CJS%E4%BA%A4%E4%BA%92%E5%BC%80%E5%8F%91/">https://hghostd.top/2017/11/03/Swift/%E5%85%B3%E4%BA%8EWKWevView%E5%92%8CJS%E4%BA%A4%E4%BA%92%E5%BC%80%E5%8F%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hghostd.top" target="_blank">H</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Swift/">Swift</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/11/03/Swift/Swift%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Swift的正则表达式</div></div></a></div><div class="next-post pull-right"><a href="/2017/11/03/%E8%AF%BB%E4%B9%A6/%E5%BD%93%E5%BD%93%E7%9A%84%E4%B9%A6%E5%88%B0%E4%BA%86/"><img class="next-cover" src="https://images.pexels.com/photos/10791746/pexels-photo-10791746.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">当当买的书到了</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2017/11/14/Objective-C/MVVM%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="MVVM 设计模式笔记"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-14</div><div class="title">MVVM 设计模式笔记</div></div></a></div><div><a href="/2017/11/02/%E5%BE%85%E7%BB%AD/%E7%AC%AC%E4%B8%80%E7%AF%87Swift/" title="第一篇Swift"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-02</div><div class="title">第一篇Swift</div></div></a></div><div><a href="/2018/02/06/Swift/Moya%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="Moya 使用"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-02-06</div><div class="title">Moya 使用</div></div></a></div><div><a href="/2018/05/11/Swift/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/" title="PopMenu提示框实现"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-05-11</div><div class="title">PopMenu提示框实现</div></div></a></div><div><a href="/2017/11/20/Swift/Swift%E5%8D%8F%E8%AE%AE%E6%8B%93%E5%B1%95/" title="Swift协议拓展"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-20</div><div class="title">Swift协议拓展</div></div></a></div><div><a href="/2018/01/26/Swift/RxSwift%20%E5%AE%9E%E7%8E%B0%20UITableview/" title="RxSwift 实现 UITableview"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-01-26</div><div class="title">RxSwift 实现 UITableview</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/1024.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">有鬼啊啊啊啊</div><div class="author-info__description">心有猛虎，嗷嗷待哺！嗷呜~</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hGhostD" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEWKWebView"><span class="toc-number">2.</span> <span class="toc-text">设置WKWebView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">实现代理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#WKNavigationDelegate"><span class="toc-number">3.1.</span> <span class="toc-text">WKNavigationDelegate</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#WKScriptMessageHandler"><span class="toc-number">3.2.</span> <span class="toc-text">WKScriptMessageHandler</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E8%BF%98%E6%9C%89%E4%B8%80%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">最后还有一点</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/09/%E6%97%A5%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8%20OpenCV.js%20%E5%BC%80%E5%8F%91/" title="微信小程序使用 OpenCV.js 开发">微信小程序使用 OpenCV.js 开发</a><time datetime="2022-11-09T05:37:40.000Z" title="发表于 2022-11-09 13:37:40">2022-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/20/%E8%AF%BB%E4%B9%A6/%E3%80%8A%E4%BC%9A%E8%AF%B4%E7%9A%84%E4%BA%BA%E8%BF%90%E6%B0%94%E9%83%BD%E4%B8%8D%E4%BC%9A%E5%A4%AA%E5%B7%AE%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《会说的人运气都不会太差》读书笔记">《会说的人运气都不会太差》读书笔记</a><time datetime="2022-07-20T09:40:04.000Z" title="发表于 2022-07-20 17:40:04">2022-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/23/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%20Monterey%20%E5%AE%89%E8%A3%85/" title="黑苹果 Monterey 安装">黑苹果 Monterey 安装</a><time datetime="2021-12-23T15:46:06.000Z" title="发表于 2021-12-23 23:46:06">2021-12-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/22/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%2010500%20OpenCore%20%E5%8D%87%E7%BA%A7/" title="黑苹果 10500 OpenCore 升级">黑苹果 10500 OpenCore 升级</a><time datetime="2021-12-22T06:02:40.000Z" title="发表于 2021-12-22 14:02:40">2021-12-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/01/%E5%BE%85%E7%BB%AD/2020%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2020年末总结">2020年末总结</a><time datetime="2021-01-01T14:47:59.000Z" title="发表于 2021-01-01 22:47:59">2021-01-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 有鬼啊啊啊啊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><br>
+<a href="https://beian.miit.gov.cn/" target="_blank">备案号:辽ICP备2021008629号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

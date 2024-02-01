@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vim使用技巧笔记 | H</title><meta name="keywords" content="日记,Vim"><meta name="author" content="有鬼啊啊啊啊"><meta name="copyright" content="有鬼啊啊啊啊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim使用技巧笔记">
+<meta property="og:url" content="https://hghostd.top/2017/11/07/%E6%97%A5%E8%AE%B0/Vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="H">
+<meta property="og:description" content="边学习 Vim 技巧 边做笔记 学到一点就记录一点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2017-11-07T06:44:14.000Z">
+<meta property="article:modified_time" content="2022-11-27T11:27:44.822Z">
+<meta property="article:author" content="有鬼啊啊啊啊">
+<meta property="article:tag" content="日记">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hghostd.top/2017/11/07/%E6%97%A5%E8%AE%B0/Vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vim使用技巧笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-11-27 19:27:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1024.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">H</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Vim使用技巧笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-11-07T06:44:14.000Z" title="发表于 2017-11-07 14:44:14">2017-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-27T11:27:44.822Z" title="更新于 2022-11-27 19:27:44">2022-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vim使用技巧笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>边学习 Vim 技巧 边做笔记 学到一点就记录一点</p>
+<span id="more"></span>
+<p>从今天开始练习使用Vim，从最开始开始。</p>
+<ul>
+<li><p>查询： 可以在 Vi 模式下直接使用 <code>:h ctrl-w</code> 查询 <code>&lt;C-w&gt;</code> 的用法。</p>
+</li>
+<li><p>输出： :echo 指令。</p>
+<pre><code>  Vim中的printf。 :echo &quot;Hello,world!&quot; 
+</code></pre>
+</li>
+<li><p>持久化消息， 使用 <code>:echom &quot;Hello again,World!&quot;</code> 指令，然后使用 <code>:messages</code> 。能够再次看到 echom打印 “Hello again,World!” 的指令</p>
+</li>
+<li><p>基本映射 <code>:map \ dd</code> 使用 ‘&#39; 指令代表 <code>dd</code> (删除行)  </p>
+</li>
+<li><p>缩写 可以快捷输入一些类内容</p>
+<pre><code>  :iabbrev hu Copyright 2011 Steve Losh
+</code></pre>
+</li>
+</ul>
+<hr>
+<ul>
+<li>插入模式映射设置  <code>:inoremap jk &lt;esc&gt;</code>  在插入模式下按jk退出插入模式</li>
+<li><code>J</code> (大写) 讲两行拼接成一行</li>
+<li>多行注释 <code>Ctrl+v, 选中行，I（大写I）, #, ESC</code></li>
+</ul>
+<hr>
+<ul>
+<li><code>f</code> <code>F</code> 移动光标到当前行的字母 例如 <code>fc</code> 移动到光标后面第一个 c 字母上。<code>Fc</code> 移动到光标前第一个 c 字母。<br>  使用 <code>;</code> 查找本行下一个符合的字符 例如 <code>;</code> 跳转到下一个 c 字母上。使用 <code>,</code> 向前查找。</li>
+<li><code>t</code> <code>T</code> 类似 <code>f</code> <code>F</code> 。差别是移动到字母前一个位置</li>
+</ul>
+<hr>
+<ul>
+<li><code>\</code> 或者 <code>?</code> 查找 例如 <code>\error</code> <code>?error</code> 查找全文的error<br>按 <code>n</code> 向后查找匹配项 按 <code>N</code> 向前查找匹配项</li>
+<li><code>CTRL-O</code> 光标跳转到上一个查找对象处 <code>CTRL-I</code> 光标跳转到下一个查找处</li>
+<li>通过 <code>:set ic</code> 来忽略大小写 通过 <code>:set noic</code> 来分辨大小写 如果仅在第一次搜索时忽略大小写 直接在 搜索内容后添加 <code>\c</code> 例如: <code>\error\c</code></li>
+<li>设置搜索高亮 <code>:set hls is</code>  注: 取消搜索高亮 <code>:nohlsearch</code></li>
+</ul>
+<hr>
+<p>今天终于在xcode 9 上安装了 <a target="_blank" rel="noopener" href="https://github.com/XVimProject/XVim2">XVim</a> 了！！！</p>
+<ul>
+<li><code>sp</code> 或 <code>Ctrl+w s</code> 水平分割窗口</li>
+<li><code>vs</code> 或 <code>Ctrl+w v</code> 垂直分割窗口</li>
+<li><code>Ctrl+w q</code> 关闭当前窗口</li>
+<li><code>Ctrl+w o</code> 关闭除当前串口外的所有窗口</li>
+<li><code>Ctrl+w w</code> 遍历切换窗口</li>
+</ul>
+<hr>
+<ul>
+<li><code>#</code> 匹配单词 寻找下一个相同的单词。</li>
+<li><code>di&quot;</code> 删除 “ 之间的内容。</li>
+</ul>
+<hr>
+<ul>
+<li><code>&gt;G</code> 使当前行到文档末尾处增加一个缩进，可以使用 <code>.</code> 继续重复命令。</li>
+<li><code>s</code> 替换当前单词 == <code>cl</code>。</li>
+<li><code>S</code> == <code>C</code> 删除整行 并重新输入。</li>
+</ul>
+<hr>
+<ul>
+<li><code>:%s/\.o/\.c/g</code> 将 .o 替换为 .c。 <code>%</code> 表示所有行，<code>g</code> 表示全部替换<br><code>:s/aaa/bbb</code> 只替换第一行的第一个。<code>1,12s/aaa/bbb/g</code> 替换1到12行所有的。</li>
+<li><code>daw</code> <code>diw</code> 可以更快向前删除一个单词 <code>aw</code> 比 <code>iw</code> 多删除空格。 </li>
+<li><code>dab</code> <code>dib</code> 删除小括号内中的内容. <code>ab</code>  比 <code>ib</code> 多删除括号。等于 <code>da(</code> <code>di(</code>,类似还有 <code>daB</code> <code>diB</code> 等于 <code>da&#123;</code> <code>di&#123;</code> 删除大括号内容。</li>
+<li><code>dit</code> <code>dat</code> 删除匹配标签栏中的内容。如 <a color=#00ff00>title</a>,输入 <code>dit</code> 会删除 title，删除掉标签中的内容。</li>
+<li><code>&lt;C-a&gt;</code> <code>&lt;C-x&gt;</code> 把当前数字加一或减一。Tips: 如果是对 007 使用 <code>&lt;C-a&gt;</code> 将会得到结果为 010，是因为 vim 认为 007 是8进制，在 .vimrc 中设置 <code>set nrformats=</code> 会转为十进制。</li>
+</ul>
+<hr>
+<ul>
+<li><font color=#0089ff>蓝色代表插入模式下指令</font>。</li>
+<li><font color=#0089ff>Ctrl+w</font> 删除一个单词。</li>
+<li><font color=#0089ff>Ctrl+u</font> 删除至行首。</li>
+<li><code>yt,</code> 复制光标到 “,” 之间所有的内容。<font color=#0089ff>Ctrl+r0</font> 在光标位置粘贴复制内容。yt 的意思是复制内容到专用寄存器中，所以 Ctrl+r0 表示取出第0个内容。</li>
+<li><font color=#0089ff>Ctrl+r=</font> 使用运算功能。例如 计算 6 * 35:在插入模式输入 <code>&lt;C+r&gt;=6*35</code>。直接获得结果210。</li>
+</ul>
+<hr>
+<ul>
+<li><font color=#008900>绿色代表可视模式下指令</font>。</li>
+<li><code>gv</code> 重选上次高亮选区。</li>
+<li><font color=#008900><strong>o</strong></font> 切换高亮选区活动端。</li>
+<li><font color=#008900><strong>u U</strong></font> 对选中单词进行小写/大写切换。</li>
+</ul>
+<hr>
+<p><code>:[range] delete [x]</code> 删除指定范围内的行[到寄存器 x 中]。<br><code>&quot;[x]p</code> 粘贴寄存器 x 中的内容，例如粘贴寄存器 2 中的内容：<code>&quot;2p</code>。<br><code>:reg</code> 查看寄存器内容。<br><code>@:</code> 重复上一条命令。<br><code>:!</code> 执行 Shell 中的程序，例如：<code>:!ls</code>。</p>
+<hr>
+<p><code>&lt;C+o&gt;</code> 类似网页后退，后退到上一个打开的文本。对应的还有 <code>&lt;C+i&gt;</code> 前进。<br><code>:jumps</code> 打开历史文件列表。</p>
+<hr>
+<p><code>m&#123;a-zA-z&#125;</code> 把位置标记 {a-zA-Z} 设在当前光标位置 (不移动光标，这不是动作命令)。<br><code>&#39;&#123;mark&#125;</code> 跳转到标记行首。 `` 跳转到上次光标位置。<br>``{mark}` 跳转到标记处。 </p>
+<hr>
+<p><code>qa</code> (需要记录的指令) <code>q</code> 使用 <code>q</code> + 寄存器位置来记录宏操作，最后以 <code>q</code> 指令结尾。<br><code>@a</code> 执行寄存器(a)中指令。 <code>:reg</code> 查看寄存器中所有的内容。<br><code>~</code> 大小写转换，并使光标跳转到下一个字符。</p>
+<hr>
+<p><code>q/</code> 查看历史指令。</p>
+<hr>
+<p><code>&lt;C+]&gt;</code> 跳转光标到关键字的定义处。<br><code>&lt;C+n&gt;</code>  和 <code>&lt;C+p&gt;</code> 可以激活自动补全功能。<br><code>&lt;C+x&gt;</code> <code>&lt;C+l&gt;</code> 组合使用可以补全本行内容。<br><code>:set spell</code> 检查拼写错误。 通过 <code>[s</code> 和 <code>]s</code> 命令在拼写错误间进行跳转。还可以通过 <code>z=</code> 命令获取建议列表。</p>
+<hr>
+<p><code>ZZ</code> 快速退出并保存。<br><code>dfi</code> 从光标处删除至i(包括i), <code>dti</code> 从光标处删除至i(不包括i)。</p>
+<hr>
+<p>有的时候需要在单词左右添加引号括号之类的，需要在 .vimrc 中添加定义</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">s</span>:<span class="title">surround</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">let</span> word = <span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)</span><br><span class="line">    <span class="keyword">let</span> wrap= <span class="built_in">input</span>(<span class="string">&quot;wrap with: &quot;</span>)</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">command</span> = <span class="string">&quot;s/&quot;</span>.word.<span class="string">&quot;/&quot;</span>.wrap.word.wrap.<span class="string">&quot;/&quot;</span></span><br><span class="line">    <span class="keyword">execute</span> <span class="keyword">command</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line"><span class="keyword">nmap</span> cx :<span class="keyword">call</span> <span class="symbol">&lt;SID&gt;</span>surround()<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样在 nomal 模式下使用 <code>cx</code> + <code>&quot;</code> 就能在单词左右添加引号。</p>
+<hr>
+<p><code>+ 或者 Enter 移动光到下一行第一个非空白字符</code><br><code>- 移动光标到上一行第一个非空白字符</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">有鬼啊啊啊啊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hghostd.top/2017/11/07/%E6%97%A5%E8%AE%B0/Vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E7%AC%94%E8%AE%B0/">https://hghostd.top/2017/11/07/%E6%97%A5%E8%AE%B0/Vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hghostd.top" target="_blank">H</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%97%A5%E8%AE%B0/">日记</a><a class="post-meta__tags" href="/tags/Vim/">Vim</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/11/13/Swift/Xcode%20%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Xcode 单元测试</div></div></a></div><div class="next-post pull-right"><a href="/2017/11/07/Swift/%E5%9B%9E%E9%A1%BESwift%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">回顾Swift设计模式</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2018/01/01/%E5%BE%85%E7%BB%AD/2017%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2017年末总结"><img class="cover" src="https://cdn.pixabay.com/photo/2017/01/04/17/49/happy-year-2017-1952601_960_720.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-01-01</div><div class="title">2017年末总结</div></div></a></div><div><a href="/2021/01/01/%E5%BE%85%E7%BB%AD/2020%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2020年末总结"><img class="cover" src="https://images.pexels.com/photos/3401900/pexels-photo-3401900.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-01</div><div class="title">2020年末总结</div></div></a></div><div><a href="/2017/11/02/%E5%BE%85%E7%BB%AD/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E8%AE%B0/" title="第一篇日记"><img class="cover" src="https://images.pexels.com/photos/5717451/pexels-photo-5717451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-02</div><div class="title">第一篇日记</div></div></a></div><div><a href="/2021/12/22/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%2010500%20OpenCore%20%E5%8D%87%E7%BA%A7/" title="黑苹果 10500 OpenCore 升级"><img class="cover" src="https://s2.loli.net/2022/01/18/sxjA4a73bOTDhuS.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-22</div><div class="title">黑苹果 10500 OpenCore 升级</div></div></a></div><div><a href="/2021/12/23/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%20Monterey%20%E5%AE%89%E8%A3%85/" title="黑苹果 Monterey 安装"><img class="cover" src="https://www.apple.com.cn/macos/monterey/images/overview/hero/hero_desktop__buokcfsx51py_large.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-23</div><div class="title">黑苹果 Monterey 安装</div></div></a></div><div><a href="/2019/03/23/%E6%97%A5%E8%AE%B0/%E4%BB%80%E4%B9%88%E8%83%BD%E5%8A%9B%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E4%BD%86%E5%A4%A7%E5%A4%9A%E6%95%B0%E4%BA%BA%E5%8D%B4%E6%B2%A1%E6%9C%89/" title="知乎回答“什么能力很重要，但大多数人却没有？”"><img class="cover" src="https://cdn.pixabay.com/photo/2020/06/21/00/29/king-james-version-5322835_960_720.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-23</div><div class="title">知乎回答“什么能力很重要，但大多数人却没有？”</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/1024.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">有鬼啊啊啊啊</div><div class="author-info__description">心有猛虎，嗷嗷待哺！嗷呜~</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hGhostD" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/09/%E6%97%A5%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8%20OpenCV.js%20%E5%BC%80%E5%8F%91/" title="微信小程序使用 OpenCV.js 开发">微信小程序使用 OpenCV.js 开发</a><time datetime="2022-11-09T05:37:40.000Z" title="发表于 2022-11-09 13:37:40">2022-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/20/%E8%AF%BB%E4%B9%A6/%E3%80%8A%E4%BC%9A%E8%AF%B4%E7%9A%84%E4%BA%BA%E8%BF%90%E6%B0%94%E9%83%BD%E4%B8%8D%E4%BC%9A%E5%A4%AA%E5%B7%AE%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《会说的人运气都不会太差》读书笔记">《会说的人运气都不会太差》读书笔记</a><time datetime="2022-07-20T09:40:04.000Z" title="发表于 2022-07-20 17:40:04">2022-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/23/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%20Monterey%20%E5%AE%89%E8%A3%85/" title="黑苹果 Monterey 安装">黑苹果 Monterey 安装</a><time datetime="2021-12-23T15:46:06.000Z" title="发表于 2021-12-23 23:46:06">2021-12-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/22/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%2010500%20OpenCore%20%E5%8D%87%E7%BA%A7/" title="黑苹果 10500 OpenCore 升级">黑苹果 10500 OpenCore 升级</a><time datetime="2021-12-22T06:02:40.000Z" title="发表于 2021-12-22 14:02:40">2021-12-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/01/%E5%BE%85%E7%BB%AD/2020%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2020年末总结">2020年末总结</a><time datetime="2021-01-01T14:47:59.000Z" title="发表于 2021-01-01 22:47:59">2021-01-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 有鬼啊啊啊啊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><br>
+<a href="https://beian.miit.gov.cn/" target="_blank">备案号:辽ICP备2021008629号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

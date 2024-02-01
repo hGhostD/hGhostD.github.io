@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swift实现可编辑标签页 | H</title><meta name="keywords" content="Swift"><meta name="author" content="有鬼啊啊啊啊"><meta name="copyright" content="有鬼啊啊啊啊"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="工作中遇到一个需要自定义的标签页，在网上找到了一个比较合适的 demo，可惜是以 Objective-C 实现的。就正好自己再用 swift 重写一下，也学习一下别人的思路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift实现可编辑标签页">
+<meta property="og:url" content="https://hghostd.top/2018/03/22/Swift/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/index.html">
+<meta property="og:site_name" content="H">
+<meta property="og:description" content="工作中遇到一个需要自定义的标签页，在网上找到了一个比较合适的 demo，可惜是以 Objective-C 实现的。就正好自己再用 swift 重写一下，也学习一下别人的思路。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2018-03-22T06:19:46.000Z">
+<meta property="article:modified_time" content="2022-11-27T11:27:44.822Z">
+<meta property="article:author" content="有鬼啊啊啊啊">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hghostd.top/2018/03/22/Swift/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Swift实现可编辑标签页',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-27 19:27:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1024.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">H</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Swift实现可编辑标签页</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-03-22T06:19:46.000Z" title="发表于 2018-03-22 14:19:46">2018-03-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-27T11:27:44.822Z" title="更新于 2022-11-27 19:27:44">2022-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Swift/">Swift</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">724</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Swift实现可编辑标签页"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>工作中遇到一个需要自定义的标签页，在网上找到了一个比较合适的 demo，可惜是以 Objective-C 实现的。就正好自己再用 swift 重写一下，也学习一下别人的思路。</p>
+<span id="more"></span>
+<h4 id="SDTagsView"><a href="#SDTagsView" class="headerlink" title="SDTagsView"></a>SDTagsView</h4><p><a target="_blank" rel="noopener" href="https://github.com/SlowDony/SDTagsView">这里</a> 是原作者的 demo，他分别采用了 Label 和 CollectionView 两种实现方式。不过作者比较推荐第二种，我也只以 CollectionView 的方式实现。<br><img src="https://github.com/SlowDony/SDTagsView/blob/master/SDTagsView/SDEditTagsView.gif?raw=true" alt="SDTagsView"></p>
+<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>因为我们这个 UI 控件可能需要在任意的 UIViewcontroller 中点击出现。所以我采用将这个控件同样以一个 UIViewcontroller 为承载。在需要的时候调用 present 弹出即可。目录结构如下:<br><img src="https://github.com/hGhostD/MarkDownPhotos/blob/master/Swift%20%E7%AC%94%E8%AE%B0/%E6%A0%87%E7%AD%BE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png?raw=true"></p>
+<h4 id="实现-HUEditTagsViewController"><a href="#实现-HUEditTagsViewController" class="headerlink" title="实现 HUEditTagsViewController"></a>实现 HUEditTagsViewController</h4><p>TagsViewController 作为一个 Controller，是放置 view 和相关数据的基本控件。我们需要在此定义好数据源和相关的 view。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myTagsArr: [<span class="keyword">String</span>] = []</span><br><span class="line">    <span class="keyword">var</span> moreTagsArr: [<span class="keyword">String</span>] = []</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> dataArr: [[<span class="keyword">String</span>]] &#123;</span><br><span class="line">        <span class="keyword">return</span> [<span class="built_in">self</span>.myTagsArr, <span class="built_in">self</span>.moreTagsArr]</span><br><span class="line">    &#125;</span><br><span class="line">    typealias tagsBlock = ([<span class="keyword">String</span>], [<span class="keyword">String</span>]) -&gt; <span class="keyword">Void</span></span><br><span class="line">    <span class="keyword">var</span> saveBlock: tagsBlock?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> tagsView : HUCollectionTagsView?</span><br></pre></td></tr></table></figure>
+<p>定义好必要的属性后，在 viewDidLoad 方法中做好相关的设置就可以了。这里我定义了3个数组，第一个数组放置我的标签内容，第二个数组放置更多标签的内容，第三个数组只有 get 方法，是将前两个数组放置到一起，传递给 view 作为数据源使用。</p>
+<h4 id="实现-HUCollectionTagsView"><a href="#实现-HUCollectionTagsView" class="headerlink" title="实现 HUCollectionTagsView"></a>实现 HUCollectionTagsView</h4><p>这个作为一个 collectionview，实现它并不复杂。需要注意的是，我们这个 collectionview 实现头部view，也同样需要注册 header 的 cellIdefntifier，否则会造成崩溃。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.register(<span class="type">UICollectionReusableView</span>.<span class="keyword">self</span>, forSupplementaryViewOfKind: <span class="type">UICollectionElementKindSectionHeader</span>, withReuseIdentifier: cellHeaderIdentifier)</span><br></pre></td></tr></table></figure>
+<p>。需要在初始化的时候注册，和 cell 一样。</p>
+<h4 id="实现-HUCollectViewCell-和-HUCollectionTagsFlowLayout"><a href="#实现-HUCollectViewCell-和-HUCollectionTagsFlowLayout" class="headerlink" title="实现 HUCollectViewCell 和 HUCollectionTagsFlowLayout"></a>实现 HUCollectViewCell 和 HUCollectionTagsFlowLayout</h4><p>这两个配置文件是对 collectionview 的具体必要配置，可以按照自己的需求进行自定义。</p>
+<h4 id="点击移动-item"><a href="#点击移动-item" class="headerlink" title="点击移动 item"></a>点击移动 item</h4><p>至此，整体的结构已经实现完成，最后要实现一些点击事件的交互逻辑就可以完成。</p>
+<p>由于点击事件的代理方法是绑定在 view 中的，但是我们想要点击时对 Controller 中的数据进行修改，就需要将事件传递出去。实现方式有很多，可以使用代理、block等。这里我们采用代理方式，需要自定义一个协议。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">HUCollectionTagsViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">collectionTagsView</span>(<span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// HUCollectionTagsView </span></span><br><span class="line"><span class="keyword">var</span> hu_delegate: <span class="type">HUCollectionTagsViewDelegate</span>?</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionView</span>(<span class="keyword">_</span> <span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span> &#123;</span><br><span class="line">true<span class="keyword">self</span>.hu_delegate<span class="operator">?</span>.collectionTagsView(collectionView: <span class="keyword">self</span>, didSelectItemAt: indexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个协议只有一个必要实现的方法，就是响应点击具体的 item。<br>再由 HUEditTagsViewController 来实现：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionTagsView</span>(<span class="params">collectionView</span>: <span class="type">UICollectionView</span>, <span class="params">didSelectItemAt</span> <span class="params">indexPath</span>: <span class="type">IndexPath</span>)</span> &#123;</span><br><span class="line">truetrue<span class="comment">/// 处理点击 改变数据内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>做的时候觉得数据的传递绑定处理的不太完善，但是一直也没想到更好的处理办法，还需要进行优化，如果后面想到了，再来修改吧。<br>最后实现效果：<br><img src="https://github.com/hGhostD/MarkDownPhotos/blob/master/Swift%20%E7%AC%94%E8%AE%B0/%E6%A0%87%E7%AD%BE%E6%95%88%E6%9E%9C.gif?raw=true"><br>完整代码在<a target="_blank" rel="noopener" href="https://github.com/hGhostD/HUTagsView">这里</a></p>
+<br>
+<br>
+> 参考资料
+> [SDTagsView1.0](https://github.com/SlowDony/SDTagsView)</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">有鬼啊啊啊啊</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hghostd.top/2018/03/22/Swift/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/">https://hghostd.top/2018/03/22/Swift/Swift%E5%AE%9E%E7%8E%B0%E5%8F%AF%E7%BC%96%E8%BE%91%E6%A0%87%E7%AD%BE%E9%A1%B5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hghostd.top" target="_blank">H</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Swift/">Swift</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2018/05/11/Swift/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PopMenu提示框实现</div></div></a></div><div class="next-post pull-right"><a href="/2018/03/19/Swift/fastlane%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E8%84%9A%E6%9C%AC/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">fastlane自动打包脚本</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2017/11/14/Objective-C/MVVM%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="MVVM 设计模式笔记"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-14</div><div class="title">MVVM 设计模式笔记</div></div></a></div><div><a href="/2017/11/02/%E5%BE%85%E7%BB%AD/%E7%AC%AC%E4%B8%80%E7%AF%87Swift/" title="第一篇Swift"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-02</div><div class="title">第一篇Swift</div></div></a></div><div><a href="/2018/02/06/Swift/Moya%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="Moya 使用"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-02-06</div><div class="title">Moya 使用</div></div></a></div><div><a href="/2018/05/11/Swift/PopMenu%E6%8F%90%E7%A4%BA%E6%A1%86%E5%AE%9E%E7%8E%B0/" title="PopMenu提示框实现"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-05-11</div><div class="title">PopMenu提示框实现</div></div></a></div><div><a href="/2017/11/20/Swift/Swift%E5%8D%8F%E8%AE%AE%E6%8B%93%E5%B1%95/" title="Swift协议拓展"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-11-20</div><div class="title">Swift协议拓展</div></div></a></div><div><a href="/2018/01/26/Swift/RxSwift%20%E5%AE%9E%E7%8E%B0%20UITableview/" title="RxSwift 实现 UITableview"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-01-26</div><div class="title">RxSwift 实现 UITableview</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/1024.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">有鬼啊啊啊啊</div><div class="author-info__description">心有猛虎，嗷嗷待哺！嗷呜~</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hGhostD" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#SDTagsView"><span class="toc-number">1.</span> <span class="toc-text">SDTagsView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-HUEditTagsViewController"><span class="toc-number">3.</span> <span class="toc-text">实现 HUEditTagsViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-HUCollectionTagsView"><span class="toc-number">4.</span> <span class="toc-text">实现 HUCollectionTagsView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-HUCollectViewCell-%E5%92%8C-HUCollectionTagsFlowLayout"><span class="toc-number">5.</span> <span class="toc-text">实现 HUCollectViewCell 和 HUCollectionTagsFlowLayout</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E7%A7%BB%E5%8A%A8-item"><span class="toc-number">6.</span> <span class="toc-text">点击移动 item</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/09/%E6%97%A5%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8%20OpenCV.js%20%E5%BC%80%E5%8F%91/" title="微信小程序使用 OpenCV.js 开发">微信小程序使用 OpenCV.js 开发</a><time datetime="2022-11-09T05:37:40.000Z" title="发表于 2022-11-09 13:37:40">2022-11-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/20/%E8%AF%BB%E4%B9%A6/%E3%80%8A%E4%BC%9A%E8%AF%B4%E7%9A%84%E4%BA%BA%E8%BF%90%E6%B0%94%E9%83%BD%E4%B8%8D%E4%BC%9A%E5%A4%AA%E5%B7%AE%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《会说的人运气都不会太差》读书笔记">《会说的人运气都不会太差》读书笔记</a><time datetime="2022-07-20T09:40:04.000Z" title="发表于 2022-07-20 17:40:04">2022-07-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/23/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%20Monterey%20%E5%AE%89%E8%A3%85/" title="黑苹果 Monterey 安装">黑苹果 Monterey 安装</a><time datetime="2021-12-23T15:46:06.000Z" title="发表于 2021-12-23 23:46:06">2021-12-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/22/%E5%BE%85%E7%BB%AD/%E9%BB%91%E8%8B%B9%E6%9E%9C%2010500%20OpenCore%20%E5%8D%87%E7%BA%A7/" title="黑苹果 10500 OpenCore 升级">黑苹果 10500 OpenCore 升级</a><time datetime="2021-12-22T06:02:40.000Z" title="发表于 2021-12-22 14:02:40">2021-12-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/01/%E5%BE%85%E7%BB%AD/2020%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/" title="2020年末总结">2020年末总结</a><time datetime="2021-01-01T14:47:59.000Z" title="发表于 2021-01-01 22:47:59">2021-01-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 有鬼啊啊啊啊</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><br>
+<a href="https://beian.miit.gov.cn/" target="_blank">备案号:辽ICP备2021008629号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
