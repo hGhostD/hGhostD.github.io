@@ -1,5 +1,5 @@
 ---
-layout: 《函数式 Swift》读书笔记
+layout: 读书
 title: 《函数式 Swift》读书笔记
 date: 2018-01-10 16:03:21
 tags: 

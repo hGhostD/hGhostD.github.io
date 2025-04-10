@@ -1,5 +1,5 @@
 ---
-layout: 《Swift 进阶》读书笔记
+layout: 读书
 title: 《Swift 进阶》读书笔记
 date: 2017-12-18 17:26:04
 tags: 
