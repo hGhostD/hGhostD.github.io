@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(yarn --version)",
+      "Bash(corepack yarn *)",
+      "Bash(node -e 'try{console.log\\(require\\('\\\\''__TRACKED_VAR__/package.json'\\\\''\\).version\\)}catch\\(e\\){console.log\\('\\\\''NOT_INSTALLED'\\\\''\\)}')",
+      "Bash(yarn outdated *)",
+      "Bash(npx yarn *)",
+      "Bash(npm outdated *)",
+      "Bash(npm config *)",
+      "Bash(yarn config *)",
+      "Bash(npm install *)",
+      "Bash(npx hexo *)",
+      "Bash(node *)",
+      "mcp__web-reader__webReader",
+      "Bash(curl -s http://localhost:4000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/2017/12/18/读书/《Swift%20进阶》读书笔记/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/archives/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/tags/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/categories/)",
+      "Bash(curl -s http://localhost:4000/2017/11/07/Swift/回顾Swift设计模式/)",
+      "WebSearch",
+      "mcp__zread__search_doc",
+      "WebFetch(domain:butterfly.js.org)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:4000/2017/12/18/读书/《Swift%20进阶》读书笔记/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/404.html)",
+      "Bash(xargs -0 sed -i '' 's/layout: 读书/layout: post/g')",
+      "Bash(curl -s \"http://localhost:4000/2025/04/11/读书/《孙子兵法》读书笔记/\")"
+    ]
+  }
+}
